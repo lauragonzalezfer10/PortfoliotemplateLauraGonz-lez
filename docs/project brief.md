@@ -1,7 +1,7 @@
 # Project Brief
 
-**Student:** [Your Name]  
-**Handle:** @[your-github-username]  
+**Student:** Laura González Fernández
+**Handle:** @[lauragonzalezfer10]  
 **Course:** Web Design 2025 · Fall  
 **Date:** [Fill in date - Week 2]
 
@@ -14,8 +14,6 @@
 <!-- Describe your project in 2-3 sentences -->
 
 ### Who is it for?
-
-<!-- Define your target audience -->
 
 ### Why does it matter?
 
@@ -65,8 +63,8 @@
 
 ### Multilingual Considerations
 
-- Primary language:
-- Secondary language (optional):
+- Primary language: Spanish
+- Secondary language (optional): English
 - Translation strategy:
 
 ---
