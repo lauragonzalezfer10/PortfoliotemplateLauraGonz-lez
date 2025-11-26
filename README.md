@@ -1,8 +1,6 @@
 # FinalprojectLauraGonz-lez
 
-## Live deployment link
-
-https://lauragonzalezfer10.github.io/PortfoliotemplateLauraGonz-lez/
+You can find the deployed site here: [https://lauragonzalezfer10.github.io/PortfoliotemplateLauraGonz-lez/]
 
 ## Project description and purpose
 
