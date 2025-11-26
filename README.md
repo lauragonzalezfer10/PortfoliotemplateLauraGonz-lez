@@ -8,6 +8,8 @@ The aim of this project is to create a responsive portfolio template that can be
 
 ## Tech stack used
 
+I used IA you can find prompts used in the docs with plans and reports.
+
 ## Setup instructions for local development
 
 ## Customization guide
