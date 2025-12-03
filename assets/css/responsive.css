@@ -1,0 +1,32 @@
+/* --------------------------------------------------------------------------
+   11. Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .shape {
+    transform: scale(0.6);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-cta .btn {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .hero-cta .btn:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-image::before {
+    display: none;
+  }
+}

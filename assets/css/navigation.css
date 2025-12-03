@@ -1,0 +1,32 @@
+.navbar {
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s;
+}
+
+.navbar.scrolled {
+  background: rgba(15, 15, 15, 0.95);
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem !important;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--bs-primary);
+  transition: width 0.3s, left 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
+}

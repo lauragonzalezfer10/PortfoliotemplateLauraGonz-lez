@@ -14,6 +14,8 @@ I used IA you can find prompts used in the docs with plans and reports.
 
 ## Customization guide
 
+If you edit the theme in CSS you can change the parameters like colours or fonts easily to customise it to your liking.
+
 ## Screenshots or demo GIF
 
 ## Credits and acknowledgments
