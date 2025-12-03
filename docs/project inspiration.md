@@ -2,15 +2,15 @@
 
 ## Trends
 
-- [Trend 1]
-- [Trend 2]
-- [Trend 3]
+- Minimalism
+- Scrollytelling
+- Glassmorphism
 
 ## Visual References
 
-- [Link or moodboard image 1]
-- [Link or moodboard image 2]
-- [Link or moodboard image 3]
+- ![Moodboard Minimalism](<../assets/images/inspo minimalism.png>)
+- ![Moodboard Scrollytelling](<../assets/images/inspo scrollytelling.png>)
+- ![Moodboard Glassmorphism ](<..assets/images/inspo glassmorphism.png>)
 
 ## Theme Draft
 
