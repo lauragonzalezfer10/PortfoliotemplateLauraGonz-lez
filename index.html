@@ -36,7 +36,12 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/index.css" />
+
+    <!-- Main JS -->
     <script src="./assets/js/main.js" defer></script>
+
+    <!-- Newsletter JS -->
+    <script src="./assets/js/newsletter.js" defer></script>
 
     <!-- Favicons -->
     <link
@@ -109,12 +114,12 @@
         </div>
 
         <div class="container position-relative z-1 text-center text-white">
-          <h1 class="display-1 fw-bold hero-title">John Designer</h1>
+          <h1 class="display-1 fw-bold hero-title">Laura González</h1>
           <p class="lead hero-subtitle mb-4">
-            Full-Stack Developer & Creative Technologist
+            Multidisciplinary designer & creative storyteller
           </p>
           <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary btn-lg me-3"
+            <a href="#projects" class="btn btn-outline-light btn-lg"
               >View Projects</a
             >
             <a href="#contact" class="btn btn-outline-light btn-lg"
@@ -541,6 +546,61 @@
         </div>
       </section>
     </main>
+
+    <!-- Newsletter Section -->
+    <section id="newsletter" class="py-5 py-lg-6">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7">
+            <div class="newsletter-card text-center mb-4 gsap-reveal">
+              <h2 class="display-5 fw-bold mb-3">Newsletter</h2>
+              <p class="lead text-muted mb-4">
+                Get occasional updates about new projects, resources and
+                experiments.
+              </p>
+
+              <form
+                id="newsletterForm"
+                class="row g-2 g-sm-3 justify-content-center"
+                action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+                method="POST"
+              >
+                <div class="col-12 col-sm-8">
+                  <label for="newsletterEmail" class="visually-hidden">
+                    Email address
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control form-control-lg"
+                    id="newsletterEmail"
+                    name="email"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+
+                <div class="col-12 col-sm-4 d-grid">
+                  <button type="submit" class="btn btn-outline-light">
+                    Join newsletter
+                  </button>
+                </div>
+
+                <div class="col-12">
+                  <p
+                    id="newsletterStatus"
+                    class="text-center small mt-2 mb-0"
+                  ></p>
+                </div>
+              </form>
+
+              <p class="text-muted small mt-3 mb-0">
+                No spam, just thoughtful updates every now and then.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
 

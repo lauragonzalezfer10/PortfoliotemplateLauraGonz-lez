@@ -3,14 +3,14 @@
    1. CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  --bs-body-bg: #0f0f0f;
-  --bs-body-color: #ffffff;
-  --bs-primary: #6366f1;
+  --bs-body-bg: #efefef;
+  --bs-body-color: #0d00ff;
+  --bs-primary: #0004ff;
   --bs-primary-rgb: 99, 102, 241;
-  --bs-secondary-color: #ffffff;
+  --bs-secondary-color: rgb(0, 13, 255);
 
   /* Custom tokens */
-  --color-bg-alt: #1a1a1a;
+  --color-bg-alt: #efefef;
   --color-muted: #ffffff;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 

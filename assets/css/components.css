@@ -10,8 +10,8 @@
 }
 
 .btn-primary:hover {
-  background: #818cf8;
-  border-color: #818cf8;
+  background: var(--bs-primary);
+  border-color: var(--bs-primary);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
 }
@@ -23,4 +23,5 @@
 
 .btn-outline-light:hover {
   transform: translateY(-2px);
+  color: var(--bs-primary);
 }
