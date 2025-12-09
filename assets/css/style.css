@@ -163,6 +163,7 @@
 
 .card-body {
   padding: 1.5rem;
+  color: rgba(255, 255, 255, 0.15);
 }
 
 .card-title {
