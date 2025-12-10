@@ -25,3 +25,120 @@
   transform: translateY(-2px);
   color: var(--bs-primary);
 }
+
+/* --------------------------------------------------------------------------
+   Doodles
+   -------------------------------------------------------------------------- */
+
+.doodles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.doodle {
+  position: absolute;
+  opacity: 0;
+  animation: doodlePop 3s ease-in-out infinite;
+}
+
+.doodle svg {
+  width: 100%;
+  height: 100%;
+  stroke: rgba(255, 255, 255, 0.6);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Individual Doodle Positions */
+.doodle-1 {
+  width: 60px;
+  height: 60px;
+  top: 15%;
+  left: 20%;
+  animation-delay: 0.5s;
+}
+
+.doodle-2 {
+  width: 50px;
+  height: 50px;
+  top: 70%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.doodle-3 {
+  width: 70px;
+  height: 70px;
+  top: 25%;
+  right: 25%;
+  animation-delay: 1.5s;
+}
+
+.doodle-4 {
+  width: 80px;
+  height: 80px;
+  bottom: 25%;
+  left: 15%;
+  animation-delay: 3s;
+}
+
+.doodle-5 {
+  width: 90px;
+  height: 90px;
+  top: 60%;
+  left: 35%;
+  animation-delay: 2.5s;
+}
+
+.doodle-6 {
+  width: 65px;
+  height: 65px;
+  top: 40%;
+  right: 10%;
+  animation-delay: 1s;
+}
+
+.doodle-7 {
+  width: 55px;
+  height: 55px;
+  bottom: 35%;
+  right: 30%;
+  animation-delay: 3.5s;
+}
+
+.doodle-8 {
+  width: 70px;
+  height: 70px;
+  top: 55%;
+  right: 40%;
+  animation-delay: 0.8s;
+}
+
+/* Pop Animation */
+@keyframes doodlePop {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1) rotate(-5deg);
+  }
+  90% {
+    opacity: 0.6;
+    transform: scale(1.05) rotate(5deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) rotate(0deg);
+  }
+}
