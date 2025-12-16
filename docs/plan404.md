@@ -676,4 +676,6 @@ I did not really like the result so I told it to make the 404 be very begi, the 
 </body>
 </html>
 
-I liked it better than the previous one
+I liked it better than the previous one but i still needed to modify it.
+
+Therefore I customised it to my liking changing the fonts and colours to fit the aesthetic I was going for.
