@@ -217,3 +217,145 @@ I really struggle to develop the project section of my template. I played around
   margin: 0;
 }
 ```
+
+I really liked th eresult but I wanted to change the layout from two to three so I asked ChatGPT for a new plan.
+
+Here’s a **clear, practical plan** to move your Projects section from **two columns to three columns**, written so you can use it as **design documentation** or a **project report note**.
+
+---
+
+## Plan: Transition from Two-Column to Three-Column Layout (Projects Section)
+
+### 1) Objective
+
+Increase visual density and portfolio coverage by displaying **three project cards per row** on large screens, while:
+
+- Maintaining readability
+- Preserving the glassmorphism overlay effect
+- Keeping strong hierarchy and spacing
+- Ensuring responsiveness across devices
+
+---
+
+### 2) Grid Strategy (Bootstrap-based)
+
+#### Column distribution
+
+| Breakpoint         | Columns per row | Reason                    |
+| ------------------ | --------------- | ------------------------- |
+| Mobile (`<768px`)  | 1               | Legibility, touch comfort |
+| Tablet (`≥768px`)  | 2               | Balanced density          |
+| Desktop (`≥992px`) | 3               | Portfolio overview        |
+
+#### Technical choice
+
+Use:
+
+```html
+col-12 col-md-6 col-lg-4
+```
+
+Why:
+
+- `12 / 3 = 4` → three equal columns at `lg`
+- Bootstrap handles wrapping automatically
+
+---
+
+### 3) Spacing & rhythm
+
+- Increase gutters to avoid visual crowding:
+
+  - Use `row g-4` or `g-5`
+
+- Center the grid when fewer than 3 items exist:
+
+  - `justify-content-center`
+
+This preserves a curated, gallery-like feel.
+
+---
+
+### 4) Card size & proportions
+
+With three columns, cards must feel lighter:
+
+- Reduce vertical lift on hover
+- Use consistent image aspect ratio
+- Avoid overly tall images
+
+Design decision:
+
+```css
+.project-image {
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+```
+
+---
+
+### 5) Overlay & glassmorphism adjustments
+
+Three columns mean less screen real estate per card, so:
+
+- Slightly reduce blur intensity
+- Reduce title font size
+- Keep subtitles concise
+
+Rationale:
+
+- Prevents visual overload
+- Improves performance on low-power devices
+
+---
+
+### 6) Interaction behavior
+
+Hover remains the primary interaction on desktop:
+
+- Image scales subtly
+- Glass overlay fades in
+- Title + subtitle animate upward
+
+Accessibility additions:
+
+- `:focus-visible` mirrors hover
+- Tap interaction remains safe on touch devices
+
+---
+
+### 7) Performance considerations
+
+- Avoid stacking multiple heavy `backdrop-filter` layers
+- Prefer one glass surface per card (overlay)
+- Use reduced blur for repeated elements (tags)
+
+---
+
+### 8) Implementation checklist
+
+- [ ] Replace `col-lg-6` → `col-lg-4`
+- [ ] Increase row gutter spacing
+- [ ] Adjust typography scale for smaller cards
+- [ ] Test hover/focus on desktop
+- [ ] Verify stacking on mobile & tablet
+- [ ] Confirm glass blur performance
+
+---
+
+### 9) Expected result
+
+- Cleaner, more professional grid
+- Improved portfolio overview
+- Strong visual rhythm
+- Modern editorial feel with glassmorphism intact
+
+---
+
+### 10) Future extensions (optional)
+
+- GSAP stagger animation per row
+- Filterable categories (3-column aware)
+- Masonry variant for uneven content
+- Auto-generated grid from CMS/data
