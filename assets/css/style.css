@@ -134,65 +134,102 @@
 /* --------------------------------------------------------------------------
    6. Projects Section
    -------------------------------------------------------------------------- */
-.project-card {
-  background: var(--color-bg-alt);
-  border-radius: 1rem;
-  overflow: hidden;
-  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
-}
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-}
+/* Project cards */
 
-.card-img-wrapper {
-  aspect-ratio: 4/3;
-}
-
-.card-img-wrapper img {
+/* Image */
+.project-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s var(--ease-out);
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
 }
 
-.project-card:hover .card-img-wrapper img {
-  transform: scale(1.08);
+/* Hover zoom (very subtle) */
+.project-card:hover .project-image {
+  transform: scale(1.05);
 }
 
-.card-body {
-  padding: 1.5rem;
-  color: var(--bs-primary);
+/* Overlay */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.card-title {
-  margin-bottom: 0.75rem;
+/* Show overlay on hover */
+.project-card:hover .project-overlay {
+  opacity: 1;
 }
 
-/* Badge styling */
-.bg-primary-subtle {
-  background-color: rgba(99, 102, 241, 0.15) !important;
+/* Text styling */
+.project-title {
+  font-family: "Instrument Serif", serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #fff;
+  margin-bottom: 0.3rem;
 }
 
-.text-primary {
-  color: var(--bs-primary) !important;
+.project-subtitle {
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.text-muted {
-  --bs-text-opacity: 1;
-  color: var(--bs-primary) !important;
-}
-/* --------------------------------------------------------------------------
-   7. Contact Section
-   -------------------------------------------------------------------------- */
-.social-links a {
-  transition: color 0.3s, transform 0.3s;
+/* Card base */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.6rem;
+  cursor: pointer;
 }
 
-.social-links a:hover {
-  color: var(--bs-primary) !important;
-  transform: translateY(-3px);
+/* Image */
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.06);
+}
+
+/* === GLASS OVERLAY === */
+.project-overlay.glass {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* Show on hover */
+.project-card:hover .project-overlay {
+  opacity: 1;
 }
 
 /* --------------------------------------------------------------------------
@@ -200,41 +237,4 @@
    -------------------------------------------------------------------------- */
 .z-1 {
   z-index: 1;
-}
-
-/* --------------------------------------------------------------------------
-   10. Newsletter Section
-   -------------------------------------------------------------------------- */
-
-#newsletter {
-  background: var(--bs-primary);
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-
-/* Titles */
-.newsletter-card h2 {
-  color: var(--color-muted);
-  letter-spacing: -0.5px;
-}
-
-.newsletter-card p.lead {
-  color: var(--color-muted);
-}
-
-/* Form imput */
-#newsletterEmail.form-control {
-  border-radius: 0.75rem;
-  padding: 0.9rem 1.2rem;
-  font-size: 1.05rem;
-  border: 1px solid #d0d6e1;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-
-#newsletterEmail.form-control:focus {
-  border-color: var(--color-muted);
-  box-shadow: 0 0 0 3px rgba(71, 110, 204, 0.2);
-}
-.text-newsletter {
-  color: var(--color-muted) !important;
 }

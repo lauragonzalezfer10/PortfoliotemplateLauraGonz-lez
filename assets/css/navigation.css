@@ -3,6 +3,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: background 0.3s;
+  font-family: var(--font-mono);
 }
 
 .navbar.scrolled {
@@ -12,6 +13,8 @@
 .nav-link {
   position: relative;
   padding: 0.5rem 1rem !important;
+  font-family: var(--font-mono);
+  font-size: var(--bs-nav-link-font-size);
 }
 
 .nav-link::after {
@@ -23,6 +26,7 @@
   height: 2px;
   background: var(--bs-primary);
   transition: width 0.3s, left 0.3s;
+  font-family: var(--font-mono);
 }
 
 .nav-link:hover::after,

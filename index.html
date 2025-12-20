@@ -11,8 +11,7 @@
     <meta name="author" content="Laura González" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Bootsrap CSS -->
-
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -37,11 +36,12 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/index.css" />
 
+    <!-- GSAP (load once) + SplitType (free text split) -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+
     <!-- Main JS -->
     <script src="./assets/js/main.js" defer></script>
-
-    <!-- Newsletter JS -->
-    <script src="./assets/js/newsletter.js" defer></script>
 
     <!-- Favicons -->
     <link
@@ -82,15 +82,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
             <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="#hero">[Home]</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
+              <a class="nav-link" href="#about">[About]</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link" href="#projects">[Work]</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">[Contact]</a>
             </li>
           </ul>
         </div>
@@ -98,9 +100,8 @@
     </nav>
 
     <main>
-      <!-- Hero Section -->
-
-      <div class="doodles">
+      <!-- Hero Doodles -->
+      <section class="doodles">
         <!-- Star -->
         <div class="doodle doodle-1">
           <svg viewBox="0 0 60 60">
@@ -149,21 +150,15 @@
             />
           </svg>
         </div>
-      </div>
+      </section>
 
+      <!-- Hero Section -->
       <section
         id="hero"
         class="hero min-vh-100 d-flex align-items-center position-relative overflow-hidden"
       >
         <!-- Parallax Background -->
         <div class="hero-bg position-absolute w-100 h-100"></div>
-
-        <!-- Floating shapes (GSAP animated) -->
-        <div class="floating-shapes">
-          <div class="shape shape-1"></div>
-          <div class="shape shape-2"></div>
-          <div class="shape shape-3"></div>
-        </div>
 
         <div class="container position-relative z-1 text-center text-white">
           <h1 class="display-1 fw-bold hero-title">
@@ -181,31 +176,15 @@
             >
           </div>
         </div>
-
-        <!-- Scroll indicator -->
-        <div
-          class="scroll-indicator position-absolute bottom-0 start-50 translate-middle-x mb-4"
-        >
-          <div class="mouse"></div>
-        </div>
       </section>
 
       <!-- About Section -->
       <section id="about" class="py-5 py-lg-6 bg-dark">
         <div class="container">
-          <div class="row align-items-center g-5">
-            <div class="col-lg-6">
-              <div class="about-image gsap-reveal">
-                <img
-                  src="https://picsum.photos/600/700?random=10"
-                  alt="Profile"
-                  class="img-fluid rounded-4 shadow-lg"
-                />
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <h2 class="display-3 fw-bold mb-4 gsap-reveal">About Me</h2>
-              <p class="lead text-muted mb-4 gsap-reveal">
+          <div class="text-center mb-5">
+            
+            <h2 class="display-2 fw-bold gsap-reveal">[02] About me</h2>
+            <p class="lead text-muted mb-5 gsap-reveal">
                 I'm a creative developer passionate about building beautiful,
                 functional, and accessible digital experiences.
               </p>
@@ -215,37 +194,6 @@
                 to every project. I believe in the power of animation to enhance
                 user experience without sacrificing performance.
               </p>
-
-              <!-- Skills with animated progress -->
-              <div class="skills mt-5">
-                <div class="skill-item gsap-reveal mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-semibold">Photshop</span>
-                    <span class="text-muted">95%</span>
-                  </div>
-                  <div class="progress" style="height: 8px">
-                    <div class="progress-bar skill-bar" data-width="95"></div>
-                  </div>
-                </div>
-                <div class="skill-item gsap-reveal mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-semibold">Illustrator</span>
-                    <span class="text-muted">90%</span>
-                  </div>
-                  <div class="progress" style="height: 8px">
-                    <div class="progress-bar skill-bar" data-width="90"></div>
-                  </div>
-                </div>
-                <div class="skill-item gsap-reveal mb-3">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="fw-semibold">InDesign</span>
-                    <span class="text-muted">85%</span>
-                  </div>
-                  <div class="progress" style="height: 8px">
-                    <div class="progress-bar skill-bar" data-width="85"></div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -255,284 +203,44 @@
       <section id="projects" class="py-5 py-lg-6">
         <div class="container">
           <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold gsap-reveal">Featured Projects</h2>
+            <h2 class="display-2 fw-bold gsap-reveal">[02] Work</h2>
             <p class="lead text-muted gsap-reveal">
               A selection of my recent work
             </p>
           </div>
 
-          <div class="row g-4">
-            <!-- Project Card 1 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=1"
-                    class="card-img-top"
-                    alt="E-commerce Platform"
-                  />
+          <div class="row g-5 justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6 col-lg-5">
+              <div class="project-card gsap-reveal">
+                <img
+                  src="https://picsum.photos/600/700?random=10"
+                  alt="Project title"
+                  class="project-image"
+                />
+                <div class="project-overlay">
+                  <h3 class="project-title">Industrial Design</h3>
+                  <p class="project-subtitle">Product · Manufacturing</p>
                 </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">E-commerce Platform</h3>
-                  <p class="card-text text-muted small">
-                    Full-stack e-commerce solution with real-time inventory and
-                    Stripe integration.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >React</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Node.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >MongoDB</span
-                    >
-                  </div>
-                </div>
-              </article>
+              </div>
             </div>
 
-            <!-- Project Card 2 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=2"
-                    class="card-img-top"
-                    alt="Dashboard UI"
-                  />
+            <!-- Card 2 -->
+            <div class="col-12 col-md-6 col-lg-5">
+              <div class="project-card gsap-reveal">
+                <img
+                  src="https://picsum.photos/600/700?random=11"
+                  alt="Project title"
+                  class="project-image"
+                />
+                <div class="project-overlay">
+                  <h3 class="project-title">Modern Objects</h3>
+                  <p class="project-subtitle">Concept · Visual Design</p>
                 </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">Analytics Dashboard</h3>
-                  <p class="card-text text-muted small">
-                    Real-time data visualization with interactive charts and
-                    dark mode.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >D3.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >WebSocket</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >GSAP</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 3 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=3"
-                    class="card-img-top"
-                    alt="Mobile App"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">Fitness Mobile App</h3>
-                  <p class="card-text text-muted small">
-                    Cross-platform fitness tracker with workout plans and
-                    progress analytics.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >React Native</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Firebase</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 4 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=4"
-                    class="card-img-top"
-                    alt="Portfolio Site"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">Agency Website</h3>
-                  <p class="card-text text-muted small">
-                    Award-winning agency site with scroll-driven animations and
-                    3D elements.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Three.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >GSAP</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 5 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=5"
-                    class="card-img-top"
-                    alt="SaaS Platform"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">SaaS Platform</h3>
-                  <p class="card-text text-muted small">
-                    Multi-tenant SaaS with role-based access and subscription
-                    management.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Next.js</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Prisma</span
-                    >
-                  </div>
-                </div>
-              </article>
-            </div>
-
-            <!-- Project Card 6 -->
-            <div class="col-md-6 col-lg-4">
-              <article class="card project-card h-100 border-0 shadow-sm">
-                <div class="card-img-wrapper overflow-hidden">
-                  <img
-                    src="https://picsum.photos/400/300?random=6"
-                    class="card-img-top"
-                    alt="AI Tool"
-                  />
-                </div>
-                <div class="card-body">
-                  <h3 class="card-title h5">AI Content Generator</h3>
-                  <p class="card-text text-muted small">
-                    GPT-powered content creation tool with custom fine-tuning
-                    options.
-                  </p>
-                  <div class="d-flex flex-wrap gap-2">
-                    <span class="badge bg-primary-subtle text-primary"
-                      >OpenAI</span
-                    >
-                    <span class="badge bg-primary-subtle text-primary"
-                      >Python</span
-                    >
-                  </div>
-                </div>
-              </article>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-
-      <section
-        id="carouselExampleCaptions"
-        class="carousel slide"
-        data-bs-ride="carousel"
-      >
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            class="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
-        </div>
-
-        <!-- Slides -->
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img
-              src="https://picsum.photos/1600/600?random=1"
-              class="d-block w-100"
-              alt="Slide 1"
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>
-                Some representative placeholder content for the first slide.
-              </p>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <img
-              src="https://picsum.photos/1600/600?random=2"
-              class="d-block w-100"
-              alt="Slide 2"
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>
-                Some representative placeholder content for the second slide.
-              </p>
-            </div>
-          </div>
-
-          <div class="carousel-item">
-            <img
-              src="https://picsum.photos/1600/600?random=3"
-              class="d-block w-100"
-              alt="Slide 3"
-            />
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>
-                Some representative placeholder content for the third slide.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Controls -->
-        <button
-          class="carousel-control-prev"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="prev"
-        >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-
-        <button
-          class="carousel-control-next"
-          type="button"
-          data-bs-target="#carouselExampleCaptions"
-          data-bs-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </section>
 
       <!-- Contact Section -->
@@ -555,45 +263,19 @@
                   Start a Conversation
                 </a>
               </div>
+
               <div
                 class="social-links gsap-reveal d-flex justify-content-center gap-4"
               >
-                <a href="#" class="text-muted fs-4" aria-label="GitHub">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                    />
-                  </svg>
-                </a>
-                <a href="#" class="text-muted fs-4" aria-label="LinkedIn">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                    />
-                  </svg>
-                </a>
-                <a href="#" class="text-muted fs-4" aria-label="Twitter">
-                  <svg
-                    width="24"
-                    height="24"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                    />
-                  </svg>
-                </a>
+                <a href="#" class="text-muted fs-4" aria-label="GitHub"
+                  >GitHub</a
+                >
+                <a href="#" class="text-muted fs-4" aria-label="LinkedIn"
+                  >LinkedIn</a
+                >
+                <a href="#" class="text-muted fs-4" aria-label="Twitter"
+                  >Twitter</a
+                >
               </div>
             </div>
           </div>
@@ -601,63 +283,7 @@
       </section>
     </main>
 
-    <!-- Newsletter Section -->
-    <section id="newsletter" class="py-5 py-lg-6">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-7">
-            <div class="newsletter-card text-center mb-4 gsap-reveal">
-              <h2 class="display-5 fw-bold mb-3">Newsletter</h2>
-              <p class="text-newsletter mb-4">
-                Get occasional updates about new projects, resources and
-                experiments.
-              </p>
-
-              <form
-                id="newsletterForm"
-                class="row g-2 g-sm-3 justify-content-center"
-                action="https://formspree.io/f/YOUR_FORMSPREE_ID"
-                method="POST"
-              >
-                <div class="col-12 col-sm-8">
-                  <label for="newsletterEmail" class="visually-hidden">
-                    Email address
-                  </label>
-                  <input
-                    type="email"
-                    class="form-control form-control-lg"
-                    id="newsletterEmail"
-                    name="email"
-                    placeholder="you@example.com"
-                    required
-                  />
-                </div>
-
-                <div class="col-12 col-sm-4 d-grid">
-                  <button type="submit" class="btn btn-outline-light">
-                    Join newsletter
-                  </button>
-                </div>
-
-                <div class="col-12">
-                  <p
-                    id="newsletterStatus"
-                    class="text-center small mt-2 mb-0"
-                  ></p>
-                </div>
-              </form>
-
-              <p class="text-newsletter small mt-3 mb-0">
-                No spam, just thoughtful updates every now and then.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Footer -->
-
     <footer class="py-4 text-center text-muted small">
       <div class="container">
         <p class="mb-0">
@@ -665,13 +291,5 @@
         </p>
       </div>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- GSAP + Plugins -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollToPlugin.min.js"></script>
   </body>
 </html>

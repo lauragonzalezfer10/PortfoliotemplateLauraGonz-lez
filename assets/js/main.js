@@ -308,59 +308,27 @@ function initScrollReveals() {
     });
   });
 }
-
-// ==========================================================================
-// 4. SKILL BARS ANIMATION
-// ==========================================================================
-
 /**
- * Animated progress bars that fill when scrolled into view
+ * ANIMATE WIDTH (Exception to the rule!)
  *
- * 🎓 DATA ATTRIBUTES FOR CONFIGURATION:
- * Using data-width="95" on HTML elements lets us:
- * - Keep animation config in HTML (content) not JS (behavior)
- * - Easily change values without touching JavaScript
- * - Support dynamic content from a CMS
+ * ⚠️ We said "never animate width" for performance reasons.
+ * Skill bars are an exception because:
+ * 1. The bar is small (low rendering cost)
+ * 2. It's a one-time animation, not continuous
+ * 3. The visual effect (filling bar) requires width animation
  *
- * HTML: <div class="skill-bar" data-width="95"></div>
- * JS: bar.dataset.width → "95"
+ * For large elements or continuous animations, use transform: scaleX() instead.
  */
-function initSkillBars() {
-  const skillBars = document.querySelectorAll(".skill-bar");
-
-  skillBars.forEach((bar) => {
-    // Read target width from data attribute
-    const targetWidth = bar.dataset.width + "%";
-
-    // Accessibility: Show final state immediately if motion is reduced
-    if (prefersReducedMotion) {
-      bar.style.width = targetWidth;
-      return; // Skip animation setup for this element
-    }
-
-    /**
-     * ANIMATE WIDTH (Exception to the rule!)
-     *
-     * ⚠️ We said "never animate width" for performance reasons.
-     * Skill bars are an exception because:
-     * 1. The bar is small (low rendering cost)
-     * 2. It's a one-time animation, not continuous
-     * 3. The visual effect (filling bar) requires width animation
-     *
-     * For large elements or continuous animations, use transform: scaleX() instead.
-     */
-    gsap.to(bar, {
-      width: targetWidth,
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: bar,
-        start: "top 90%",
-        toggleActions: "play none none none",
-      },
-    });
-  });
-}
+gsap.to(bar, {
+  width: targetWidth,
+  duration: 1.2,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: bar,
+    start: "top 90%",
+    toggleActions: "play none none none",
+  },
+});
 
 // ==========================================================================
 // 5. PROJECT CARDS STAGGER ANIMATION
