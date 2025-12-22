@@ -37,3 +37,9 @@
     text-align: center;
   }
 }
+/* Mobile:hide speech bubble on small screens  */
+@media (max-width: 576px) {
+  .speech-bubble {
+    display: none;
+  }
+}
