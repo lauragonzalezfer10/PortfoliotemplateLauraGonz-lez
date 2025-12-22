@@ -40,6 +40,8 @@
      <!-- Main JS -->
      <script src="./assets/js/main.js" defer></script>
     
+     
+    
      <!-- Favicons -->
     <link
       rel="icon"
@@ -158,10 +160,10 @@
         <div class="hero-bg position-absolute w-100 h-100"></div>
 
         <div class="container position-relative z-1 text-center text-white">
-          <h1 class="display-1 fw-bold hero-title">
+          <h1 class="display-1 fw-bold hero-title split-text">
             Welcome to my creative mind.
           </h1>
-          <p class="lead hero-subtitle mb-4">
+          <p class="lead hero-subtitle mb-4 split-text">
             Multidisciplinary designer & creative storyteller
           </p>
           <div class="hero-cta">
@@ -345,6 +347,34 @@
         </p>
       </div>
     </footer>
-    
+
+   
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <script>
+  
+  function initAnimation() {
+    if (!window.gsap) {
+      setTimeout(initAnimation, 100);
+      return;
+    }
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+   
+  gsap.from('.split-text', {
+    y: '100%',
+    opacity: 0,
+    duration: 3,
+    ease: 'power3.out',
+    stagger: 0.15
+  });
+}
+  // run after page is ready
+  window.addEventListener("load", initAnimation);
+  </script>
   </body>
 </html>
