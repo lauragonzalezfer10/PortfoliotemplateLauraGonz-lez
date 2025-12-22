@@ -4,10 +4,10 @@
    -------------------------------------------------------------------------- */
 :root {
   --bs-body-bg: #efefef;
-  --bs-body-color: #0d00ff;
-  --bs-primary: #0004ff;
+  --bs-body-color: #1005db;
+  --bs-primary: #0407a6;
   --bs-primary-rgb: 99, 102, 241;
-  --bs-secondary-color: rgb(0, 13, 255);
+  --bs-secondary-color: linear-gradient(135deg, #0000ff, #0a0a18);
 
   /* Custom tokens */
   --color-bg-alt: #efefef;

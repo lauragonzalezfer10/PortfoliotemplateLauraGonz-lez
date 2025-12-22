@@ -1,16 +1,17 @@
 .navbar {
-  background: var(--bs-primary);
   backdrop-filter: blur(12px);
+  background: transparent;
   -webkit-backdrop-filter: blur(12px);
   transition: background 0.3s;
   font-family: var(--font-mono);
 }
 
 .navbar.scrolled {
-  background: var(--bs-primary);
+  background: transparent;
 }
 
 .nav-link {
+  background: transparent;
   position: relative;
   padding: 0.5rem 1rem !important;
   font-family: var(--font-mono);
@@ -24,7 +25,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--bs-primary);
+  background: var(--bs-body-bg);
   transition: width 0.3s, left 0.3s;
   font-family: var(--font-mono);
 }
@@ -33,5 +34,5 @@
 .nav-link.active::after {
   width: 100%;
   left: 0;
-  color: var(--bs-color-muted);
+  color: var(--bs-body-bg);
 }

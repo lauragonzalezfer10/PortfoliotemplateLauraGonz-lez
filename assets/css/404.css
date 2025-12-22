@@ -3,7 +3,7 @@
   --bs-body-color: #0d00ff;
   --bs-primary: #0004ff;
   --bs-primary-rgb: 99, 102, 241;
-  --bs-secondary-color: rgb(0, 13, 255);
+  --bs-secondary-color: linear-gradient(135deg, #0000ff, #0a0a18);
 
   /* Custom tokens */
   --color-bg-alt: #efefef;
@@ -19,10 +19,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: var(--bs-body-color);
 }
 
 body {
+  background: var(--bs-secondary-color);
   color: var(--bs-body-bg);
   font-family: var(--font-sans);
   height: 100vh;

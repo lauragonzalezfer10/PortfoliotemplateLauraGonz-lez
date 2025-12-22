@@ -3,7 +3,7 @@
    -------------------------------------------------------------------------- */
 
 .hero {
-  background: #0000ff;
+  background: var(--bs-secondary-color);
 }
 
 .hero-bg {
@@ -101,22 +101,60 @@
 /* --------------------------------------------------------------------------
    5. About Section
    -------------------------------------------------------------------------- */
-.about-image {
+
+.about-section {
   position: relative;
+  overflow: hidden;
+  padding: clamp(6rem, 12vw, 12rem) 0;
 }
 
-.about-image::before {
-  content: "";
+/* Image column */
+.about-image-wrapper {
+  position: relative;
+
+  /* 🔑 FIXED box */
+  width: 420px;
+  height: 560px; /* choose a nice portrait ratio */
+
+  max-width: 100%;
+}
+
+/* Both images fill the same box */
+.about-main-img {
   position: absolute;
-  inset: 20px -20px -20px 20px;
-  border: 2px solid var(--bs-primary);
-  border-radius: 1rem;
-  z-index: -1;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 🔑 makes sizes identical */
+
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+
+  transition: opacity 0.4s ease;
 }
 
-.about-image img {
-  position: relative;
-  z-index: 1;
+/* Second image hidden */
+.about-main-img.img-2 {
+  opacity: 0;
+}
+
+/* Hover */
+.about-image-wrapper:hover .img-1 {
+  opacity: 0;
+}
+
+.about-image-wrapper:hover .img-2 {
+  opacity: 1;
+}
+
+/* Text column */
+.about-text {
+  max-width: 600px;
+}
+
+.about-text p {
+  line-height: 1.8;
 }
 
 /* --------------------------------------------------------------------------
@@ -222,4 +260,33 @@
    -------------------------------------------------------------------------- */
 .z-1 {
   z-index: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  background: var(--bs-secondary-color);
+}
+
+.footer-text {
+  color: var(--bs-body-bg);
+}
+
+.footer {
+  background: linear-gradient(135deg, #0000ff 0%, #020227 100%);
+}
+
+.footer-contact {
+  font-size: clamp(0.8 rem, 4vw, 1rem);
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-family: var(--font-mono);
+}
+
+.footer-contact:hover {
+  opacity: 0.7;
+  transform: translateX(1px);
 }
