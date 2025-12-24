@@ -58,13 +58,22 @@
       sizes="180x180"
       href="/assets/favicon-180.png"
     />
+
+  
   </head>
 
-  <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
+  <body id="top">
+
     <!-- Navigation -->
-    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <nav
+      id="navbar"
+      class="navbar navbar-expand-lg navbar-dark fixed-top"
+    >
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">LG</a>
+        <a class="navbar-brand fw-bold"
+          >LG</a
+        >
+
         <button
           class="navbar-toggler"
           type="button"
@@ -76,6 +85,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
@@ -95,10 +105,9 @@
       </div>
     </nav>
 
-    <main>
-      <!-- Hero Doodles -->
-      <section class="doodles">
-        <!-- Star -->
+    <main id="main-content">
+      <!-- Decorative doodles -->
+      <div class="doodles" aria-hidden="true">
         <div class="doodle doodle-1">
           <svg viewBox="0 0 60 60">
             <path d="M30 5 L35 25 L55 30 L35 35 L30 55 L25 35 L5 30 L25 25 Z" />
@@ -141,24 +150,27 @@
             />
           </svg>
         </div>
-      </section>
+      </div>
 
       <!-- Hero Section -->
       <section
         id="hero"
         class="hero min-vh-100 d-flex align-items-center position-relative overflow-hidden"
+        aria-labelledby="hero-title"
       >
-        <!-- Parallax Background -->
-        <div class="hero-bg position-absolute w-100 h-100"></div>
+        <div
+          class="hero-bg position-absolute w-100 h-100"
+          aria-hidden="true"
+        ></div>
 
         <div class="container position-relative z-1 text-center text-white">
-          <h1 class="display-1 fw-bold hero-title split-text">
+          <h1 id="hero-title" class="display-1 fw-bold hero-title split-text">
             Welcome to my creative mind.
           </h1>
           <p class="lead hero-subtitle mb-4 split-text">
             Multidisciplinary designer & creative storyteller
           </p>
-          <div class="hero-cta">
+          <div class="hero-cta d-flex gap-3 justify-content-center flex-wrap">
             <a href="#projects" class="btn btn-outline-light btn-lg"
               >View Projects</a
             >
@@ -170,158 +182,158 @@
       </section>
 
       <!-- About Section -->
-      <section id="about" class="about-section">
+      <section id="about" class="about-section" aria-labelledby="about-title">
         <div class="container">
           <div class="row align-items-center gy-5">
             <div class="col-lg-5">
-              <div class="about-image-wrapper">
+              <div class="about-image-wrapper position-relative">
+                <div class="speech-bubble" aria-hidden="true">This is me!</div>
 
-                <div class="about-image-wrapper">
-                  <!-- Speech bubble -->
-                  <div class="speech-bubble">
-                    This is me!
-                  </div>
-                
-                  <img
-                    src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.47.57.png"
-                    alt="About image"
-                    class="about-main-img img-1"
-                  />
-                  <img
-                    src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.51.13.png"
-                    alt="About image hover"
-                    class="about-main-img img-2"
-                  />
-                </div>
-
-                
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.47.57.png"
-                  alt="About image"
+                  alt="Portrait of Laura González"
                   class="about-main-img img-1"
+                  loading="lazy"
                 />
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.51.13.png"
-                  alt="About image hover"
+                  alt="Alternate portrait of Laura González"
                   class="about-main-img img-2"
+                  loading="lazy"
                 />
               </div>
             </div>
-      
-            <!-- RIGHT: Text -->
-            <div class="col-lg-7 ps-lg-6">
+
+            <div class="col-lg-7">
               <div class="about-text">
-                <h2 class="display-2 fw-bold mb-4">[01] About me</h2>
-      
+                <h2 id="about-title" class="display-2 fw-bold mb-4">
+                  [01] About me
+                </h2>
+
                 <p class="lead text-muted mb-4">
                   I'm a creative developer passionate about building beautiful,
                   functional, and accessible digital experiences.
                 </p>
-      
+
                 <p class="text-muted">
                   With 7+ years of experience spanning front-end development,
                   UI/UX design, and motion graphics, I believe in the power of
-                  animation to enhance user experience without sacrificing performance.
+                  animation to enhance user experience without sacrificing
+                  performance.
                 </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
-      <!-- Projects Section -->
 
-      <section id="projects" class="py-5 py-lg-6">
+      <!-- Projects Section -->
+      <section
+        id="projects"
+        class="py-5 py-lg-6"
+        aria-labelledby="projects-title"
+      >
         <div class="container">
-          <div class="text-center mb-5">
-            <h2 class="display-2 fw-bold gsap-reveal">[02] Work</h2>
+          <!-- Section header -->
+          <header class="text-center mb-5">
+            <h2 id="projects-title" class="display-2 fw-bold gsap-reveal">
+              [02] Work
+            </h2>
             <p class="lead text-muted gsap-reveal">
               A selection of my recent work
             </p>
-          </div>
+          </header>
 
-          <div class="row g-5 justify-content-center">
-            <!-- Card 1 -->
-            <div class="col-12 col-md-6 col-lg-4">
+          <!-- Projects grid -->
+          <div class="row g-5">
+            <!-- Project 1 -->
+            <article class="col-12 col-md-6 col-lg-4">
               <a href="project.html" class="project-card gsap-reveal">
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/pexels-didsss-3530054.jpg"
-                  alt="Abstract Illustration"
+                  alt="Industrial design project preview"
                   class="project-image"
+                  loading="lazy"
                 />
                 <div class="project-overlay glass">
                   <h3 class="project-title">Industrial Design</h3>
                   <p class="project-subtitle">Product · Manufacturing</p>
                 </div>
               </a>
-            </div>
+            </article>
 
-            <!-- Card 2 -->
-            <div class="col-12 col-md-6 col-lg-4">
+            <!-- Project 2 -->
+            <article class="col-12 col-md-6 col-lg-4">
               <a href="#" class="project-card gsap-reveal">
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/pexels-polina-kovaleva-8100780.jpg"
-                  alt="Packaging"
+                  alt="Modern objects design project"
                   class="project-image"
+                  loading="lazy"
                 />
                 <div class="project-overlay glass">
                   <h3 class="project-title">Modern Objects</h3>
                   <p class="project-subtitle">Concept · Visual Design</p>
                 </div>
               </a>
-            </div>
+            </article>
 
-            <!-- Card 3 -->
-            <div class="col-12 col-md-6 col-lg-4">
+            <!-- Project 3 -->
+            <article class="col-12 col-md-6 col-lg-4">
               <a href="#" class="project-card gsap-reveal">
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/pexels-polina-zimmerman-3747395.jpg"
-                  alt="Book binding and cover"
+                  alt="Book binding and editorial design project"
                   class="project-image"
+                  loading="lazy"
                 />
                 <div class="project-overlay glass">
-                  <h3 class="project-title">Book binding and cover</h3>
+                  <h3 class="project-title">Book Binding & Cover</h3>
                   <p class="project-subtitle">Editorial · Manual · Binding</p>
                 </div>
               </a>
-            </div>
+            </article>
 
-            <!-- Card 4 -->
-            <div class="col-12 col-md-6 col-lg-4">
+            <!-- Project 4 -->
+            <article class="col-12 col-md-6 col-lg-4">
               <a href="#" class="project-card gsap-reveal">
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/pexels-polina-kovaleva-8100780.jpg"
-                  alt="Packaging"
+                  alt="Technology and interface design project"
                   class="project-image"
+                  loading="lazy"
                 />
                 <div class="project-overlay glass">
                   <h3 class="project-title">Tech Innovation</h3>
                   <p class="project-subtitle">UI · Motion · Web</p>
                 </div>
               </a>
-            </div>
+            </article>
 
-            <!-- Card 5 -->
-            <div class="col-12 col-md-6 col-lg-4">
+            <!-- Project 5 -->
+            <article class="col-12 col-md-6 col-lg-4">
               <a href="#" class="project-card gsap-reveal">
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/pexels-polina-zimmerman-3747395.jpg"
-                  alt="Book binding and cover"
+                  alt="Beauty packaging and branding project"
                   class="project-image"
+                  loading="lazy"
                 />
                 <div class="project-overlay glass">
                   <h3 class="project-title">Beauty Packaging</h3>
                   <p class="project-subtitle">Packaging · Product · Branding</p>
                 </div>
               </a>
-            </div>
-            <!-- Card 6 -->
-            <div class="col-12 col-md-6 col-lg-4">
+            </article>
+
+            <!-- Project 6 -->
+            <article class="col-12 col-md-6 col-lg-4">
               <a href="#" class="project-card gsap-reveal">
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/pexels-didsss-3530054.jpg"
-                  alt="Abstract Illustration"
+                  alt="Abstract illustration project"
                   class="project-image"
+                  loading="lazy"
                 />
                 <div class="project-overlay glass">
                   <h3 class="project-title">Abstract Illustration</h3>
@@ -330,79 +342,206 @@
                   </p>
                 </div>
               </a>
-            </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- Contact Section -->
-      <section id="contact" class="py-5 py-lg-6 bg-dark">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-              <h2 class="display-5 fw-bold mb-4 gsap-reveal">
-                Let's Work Together
-              </h2>
-              <p class="lead text-muted mb-5 gsap-reveal">
-                Have a project in mind? I'd love to hear about it. Let's create
-                something amazing.
-              </p>
-              <div class="gsap-reveal">
-                <a
-                  href="mailto:hello@example.com"
-                  class="btn btn-primary btn-lg mb-4"
-                >
-                  Start a Conversation
-                </a>
-              </div>
+     <!-- Contact Section -->
+     <section
+     id="contact"
+     class="py-5 py-lg-6 bg-dark"
+     aria-labelledby="contact-title"
+   > 
 
-              <div
-                class="social-links gsap-reveal d-flex justify-content-center gap-4"
-              >
-                <a href="#" class="text-muted fs-4" aria-label="GitHub"
-                  >GitHub</a
-                >
-                <a href="#" class="text-muted fs-4" aria-label="LinkedIn"
-                  >LinkedIn</a
-                >
-                <a href="#" class="text-muted fs-4" aria-label="Twitter"
-                  >Twitter</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+
+      <!-- Section header -->
+      <header class="mb-5">
+        <h2
+          id="contact-title"
+          class="display-5 fw-bold mb-4 gsap-reveal"
+        >
+          Let's Work Together
+        </h2>
+
+        <p class="lead text-muted gsap-reveal">
+          Have a project in mind? I'd love to hear about it.
+          Let's create something amazing.
+        </p>
+      </header>
+
+      <!-- Primary contact action -->
+      <div class="gsap-reveal mb-5">
+        <a
+          href="mailto:hello@example.com"
+          class="btn btn-primary btn-lg"
+        >
+          Start a Conversation
+        </a>
+      </div>
+
+      <!-- Social navigation -->
+      <nav
+  class="social-links gsap-reveal d-flex justify-content-center gap-4"
+  aria-label="Social media links"
+>
+  <!-- Instagram -->
+  <a
+    href="https://www.instagram.com/yourusername"
+    class="text-muted fs-4"
+    target="_blank"
+    rel="noopener"
+    aria-label="Instagram profile"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 256 256"
+      width="28"
+      height="28"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <g transform="scale(10.66667,10.66667)">
+        <path
+          d="M8,3c-2.761,0 -5,2.239 -5,5v8c0,2.761 2.239,5 5,5h8c2.761,0 5,-2.239 5,-5v-8c0,-2.761 -2.239,-5 -5,-5zM18,5c0.552,0 1,0.448 1,1c0,0.552 -0.448,1 -1,1c-0.552,0 -1,-0.448 -1,-1c0,-0.552 0.448,-1 1,-1zM12,7c2.761,0 5,2.239 5,5c0,2.761 -2.239,5 -5,5c-2.761,0 -5,-2.239 -5,-5c0,-2.761 2.239,-5 5,-5zM12,9c-1.65685,0 -3,1.34315 -3,3c0,1.65685 1.34315,3 3,3c1.65685,0 3,-1.34315 3,-3c0,-1.65685 -1.34315,-3 -3,-3z"
+        />
+      </g>
+    </svg>
+  </a>
+
+  <!-- Twitter -->
+  <a
+  href="https://twitter.com/yourusername"
+  class="text-muted fs-4"
+  target="_blank"
+  rel="noopener"
+  aria-label="Twitter profile"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 256 256"
+    width="28"
+    height="28"
+    fill="currentColor"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      d="M215.4 56.6c-7.9 3.5-16.4 5.8-25.3 6.9
+         9.1-5.4 16-14 19.3-24.2
+         -8.5 5-17.9 8.6-27.9 10.5
+         -8-8.5-19.4-13.8-32-13.8
+         -24.2 0-43.8 19.6-43.8 43.8
+         0 3.4 0.4 6.7 1.1 9.9
+         -36.4-1.8-68.7-19.3-90.3-45.8
+         -3.8 6.5-6 14-6 22
+         0 15.2 7.7 28.6 19.4 36.4
+         -7.1-0.2-13.8-2.2-19.7-5.4
+         v0.5c0 21.3 15.1 39.1 35.2 43.1
+         -3.7 1-7.6 1.5-11.6 1.5
+         -2.8 0-5.6-0.3-8.3-0.8
+         5.6 17.5 21.9 30.3 41.2 30.7
+         -15.1 11.8-34.1 18.8-54.8 18.8
+         -3.6 0-7.1-0.2-10.6-0.6
+         19.6 12.6 42.9 20 67.9 20
+         81.5 0 126.1-67.5 126.1-126.1
+         0-1.9 0-3.8-0.1-5.6
+         8.7-6.2 16.2-14 22.2-22.8z"
+    />
+  </svg>
+</a>
+
+<!-- Linkedin -->
+
+<a
+  href="https://www.linkedin.com/in/yourusername"
+  class="text-muted fs-4"
+  target="_blank"
+  rel="noopener"
+  aria-label="LinkedIn profile"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 48 48"
+    width="28"
+    height="28"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <!-- Blue background -->
+    <path
+      fill="currentColor"
+      d="M42,37c0,2.762-2.238,5-5,5H11
+         c-2.761,0-5-2.238-5-5V11
+         c0-2.762,2.239-5,5-5h26
+         c2.762,0,5,2.238,5,5V37z"
+    />
+
+    <!-- White LinkedIn logo -->
+    <path
+      fill="#ffffff"
+      d="M12 19H17V36H12z
+         M14.485 17h-.028C12.965 17 12 15.888 12 14.499
+         12 13.08 12.995 12 14.514 12
+         c1.521 0 2.458 1.08 2.486 2.499
+         C17 15.887 16.035 17 14.485 17z
+         M36 36h-5v-9.099
+         c0-2.198-1.225-3.698-3.192-3.698
+         -1.501 0-2.313 1.012-2.707 1.99
+         C24.957 25.543 25 26.511 25 27
+         v9h-5V19h5v2.616
+         C25.721 20.5 26.85 19 29.738 19
+         c3.578 0 6.261 2.25 6.261 7.274L36 36z"
+    />
+  </svg>
+</a>
+
+
+ 
+
+    </div>
+  </div>
+</div>
+</section>
+
 
     <!-- Footer -->
     <footer class="footer py-5 text-white">
       <div class="container">
         <div class="row align-items-center">
-    
-          <!-- Left: contact -->
-          <div class="footer-contact col-md-6 text-md-start text-center mb-4 mb-md-0">
-            <a href="tel:+34123456789" class="footer-contact d-block">
-              +34 123 456 789
-            </a>
-            <a href="mailto:hello@youremail.com" class="footer-contact d-block">
+          <div class="col-md-6 text-md-start text-center mb-4 mb-md-0">
+            <a href="tel:+34123456789" class="d-block footer-contact"
+              >+34 123 456 789</a
+            >
+            <a href="mailto:hello@youremail.com" class="d-block footer-contact">
               hello@youremail.com
             </a>
           </div>
-    
-          <!-- Right: Copyright -->
-          <div class="footer-text col-md-6 text-md-end text-center small opacity-75">
-            © 2025 Your name
-            <br />
+
+          <div class="col-md-6 text-md-end text-center small opacity-75">
+            © 2025 Your name<br />
             Built with Bootstrap 5 + GSAP
           </div>
         </div>
       </div>
     </footer>
-        
-      </div>
-    </footer>
 
+    <!-- Back to top button (no JS) -->
+    <a
+      href="#top"
+      class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow d-flex align-items-center justify-content-center"
+      style="width: 44px; height: 44px"
+      aria-label="Back to top"
+      title="Back to top"
+    >
+      ↑
+    </a>
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
@@ -426,7 +565,7 @@
           stagger: 0.15,
         });
       }
-      // Run after page is ready
+
       window.addEventListener("load", initAnimation);
     </script>
   </body>
