@@ -12,7 +12,7 @@
 
 .btn-primary:hover {
   background: var(--bs-secondary-color);
-  border-color: var(--bs-primary);
+  border-color: var(--bs-secondary-color);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
 }
@@ -24,6 +24,14 @@
 .btn-outline-light:hover {
   transform: translateY(-2px);
   color: var(--bs-primary);
+}
+
+#themeToggle svg {
+  transition: transform 0.3s ease;
+}
+
+#themeToggle:hover svg {
+  transform: rotate(15deg);
 }
 
 /* --------------------------------------------------------------------------

@@ -4,10 +4,16 @@
   -webkit-backdrop-filter: blur(12px);
   transition: background 0.3s;
   font-family: var(--font-mono);
+  color: var(--color-muted);
 }
 
 .navbar.scrolled {
   background: transparent;
+  color: var(--color-muted);
+}
+
+.nav-item {
+  color: var(--color-muted);
 }
 
 .nav-link {
@@ -16,6 +22,16 @@
   padding: 0.5rem 1rem !important;
   font-family: var(--font-mono);
   font-size: var(--bs-nav-link-font-size);
+  color: var(---color-muted);
+}
+
+.nav-link:hover {
+  background: transparent;
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  font-family: var(--font-mono);
+  font-size: var(--bs-nav-link-font-size);
+  color: var(---color-muted);
 }
 
 .nav-link::after {
@@ -25,14 +41,32 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: var(--bs-body-bg);
+  background: var(--color-muted);
   transition: width 0.3s, left 0.3s;
   font-family: var(--font-mono);
+  color: var(--color-muted);
+}
+
+.navbar-toggler {
+  color: var(--color-muted);
 }
 
 .nav-link:hover::after,
 .nav-link.active::after {
   width: 100%;
   left: 0;
-  color: var(--bs-body-bg);
+  color: var(--color-muted);
+}
+
+.navbar-brand {
+  color: var(--color-muted);
+}
+
+.navbar-brand:hover {
+  color: var(--color-muted);
+}
+
+.navbar-toggler-collapsed {
+  color: var(--color-muted);
+  border: 0ch;
 }

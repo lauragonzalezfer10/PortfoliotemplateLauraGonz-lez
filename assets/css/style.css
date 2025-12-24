@@ -114,7 +114,7 @@
 
   /* 🔑 FIXED box */
   width: 420px;
-  height: 560px; /* choose a nice portrait ratio */
+  height: 560px;
 
   max-width: 100%;
 }
@@ -126,7 +126,7 @@
 
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 🔑 makes sizes identical */
+  object-fit: cover;
 
   border-radius: 20px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
@@ -256,6 +256,14 @@
 }
 
 /* --------------------------------------------------------------------------
+   7. Contact section
+   -------------------------------------------------------------------------- */
+#contact {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-secondary-color);
+}
+
+/* --------------------------------------------------------------------------
    9. Utilities
    -------------------------------------------------------------------------- */
 .z-1 {
@@ -270,7 +278,7 @@
 }
 
 .footer-text {
-  color: var(--bs-body-bg);
+  color: var(--color-muted);
 }
 
 .footer {
@@ -279,7 +287,7 @@
 
 .footer-contact {
   font-size: clamp(0.8 rem, 4vw, 1rem);
-  color: #ffffff;
+  color: var(--color-muted);
   text-decoration: none;
   line-height: 1.2;
   transition: opacity 0.3s ease, transform 0.3s ease;

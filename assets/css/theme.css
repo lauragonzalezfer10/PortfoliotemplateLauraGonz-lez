@@ -18,3 +18,11 @@
   --font-sans: "Hanken Grotesk", sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 }
+
+/* Only when dark mode is active */
+[data-bs-theme="dark"] {
+  --bs-body-bg: #000024;
+  --color-muted: #efefef;
+  --bs-body-color: #efefef;
+  --bs-primary: #efefef;
+}
