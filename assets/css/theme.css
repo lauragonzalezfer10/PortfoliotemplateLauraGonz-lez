@@ -3,15 +3,15 @@
    1. CSS Custom Properties
    -------------------------------------------------------------------------- */
 :root {
-  --bs-body-bg: #efefef;
-  --bs-body-color: #1005db;
+  --bs-body-bg: #e8e7e7;
+  --bs-body-color: #0407a6;
   --bs-primary: #0407a6;
   --bs-primary-rgb: 99, 102, 241;
   --bs-secondary-color: linear-gradient(135deg, #0000ff, #0a0a18);
 
   /* Custom tokens */
   --color-bg-alt: #efefef;
-  --color-muted: #ffffff;
+  --color-muted: #f6f6f6;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
   --font-serif: "Instrument Serif", serif;
@@ -21,8 +21,15 @@
 
 /* Only when dark mode is active */
 [data-bs-theme="dark"] {
+  /* Dark surface */
   --bs-body-bg: #000024;
-  --color-muted: #efefef;
+
+  /* Main text */
   --bs-body-color: #efefef;
+
+  /* Primary / accent color */
   --bs-primary: #efefef;
+
+  /* Secondary / muted text  */
+  --color-muted: rgba(239, 239, 239, 0.75);
 }

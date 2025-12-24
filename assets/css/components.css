@@ -1,37 +1,80 @@
 /* --------------------------------------------------------------------------
    8. Buttons
    -------------------------------------------------------------------------- */
+/* Base button polish */
+.btn {
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Primary button */
 .btn-primary {
-  background: transparent;
-  border-width: 2px;
-  border-color: var(--bs-primary);
-  padding: 0.75rem 2rem;
-  transition: transform 0.3s, box-shadow 0.3s;
-  color: var(--bs-secondary-color);
+  border: 1px solid transparent;
+  box-shadow: 0 12px 30px rgba(var(--bs-primary-rgb), 0.22);
 }
 
-.btn-primary:hover {
-  background: var(--bs-secondary-color);
-  border-color: var(--bs-secondary-color);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+/* Light mode: solid brand */
+[data-bs-theme="light"] .btn-primary {
+  background-color: var(--bs-primary);
+  color: var();
+  border-color: rgba(var(--bs-primary-rgb), 0.35);
 }
 
-.btn-outline-light {
-  padding: 0.75rem 2rem;
+[data-bs-theme="light"] .btn-primary:hover {
+  box-shadow: 0 16px 40px rgba(var(--bs-primary-rgb), 0.32);
 }
 
-.btn-outline-light:hover {
-  transform: translateY(-2px);
+/* Dark mode: invert (light button on dark bg) */
+[data-bs-theme="dark"] .btn-primary {
+  background-color: #efefef; /* matches your dark primary */
+  color: var(--bs-body-bg); /* matches your dark bg */
+
+  box-shadow: 0 14px 34px rgba(239, 239, 239, 0.12);
+}
+
+[data-bs-theme="dark"] .btn-primary:hover {
+  color: #000024; /* matches your dark bg */
+  box-shadow: 0 18px 44px rgba(239, 239, 239, 0.18);
+}
+
+/* Outline buttons */
+.btn-outline-light,
+.btn-outline-secondary {
+  border-width: 1px;
+}
+
+/* Light mode outlines */
+[data-bs-theme="light"] .btn-outline-secondary {
   color: var(--bs-primary);
 }
 
-#themeToggle svg {
-  transition: transform 0.3s ease;
+[data-bs-theme="light"] .btn-outline-secondary:hover {
+  background: rgba(var(--bs-primary-rgb), 0.08);
 }
 
-#themeToggle:hover svg {
-  transform: rotate(15deg);
+/* Dark mode outlines */
+[data-bs-theme="dark"] .btn-outline-light,
+[data-bs-theme="dark"] .btn-outline-secondary {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #efefef;
+}
+
+[data-bs-theme="dark"] .btn-outline-light:hover,
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+  background: rgba(239, 239, 239, 0.08);
 }
 
 /* --------------------------------------------------------------------------
