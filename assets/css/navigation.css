@@ -1,6 +1,5 @@
 .navbar {
   backdrop-filter: blur(12px);
-  background: transparent;
   -webkit-backdrop-filter: blur(12px);
   transition: background 0.3s;
   font-family: var(--font-mono);
@@ -55,7 +54,6 @@
 .nav-link.active::after {
   width: 100%;
   left: 0;
-  color: var(--color-muted);
 }
 
 .navbar-brand {
