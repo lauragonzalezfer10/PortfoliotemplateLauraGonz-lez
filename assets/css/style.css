@@ -283,6 +283,7 @@
 
 .footer {
   background: linear-gradient(135deg, #0000ff 0%, #020227 100%);
+  color: var(--color-muted);
 }
 
 .footer-contact {

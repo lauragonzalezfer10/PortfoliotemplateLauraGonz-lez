@@ -1,9 +1,13 @@
 .navbar {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  background: transparent;
   transition: background 0.3s;
   font-family: var(--font-mono);
   color: var(--color-muted);
+
+  /* ✅ Force white toggler icon (Bootstrap-approved way) */
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(239,239,239,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 .navbar.scrolled {
@@ -11,28 +15,26 @@
   color: var(--color-muted);
 }
 
+/* Nav items */
 .nav-item {
   color: var(--color-muted);
 }
 
+/* Nav links */
 .nav-link {
   background: transparent;
   position: relative;
   padding: 0.5rem 1rem !important;
   font-family: var(--font-mono);
   font-size: var(--bs-nav-link-font-size);
-  color: var(---color-muted);
+  color: var(--color-muted);
 }
 
 .nav-link:hover {
-  background: transparent;
-  position: relative;
-  padding: 0.5rem 1rem !important;
-  font-family: var(--font-mono);
-  font-size: var(--bs-nav-link-font-size);
-  color: var(---color-muted);
+  color: var(--color-muted);
 }
 
+/* Underline animation */
 .nav-link::after {
   content: "";
   position: absolute;
@@ -41,13 +43,7 @@
   width: 0;
   height: 2px;
   background: var(--color-muted);
-  transition: width 0.3s, left 0.3s;
-  font-family: var(--font-mono);
-  color: var(--color-muted);
-}
-
-.navbar-toggler {
-  color: var(--color-muted);
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 .nav-link:hover::after,
@@ -56,6 +52,7 @@
   left: 0;
 }
 
+/* Brand */
 .navbar-brand {
   color: var(--color-muted);
 }
@@ -64,7 +61,13 @@
   color: var(--color-muted);
 }
 
-.navbar-toggler-collapsed {
+/* Navbar toggler button */
+.navbar-toggler {
+  border-color: var(--color-muted);
   color: var(--color-muted);
-  border: 0ch;
+}
+
+/* Toggler icon */
+.navbar-toggler-icon {
+  background-image: var(--bs-navbar-toggler-icon-bg);
 }
