@@ -11,15 +11,15 @@
 
 ### What are you building?
 
-<!-- Describe your project in 2-3 sentences -->
+My project is a dynamic, fun and responsive portfolio template which has a landing page and individual project pages with an easy and intuitive navigation and an aesthetic visual look that combines simplicity with creativity using the tools taught in class.
 
 ### Who is it for?
 
+It is for all kinds of creative people, from photographers to designers and architects who want to showcase their work in a visual and meaningful way.
+
 ### Why does it matter?
 
-<!-- Explain the purpose and value of your project -->
-
----
+Sometimes creatives have lots of good works to showcase but get stuck on how to show them to the world so my purpose is to make this easier for them by creating a template they can make their own. I do the coding and they just have to customising to fit their aesthetic and style.
 
 ## Technical Approach
 
@@ -27,8 +27,11 @@
 
 - [ ] HTML5 (semantic markup)
 - [ ] CSS3 (responsive design)
-- [ ] JavaScript (if applicable)
-- [ ] Other: \***\*\_\_\_\*\***
+- [ ] JavaScript (microinteractions and animations)
+- [ ] Bootstrap (using a layout as a starting point)
+- [ ] GSAP (text animations)
+- [ ] ImageKit.io (image optimisation and performance)
+- [ ] GitHub Pages (deployment over HTTPS)
 
 ### Accessibility Goals
 
@@ -53,19 +56,18 @@
 
 ### Key Sections/Pages
 
-1.
-2.
-3.
+1. Header
+2. Hero section
+3. About
+4. Projects
+5. Contact
+6. Footer
 
 ### Content Sources
 
-<!-- Where will your content come from? -->
-
 ### Multilingual Considerations
 
-- Primary language: Spanish
-- Secondary language (optional): English
-- Translation strategy:
+- Primary language: English
 
 ---
 
@@ -73,15 +75,17 @@
 
 ### Visual Style
 
-<!-- Describe your aesthetic approach -->
+My visual style is minimalistic yet playful with my personal and artsy touch. I wanted to use a bold colour which is blue and also use gradients to keep it interesting.
 
 ### Color Palette
 
-<!-- List your main colors -->
+- Marine blue
+- Black
+- Off white
 
 ### Typography
 
-<!-- What fonts/typeface approach will you use? -->
+I used three main fonts:
 
 ### Inspiration/References
 
