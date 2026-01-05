@@ -54,16 +54,20 @@ Sometimes creatives have lots of good works to showcase but get stuck on how to 
 
 ## Content Strategy
 
+As for the content strategy, I thought about what I would like to add in my own personal portfolio and what would be interesting for other creatives.
+
 ### Key Sections/Pages
 
 1. Header
 2. Hero section
-3. About
-4. Projects
+3. About (professional and personal info)
+4. Projects (clickable cards)
 5. Contact
 6. Footer
 
 ### Content Sources
+
+For the images, I used my own for the about section to give an idea of what kinds of photos to use and for the rest of the sections I used placeholders with copyright free photos imitating possible project images that designers would like to add.
 
 ### Multilingual Considerations
 
@@ -79,13 +83,14 @@ My visual style is minimalistic yet playful with my personal and artsy touch. I 
 
 ### Color Palette
 
-- Marine blue
+- Marine blue (addition of a gradient)
 - Black
 - Off white
 
 ### Typography
 
-I used three main fonts:
+I used three main fonts, a sans serif, a serif and a mono.
+For the sans serif I used
 
 ### Inspiration/References
 
@@ -94,6 +99,8 @@ I used three main fonts:
 ---
 
 ## Success Metrics
+
+My portfolio will have succeded if creatives are able to clone it and customise it to their liking.
 
 ### Week 4 Goals
 
@@ -115,6 +122,8 @@ I used three main fonts:
 ## Reflection Questions
 
 ### What excites you most about this project?
+
+I really enjoyed the process of developing this project.
 
 ### What challenges do you anticipate?
 
