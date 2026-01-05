@@ -222,7 +222,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
 }
 
 .section-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   font-family: var(--font-serif);
   color: var(--bs-primary);
