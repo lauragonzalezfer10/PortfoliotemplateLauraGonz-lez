@@ -353,4 +353,20 @@ If JS is not updated, visual bugs appear despite correct CSS.
 
 > The Personality section was refined by restructuring its typography and layout to establish a clear visual hierarchy and ensure full responsiveness. The title was separated into a serif headline and a sans-serif subtitle, both centered within the section to create a strong focal point. Sticker elements were repositioned using dynamic calculations based on the section center and the combined dimensions of the title block, allowing them to scale responsively without overlapping the text. These changes improved clarity, consistency and user experience while maintaining a playful, expressive character.
 
--
+The stickers were a bit abrupt when changed so I added a transition
+
+3. Smooth sticker repositioning (VERY important)
+   Your JS already recalculates sticker positions on resize, but it moves them instantly.
+   Add a CSS transition to stickers (you already almost have it)
+   Make sure your .sticker has this:
+   .sticker {
+   transition:
+   transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+   left 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+   top 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+   box-shadow 0.3s ease;
+   }
+   ✅ Now when resize happens:
+   Stickers glide into new positions
+   No sudden “teleporting”
+   The orbit feels intentional and organic
