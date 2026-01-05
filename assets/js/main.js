@@ -331,56 +331,6 @@ gsap.to(bar, {
 });
 
 // ==========================================================================
-// 5. PROJECT CARDS STAGGER ANIMATION
-// ==========================================================================
-
-/**
- * Batch animation for project cards with staggered reveal
- *
- * 🎓 ScrollTrigger.batch() EXPLAINED:
- * batch() is a PERFORMANCE OPTIMIZATION for animating many elements.
- *
- * Instead of creating individual ScrollTriggers for each card (expensive!),
- * batch() groups elements and fires callbacks with arrays of elements
- * that enter/leave together.
- *
- * 📐 WHY THIS MATTERS:
- * - 100 project cards with individual triggers = 100 ScrollTrigger instances
- * - 100 project cards with batch = 1 ScrollTrigger instance
- * - Much better memory usage and scroll performance!
- *
- * 📐 STAGGER EXPLAINED:
- * stagger: 0.15 means each element starts animating 0.15s after the previous.
- * If 4 cards enter at once:
- * - Card 1: starts at 0s
- * - Card 2: starts at 0.15s
- * - Card 3: starts at 0.3s
- * - Card 4: starts at 0.45s
- *
- * This creates the cascading "wave" effect.
- */
-function initProjectCards() {
-  if (prefersReducedMotion) return;
-
-  ScrollTrigger.batch(".project-card", {
-    /**
-     * onEnter receives an array of ALL elements that just entered the viewport
-     * (in this scroll frame). We animate them as a batch with stagger.
-     */
-    onEnter: (batch) =>
-      gsap.from(batch, {
-        y: 60, // Start 60px below
-        opacity: 0, // Start invisible
-        duration: 0.8,
-        stagger: 0.15, // 0.15s delay between each card
-        ease: "power2.out",
-      }),
-    start: "top 90%", // Trigger when card top hits 90% of viewport
-    once: true, // Only animate once (no re-triggering on scroll back)
-  });
-}
-
-// ==========================================================================
 // 6. NAVBAR BACKGROUND ON SCROLL
 // ==========================================================================
 
