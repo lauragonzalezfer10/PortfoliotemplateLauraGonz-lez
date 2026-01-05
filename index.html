@@ -555,8 +555,115 @@
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
+      // GSAP hero reveal and parallax
+      function initAnimation() {
+        if (!window.gsap || !window.ScrollTrigger) {
+          setTimeout(initAnimation, 100);
+          return;
+        }
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        if (prefersReducedMotion) return;
+
+        // Hero reveal animation
+        gsap.from(".split-text", {
+          y: "100%",
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.15,
+        });
+
+        // Hero background parallax
+        gsap.to(".hero-bg", {
+          yPercent: 50,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        // Hero content parallax (slower than background for depth)
+        gsap.to(".hero .container", {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        // Doodles parallax (each moves at different speed)
+        gsap.utils.toArray(".doodle").forEach((doodle, i) => {
+          const speed = 1 + i * 0.3;
+          gsap.to(doodle, {
+            yPercent: speed * 50,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "body",
+              start: "top top",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+
+        // About image parallax
+        gsap.to(".about-image-wrapper", {
+          yPercent: -20,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".about-section",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+
+        // Project cards parallax on scroll
+        gsap.utils.toArray(".project-card").forEach((card, i) => {
+          gsap.to(card.querySelector(".project-image"), {
+            yPercent: -15,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
+          });
+        });
+
+        // Reveal animations for elements as they enter viewport
+        gsap.utils.toArray(".gsap-reveal").forEach((el) => {
+          gsap.from(el, {
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          });
+        });
+      }
+      window.addEventListener("load", initAnimation);
+
       // GSAP hero reveal
       function initAnimation() {
         if (!window.gsap) {
