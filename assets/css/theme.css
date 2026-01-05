@@ -19,6 +19,14 @@
   --font-mono: "IBM Plex Mono", monospace;
 }
 
+h1,
+h2,
+h3,
+.section-title,
+.project-title {
+  font-family: var(--font-serif);
+}
+
 /* Only when dark mode is active */
 [data-bs-theme="dark"] {
   /* Dark surface */
