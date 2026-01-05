@@ -55,6 +55,7 @@
 /* Brand */
 .navbar-brand {
   color: var(--color-muted);
+  font-family: var(--font-serif);
 }
 
 .navbar-brand:hover {

@@ -119,7 +119,7 @@
   max-width: 100%;
 }
 
-/* Both images fill the same box */
+/* Both images in the same box */
 .about-main-img {
   position: absolute;
   inset: 0;
@@ -170,6 +170,10 @@
   border-radius: 999px;
   background-color: var(--bs-primary);
   transition: width 1s ease, background-color 200ms ease;
+}
+
+.skill-title {
+  font-family: var(--font-mono);
 }
 
 /* Hover */

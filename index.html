@@ -218,13 +218,15 @@
       </section>
 
       <!-- About Section -->
-
       <section id="about" class="about-section" aria-labelledby="about-title">
         <div class="container">
           <div class="row align-items-center gy-5">
+            <!-- Portraits -->
             <div class="col-lg-5">
               <figure class="about-image-wrapper position-relative mb-0">
-                <div class="speech-bubble" aria-hidden="true">This is me!</div>
+                <figcaption class="speech-bubble" aria-hidden="true">
+                  This is me!
+                </figcaption>
 
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.47.57.png"
@@ -241,24 +243,92 @@
               </figure>
             </div>
 
+            <!-- Content -->
             <div class="col-lg-7">
-              <div class="about-text">
-                <h2 id="about-title" class="display-2 fw-bold mb-4">
+              <header class="mb-4">
+                <h2 id="about-title" class="display-2 fw-bold mb-3">
                   [01] About me
                 </h2>
-
-                <p class="lead text-muted mb-4">
+                <p class="lead text-muted mb-3">
                   I'm a creative developer passionate about building beautiful,
                   functional, and accessible digital experiences.
                 </p>
-
                 <p class="text-muted mb-0">
                   With 7+ years of experience spanning front-end development,
                   UI/UX design, and motion graphics, I believe in the power of
                   animation to enhance user experience without sacrificing
                   performance.
                 </p>
-              </div>
+              </header>
+
+              <!-- Skills -->
+              <section aria-labelledby="skills-title" class="mt-4">
+                <ul class="skills-grid list-unstyled mb-0" role="list">
+                  <li class="skill-card" role="listitem">
+                    <article class="skill-meta w-100">
+                      <header
+                        class="d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <p class="skill-title mb-0">Branding</p>
+                      </header>
+
+                      <div class="progress skill-progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 92%"
+                          data-progress="92"
+                          aria-valuenow="92"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </article>
+                  </li>
+
+                  <li class="skill-card" role="listitem">
+                    <article class="skill-meta w-100">
+                      <header
+                        class="d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <p class="skill-title mb-0">Illustration</p>
+                      </header>
+
+                      <div class="progress skill-progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 85%"
+                          aria-valuenow="85"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </article>
+                  </li>
+
+                  <li class="skill-card" role="listitem">
+                    <article class="skill-meta w-100">
+                      <header
+                        class="d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <p class="skill-title mb-0">Editorial</p>
+                      </header>
+
+                      <div class="progress skill-progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 78%"
+                          aria-valuenow="78"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </article>
+                  </li>
+                </ul>
+              </section>
             </div>
           </div>
         </div>
