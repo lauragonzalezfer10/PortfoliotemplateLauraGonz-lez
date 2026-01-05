@@ -157,6 +157,39 @@
   line-height: 1.8;
 }
 
+/* Bootstrap progress */
+.skill-progress {
+  height: 6px;
+  margin-top: 0.25rem;
+  margin-bottom: 0.75rem; /* 👈 separation between bars */
+  background-color: rgba(var(--bs-body-color-rgb), 0.08);
+  border-radius: 999px;
+}
+
+.skill-progress .progress-bar {
+  border-radius: 999px;
+  background-color: var(--bs-primary);
+  transition: width 1s ease, background-color 200ms ease;
+}
+
+/* Hover */
+.skill-card:hover .progress-bar {
+  background-color: color-mix(in srgb, var(--bs-primary) 85%, #000 15%);
+}
+
+/* Dark mode */
+html[data-bs-theme="dark"] .skill-progress {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+html[data-bs-theme="dark"] .skill-progress .progress-bar {
+  background-color: var(--bs-primary);
+}
+
+html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
+  background-color: color-mix(in srgb, var(--bs-primary) 80%, #fff 20%);
+}
+
 /* --------------------------------------------------------------------------
    6. Projects Section
    -------------------------------------------------------------------------- */
