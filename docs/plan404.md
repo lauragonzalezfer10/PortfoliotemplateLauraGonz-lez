@@ -679,3 +679,411 @@ I did not really like the result so I told it to make the 404 be very begi, the 
 I liked it better than the previous one but i still needed to modify it.
 
 Therefore I customised it to my liking changing the fonts and colours to fit the aesthetic I was going for.
+
+In addition I decided to add a fun touch and let the user draw on the background using GSAP animations.
+
+Below is the **same plan + report**, but now it **includes the exact code you’re using** (your 404 HTML) and the **exact implementation code** (HTML + CSS + JS) embedded inside the report so it’s all in one place.
+
+---
+
+## Plan + Report: Implementing “Draw on the 404 page” with GSAP (with your code)
+
+### Goal
+
+Add a playful drawing interaction to your 404 page where users can draw on the background with mouse/touch, and GSAP animates each stroke (pop-in + drift + fade + cleanup) without breaking your UI layout.
+
+---
+
+# 1) Baseline code you already have (current 404 page)
+
+This is your current HTML (as provided):
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>404 – Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./assets/css/404.css" />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="big-404">404</div>
+      <div class="label">Page Not Found</div>
+      <p class="message">
+        The page you were looking for doesn’t exist or may have been moved.
+      </p>
+      <a href="/" class="btn">Back to Home</a>
+    </div>
+  </body>
+</html>
+```
+
+---
+
+# 2) Implementation plan (what we add and why)
+
+## Step A — Add a drawing layer behind your `.wrapper`
+
+We’ll insert a **full-screen fixed drawing layer** that sits behind the UI.
+The UI stays clickable because `.wrapper` remains above with a higher z-index.
+
+### Changes to your HTML
+
+- Add a `#draw-layer` + `#draw-svg`
+- Load GSAP
+- Load a local JS file (`404-draw.js`)
+
+✅ Result: UI stays clean and on top, drawing happens on the background.
+
+---
+
+## Step B — Capture drawing input using Pointer Events
+
+Use Pointer Events so it works for:
+
+- mouse
+- trackpad
+- touch screens
+
+Events:
+
+- `pointerdown` → start a stroke
+- `pointermove` → extend stroke
+- `pointerup / pointercancel / pointerleave` → finish stroke
+
+✅ Result: consistent drawing across devices.
+
+---
+
+## Step C — Smooth the stroke (performance-friendly)
+
+We don’t store every pixel movement. We:
+
+- only add a point when movement > `minDist`
+- generate a smooth SVG path from points
+
+✅ Result: smooth strokes without lag.
+
+---
+
+## Step D — GSAP animation + cleanup per stroke
+
+Once stroke ends:
+
+- small pop-in / settle
+- gentle drift
+- fade out
+- remove from DOM (critical to prevent buildup)
+
+✅ Result: animation feels alive + page stays fast.
+
+---
+
+## Step E — Utilities
+
+- Press **C** to clear the drawings
+- Optional: reduced motion handling
+
+✅ Result: usability + accessibility.
+
+---
+
+# 3) Final integrated code (your 404 updated)
+
+## 3.1 Updated `404.html` (includes your content + drawing layer + GSAP)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>404 – Page Not Found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./assets/css/404.css" />
+  </head>
+
+  <body>
+    <!-- Drawing layer (behind content) -->
+    <div id="draw-layer" aria-hidden="true">
+      <svg id="draw-svg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+    </div>
+
+    <!-- Your existing layout -->
+    <div class="wrapper">
+      <div class="big-404">404</div>
+      <div class="label">Page Not Found</div>
+      <p class="message">
+        The page you were looking for doesn’t exist or may have been moved.
+      </p>
+      <a href="/" class="btn">Back to Home</a>
+
+      <!-- Optional helper text -->
+      <p class="hint">Draw on the background ✍️ (Press <b>C</b> to clear)</p>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <!-- Your drawing logic -->
+    <script src="./assets/js/404-draw.js"></script>
+  </body>
+</html>
+```
+
+---
+
+## 3.2 Add to `assets/css/404.css` (keep your existing styles, append this)
+
+```css
+/* Drawing layer behind everything */
+#draw-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+
+  /* Optional subtle background texture */
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(0, 0, 0, 0.06),
+    transparent 55%
+  );
+
+  /* Important for touch drawing */
+  touch-action: none;
+}
+
+/* SVG fills the screen */
+#draw-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Ensure your UI stays above */
+.wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+/* Optional hint */
+.hint {
+  margin-top: 1.25rem;
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+```
+
+---
+
+## 3.3 Create `assets/js/404-draw.js` (GSAP drawing implementation)
+
+```js
+(() => {
+  const layer = document.getElementById("draw-layer");
+  const svg = document.getElementById("draw-svg");
+  if (!layer || !svg || !window.gsap) return;
+
+  // Respect reduced motion
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  // Make SVG coordinate system match viewport pixels
+  function syncViewBox() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+  }
+  syncViewBox();
+  window.addEventListener("resize", syncViewBox);
+
+  const NS = "http://www.w3.org/2000/svg";
+
+  let drawing = false;
+  let pathEl = null;
+  let points = [];
+
+  // Tweak the feel here
+  const SETTINGS = {
+    minDist: 2.5, // fewer points = better performance
+    strokeWidth: 6,
+    fadeAfter: 0.6,
+    driftDuration: 4.0,
+    maxStrokes: 50, // safety cap
+  };
+
+  function dist(a, b) {
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  }
+
+  function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Smooth-ish path with quadratic midpoints
+  function buildSmoothPath(pts) {
+    if (pts.length < 2) return "";
+    const p0 = pts[0];
+    let d = `M ${p0.x} ${p0.y}`;
+
+    for (let i = 1; i < pts.length - 1; i++) {
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const mx = (p1.x + p2.x) / 2;
+      const my = (p1.y + p2.y) / 2;
+      d += ` Q ${p1.x} ${p1.y} ${mx} ${my}`;
+    }
+
+    const last = pts[pts.length - 1];
+    d += ` T ${last.x} ${last.y}`;
+    return d;
+  }
+
+  function enforceMaxStrokes() {
+    const paths = svg.querySelectorAll("path");
+    if (paths.length <= SETTINGS.maxStrokes) return;
+
+    // Remove oldest strokes first (with quick fade)
+    const extra = paths.length - SETTINGS.maxStrokes;
+    for (let i = 0; i < extra; i++) {
+      const el = paths[i];
+      gsap.to(el, { opacity: 0, duration: 0.2, onComplete: () => el.remove() });
+    }
+  }
+
+  function startStroke(x, y) {
+    drawing = true;
+    points = [{ x, y }];
+
+    pathEl = document.createElementNS(NS, "path");
+    pathEl.setAttribute("fill", "none");
+    pathEl.setAttribute("stroke-linecap", "round");
+    pathEl.setAttribute("stroke-linejoin", "round");
+    pathEl.setAttribute("stroke-width", SETTINGS.strokeWidth);
+
+    // Choose a fun color
+    const hue = Math.floor(rand(180, 320));
+    pathEl.setAttribute("stroke", `hsl(${hue} 85% 45%)`);
+    pathEl.setAttribute("opacity", "0.95");
+
+    svg.appendChild(pathEl);
+    enforceMaxStrokes();
+
+    // “Ink pop” on start
+    gsap.fromTo(
+      pathEl,
+      { opacity: 0, scale: 0.98, transformOrigin: "50% 50%" },
+      { opacity: 0.95, scale: 1, duration: 0.25, ease: "power2.out" }
+    );
+  }
+
+  function moveStroke(x, y) {
+    if (!drawing || !pathEl) return;
+
+    const last = points[points.length - 1];
+    const next = { x, y };
+    if (dist(last, next) < SETTINGS.minDist) return;
+
+    points.push(next);
+    pathEl.setAttribute("d", buildSmoothPath(points));
+  }
+
+  function endStroke() {
+    if (!drawing || !pathEl) return;
+    drawing = false;
+
+    // Remove tiny taps
+    if (points.length < 3) {
+      pathEl.remove();
+      pathEl = null;
+      points = [];
+      return;
+    }
+
+    const el = pathEl;
+    pathEl = null;
+    points = [];
+
+    // If reduced motion, just keep it (or do a simple fade later)
+    if (prefersReducedMotion) {
+      gsap.to(el, {
+        opacity: 0,
+        delay: 2,
+        duration: 1.2,
+        onComplete: () => el.remove(),
+      });
+      return;
+    }
+
+    // Drift + fade + cleanup
+    gsap
+      .timeline({ delay: SETTINGS.fadeAfter })
+      .to(el, {
+        duration: SETTINGS.driftDuration,
+        x: rand(-60, 60),
+        y: rand(-80, -140),
+        opacity: 0,
+        ease: "power1.out",
+      })
+      .add(() => el.remove());
+  }
+
+  // Input handling
+  layer.addEventListener("pointerdown", (e) => {
+    if (e.button !== 0 && e.pointerType === "mouse") return;
+    layer.setPointerCapture?.(e.pointerId);
+    startStroke(e.clientX, e.clientY);
+  });
+
+  layer.addEventListener("pointermove", (e) => {
+    moveStroke(e.clientX, e.clientY);
+  });
+
+  ["pointerup", "pointercancel", "pointerleave"].forEach((evt) =>
+    layer.addEventListener(evt, endStroke)
+  );
+
+  // Clear all drawings with "C"
+  window.addEventListener("keydown", (e) => {
+    if (e.key.toLowerCase() !== "c") return;
+    const paths = svg.querySelectorAll("path");
+    gsap.to(paths, {
+      opacity: 0,
+      duration: 0.25,
+      stagger: 0.01,
+      onComplete: () => paths.forEach((p) => p.remove()),
+    });
+  });
+
+  // Optional: soften entry
+  gsap.fromTo(layer, { opacity: 0 }, { opacity: 1, duration: 0.6 });
+})();
+```
+
+---
+
+# 4) Report: why this solution is solid
+
+### What you added to your code
+
+- A `#draw-layer` SVG behind `.wrapper`
+- GSAP import
+- A separate `404-draw.js` to keep the page clean and maintainable
+
+### Why it works reliably
+
+- Pointer Events handle mouse + touch consistently
+- Path smoothing avoids jagged lines
+- GSAP timelines animate each stroke **once**, not every frame
+- Cleanup (`el.remove()`) prevents performance decay
+
+### What it prevents (common issues)
+
+- UI being blocked → fixed by z-index layering
+- Strokes building forever → fixed by fade + remove + max stroke cap
+- Mobile scroll conflict → fixed by `touch-action: none`
+
+---
