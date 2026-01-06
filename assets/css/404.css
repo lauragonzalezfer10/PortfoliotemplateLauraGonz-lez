@@ -30,7 +30,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  -webkit-font-smoothing: antialiased;
 }
 
 .wrapper {
@@ -38,45 +37,68 @@ body {
   max-width: 480px;
 }
 
-.big-404 {
+h1,
+h2 {
   font-family: var(--font-serif);
-  font-size: clamp(6rem, 20vw, 12rem);
   color: var(--bs-body-bg);
   line-height: 1;
-  font-weight: 500;
-  margin-bottom: 0.4em;
   color: var(--fg);
-}
-
-.label {
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 10px;
-}
-
-.message {
-  font-size: 1rem;
-  color: var(--bs-body-bg);
-  margin-bottom: 24px;
-  line-height: 1.5;
 }
 
 .btn {
-  padding: 10px 22px;
-  border: 1px solid var(--bs-body-bg);
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  color: var(--fg);
-  text-decoration: none;
   border-radius: 999px;
-  transition: var(--transition);
-  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out),
+    background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn:hover {
-  background: var(--fg);
-  color: var(--bg);
+  transform: translateY(-1px);
+}
+
+/* Primary button */
+.btn-primary {
+  border: 1px solid transparent;
+  box-shadow: 0 12px 30px rgba(var(--bs-primary-rgb), 0.22);
+}
+
+/* Drawing layer (behind content) */
+#draw-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0; /* behind wrapper */
+  overflow: hidden;
+  /* optional background feel */
+  background: radial-gradient(
+    circle at 30% 20%,
+    rgba(0, 0, 0, 0.06),
+    transparent 55%
+  );
+}
+
+/* SVG fills the screen and allows drawing on it */
+#draw-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Make sure your existing content sits above */
+.wrapper {
+  position: relative;
+  z-index: 2;
+}
+
+/* small helper text */
+.hint {
+  margin-top: 1.25rem;
+  opacity: 0.7;
+  font-size: 0.95rem;
 }
