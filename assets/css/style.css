@@ -4,11 +4,23 @@
 
 .hero {
   background: var(--bs-secondary-color);
+  position: relative;
+  overflow: hidden;
 }
 
 .hero-bg {
-  background: inherit;
-  z-index: 0;
+  position: absolute;
+  inset: -2px 0;
+  width: 100%;
+  height: calc(100% + 4px);
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 /* Floating shapes */
@@ -112,15 +124,17 @@
   font-family: var(--font-serif);
 }
 
-/* Image column */
-.about-image-wrapper {
-  position: relative;
-
-  /* 🔑 FIXED box */
+.about-image-wrapper,
+.about-parallax {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   width: 420px;
   height: 560px;
-
   max-width: 100%;
+  position: relative;
+  transform: none !important;
+  will-change: auto;
 }
 
 /* Both images in the same box */

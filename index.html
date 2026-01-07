@@ -681,148 +681,8 @@
     </a>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-      // ==========================
-      // GSAP Animations (Hero + reveals + parallax)
-      // ==========================
-      function initAnimation() {
-        // Wait until GSAP is available
-        if (!window.gsap) {
-          setTimeout(initAnimation, 100);
-          return;
-        }
-
-        // Register ScrollTrigger if available
-        if (window.ScrollTrigger) {
-          gsap.registerPlugin(ScrollTrigger);
-        }
-
-        // Respect reduced motion
-        const prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-        if (prefersReducedMotion) return;
-
-        // Hero reveal animation
-        gsap.from(".split-text", {
-          y: "100%",
-          opacity: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          stagger: 0.15,
-        });
-
-        // Hero background parallax (only if ScrollTrigger exists)
-        if (window.ScrollTrigger) {
-          gsap.to(".hero-bg", {
-            yPercent: 50,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-
-          // Hero content parallax
-          gsap.to(".hero .container", {
-            yPercent: 30,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-
-          // Doodles parallax
-          gsap.utils.toArray(".doodle").forEach((doodle, i) => {
-            const speed = 1 + i * 0.3;
-            gsap.to(doodle, {
-              yPercent: speed * 50,
-              ease: "none",
-              scrollTrigger: {
-                trigger: "body",
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-              },
-            });
-          });
-
-          // About image parallax
-          if (document.querySelector(".about-image-wrapper")) {
-            gsap.to(".about-image-wrapper", {
-              yPercent: -20,
-              ease: "none",
-              scrollTrigger: {
-                trigger: ".about-section",
-                start: "top bottom",
-                end: "bottom top",
-                scrub: true,
-              },
-            });
-          }
-
-          // Reveal animations
-          gsap.utils.toArray(".gsap-reveal").forEach((el) => {
-            gsap.from(el, {
-              y: 50,
-              opacity: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: el,
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            });
-          });
-        }
-      }
-
-      window.addEventListener("load", initAnimation);
-
-      // ==========================
-      // Theme toggle (fixed + closed properly)
-      // ==========================
-      (function initThemeToggle() {
-        const html = document.documentElement;
-        const toggleBtn = document.getElementById("themeToggle");
-        const sunIcon = document.getElementById("icon-sun");
-        const moonIcon = document.getElementById("icon-moon");
-
-        if (!toggleBtn) return;
-
-        const storedTheme = localStorage.getItem("theme") || "light";
-        setTheme(storedTheme);
-
-        toggleBtn.addEventListener("click", () => {
-          const currentTheme = html.getAttribute("data-bs-theme");
-          const nextTheme = currentTheme === "dark" ? "light" : "dark";
-          setTheme(nextTheme);
-        });
-
-        function setTheme(theme) {
-          html.setAttribute("data-bs-theme", theme);
-          localStorage.setItem("theme", theme);
-
-          if (sunIcon && moonIcon) {
-            if (theme === "dark") {
-              sunIcon.classList.add("d-none");
-              moonIcon.classList.remove("d-none");
-            } else {
-              moonIcon.classList.add("d-none");
-              sunIcon.classList.remove("d-none");
-            }
-          }
-        }
         // Floating animation for stickers
         const stickers = document.querySelectorAll(".sticker");
         const section = document.querySelector(".personality-section");
@@ -834,7 +694,6 @@
           const isMobile = window.innerWidth <= 768;
           const isSmallMobile = window.innerWidth <= 480;
 
-          // Calculate title dimensions with padding
           const titleRect = title.getBoundingClientRect();
           const sectionRect = section.getBoundingClientRect();
           const titleWidth = titleRect.width;
@@ -858,7 +717,6 @@
               distance = distance * 0.65;
             }
 
-            // Ensure distance is always greater than minimum safe distance
             distance = Math.max(distance, minDistance);
 
             const radian = (angle * Math.PI) / 180;
@@ -867,11 +725,8 @@
             const y =
               centerY + Math.sin(radian) * distance - sticker.offsetHeight / 2;
 
-            sticker.style.left = `${x}px`;
-            sticker.style.top = `${y}px`;
-
-            // Add floating animation with unique timing
-            animateSticker(sticker, index, distance);
+              sticker.style.left = `${x}px`;
+              sticker.style.top = `${y}px`;
           });
         }
 
