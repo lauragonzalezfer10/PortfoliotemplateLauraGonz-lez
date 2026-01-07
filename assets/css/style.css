@@ -308,6 +308,10 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   transition: transform 0.6s ease;
 }
 
+#projects .project-card {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
 /* Hover zoom (very subtle) */
 .project-card:hover .project-image {
   transform: scale(1.05);

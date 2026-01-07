@@ -99,7 +99,7 @@
             <li class="nav-item ms-lg-3">
               <button
                 id="themeToggle"
-                class="btn btn-outline-toggle d-flex align-items-center justify-content-center"
+                class="btn btn-theme-toggle d-flex align-items-center justify-content-center"
                 aria-label="Toggle dark and light theme"
                 title="Toggle theme"
                 type="button"
@@ -225,43 +225,48 @@
           <div class="row align-items-center gy-5">
             <!-- Portraits -->
             <div class="col-lg-5">
-              <figure class="about-image-wrapper position-relative mb-0">
-                <figcaption class="speech-bubble" aria-hidden="true">
+              <figure
+                class="about-image-wrapper position-relative mb-0 gsap-reveal"
+              >
+                <figcaption
+                  class="speech-bubble gsap-reveal"
+                  aria-hidden="true"
+                >
                   This is me!
                 </figcaption>
 
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.47.57.png"
                   alt="Portrait of Laura González"
-                  class="about-main-img img-1"
+                  class="about-main-img img-1 gsap-reveal"
                   loading="lazy"
                 />
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.51.13.png"
                   alt="Alternate portrait of Laura González"
-                  class="about-main-img img-2"
+                  class="about-main-img img-2 gsap-reveal"
                   loading="lazy"
                 />
               </figure>
             </div>
 
             <!-- Content -->
-            <div class="col-lg-7">
+            <div class="col-lg-7 about-parallax">
               <header class="mb-2">
-                <h2 id="about-title" class="display-5 fw-bold mb-3">
+                <h2 id="about-title" class="display-5 fw-bold mb-3 gsap-reveal">
                   Let´s talk about design
                 </h2>
-                <p class="lead text-muted mb-3">
+                <p class="lead text-muted mb-3 gsap-reveal">
                   I'm a creative developer passionate about building beautiful,
                   functional, and accessible digital experiences.
                 </p>
               </header>
 
               <!-- Skills -->
-              <h3>Design skills</h3>
+              <h3 class="gsap-reveal">Design skills</h3>
               <section aria-labelledby="skills-title" class="mt-4">
                 <ul class="skills-grid list-unstyled mb-0" role="list">
-                  <li class="skill-card" role="listitem">
+                  <li class="skill-card gsap-reveal" role="listitem">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -283,7 +288,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card" role="listitem">
+                  <li class="skill-card gsap-reveal" role="listitem">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -304,7 +309,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card" role="listitem">
+                  <li class="skill-card gsap-reveal" role="listitem">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -680,99 +685,409 @@
       ↑
     </a>
 
-    <!-- Scripts -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      defer
+    ></script>
+
+    <!-- External Js -->
+    <script src="assets/js/main.js" defer></script>
 
     <script>
-        // Floating animation for stickers
-        const stickers = document.querySelectorAll(".sticker");
-        const section = document.querySelector(".personality-section");
-        const title = document.querySelector(".section-title");
+      (() => {
+        "use strict";
 
-        function positionStickers() {
-          const centerX = section.offsetWidth / 2;
-          const centerY = section.offsetHeight / 2;
-          const isMobile = window.innerWidth <= 768;
-          const isSmallMobile = window.innerWidth <= 480;
+        // Prevent double init if script is injected twice
+        if (window.__SITE_ANIMS_INIT__) return;
+        window.__SITE_ANIMS_INIT__ = true;
 
-          const titleRect = title.getBoundingClientRect();
-          const sectionRect = section.getBoundingClientRect();
-          const titleWidth = titleRect.width;
-          const titleHeight = titleRect.height;
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-          // Calculate minimum safe distance from center (diagonal of title box + safety margin)
-          const baseMargin = isSmallMobile ? 50 : isMobile ? 60 : 80;
-          const minDistance =
-            Math.sqrt(
-              Math.pow(titleWidth / 2, 2) + Math.pow(titleHeight / 2, 2)
-            ) + baseMargin;
+        const debounce = (fn, wait = 140) => {
+          let t;
+          return (...args) => {
+            clearTimeout(t);
+            t = setTimeout(() => fn(...args), wait);
+          };
+        };
 
-          stickers.forEach((sticker, index) => {
-            const angle = parseFloat(sticker.dataset.angle);
-            let distance = parseFloat(sticker.dataset.distance);
+        // -------------------------
+        // Helpers
+        // -------------------------
+        function refreshScrollTrigger() {
+          if (window.ScrollTrigger && !prefersReducedMotion) {
+            requestAnimationFrame(() => ScrollTrigger.refresh());
+          }
+        }
 
-            // Adjust distance based on screen size
-            if (isSmallMobile) {
-              distance = distance * 0.5;
-            } else if (isMobile) {
-              distance = distance * 0.65;
+        // -------------------------
+        // GSAP
+        // -------------------------
+        function initGSAP() {
+          if (!window.gsap) return false;
+
+          // Register ScrollTrigger once
+          if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
+            gsap.registerPlugin(ScrollTrigger);
+          }
+
+          if (prefersReducedMotion) return true;
+
+          // Safety: remove ONLY our triggers (do NOT kill other modules)
+          if (window.ScrollTrigger) {
+            ScrollTrigger.getAll()
+              .filter((t) => t.vars && t.vars.id === "site")
+              .forEach((t) => t.kill());
+          }
+
+          // HERO reveal
+          const splitEls = document.querySelectorAll(".split-text");
+          if (splitEls.length) {
+            gsap.from(splitEls, {
+              y: "100%",
+              opacity: 0,
+              duration: 1.2,
+              ease: "power3.out",
+              stagger: 0.15,
+              clearProps: "transform,opacity",
+            });
+          }
+
+          if (!window.ScrollTrigger) return true;
+
+          // HERO bg parallax
+          const heroBg = document.querySelector(".hero-bg");
+          if (heroBg) {
+            gsap.to(heroBg, {
+              yPercent: 50,
+              ease: "none",
+              scrollTrigger: {
+                id: "site",
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            });
+          }
+
+          // HERO content parallax
+          const heroContainer = document.querySelector(".hero .container");
+          if (heroContainer) {
+            gsap.to(heroContainer, {
+              yPercent: 30,
+              ease: "none",
+              scrollTrigger: {
+                id: "site",
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            });
+          }
+
+          // DOODLES parallax
+          gsap.utils.toArray(".doodle").forEach((doodle, i) => {
+            const speed = 1 + i * 0.3;
+            gsap.to(doodle, {
+              yPercent: speed * 50,
+              ease: "none",
+              scrollTrigger: {
+                id: "site",
+                trigger: "body",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            });
+          });
+
+          // ABOUT parallax (image wrapper + text block)
+          const aboutSection = document.querySelector(".about-section");
+          const aboutWrap = document.querySelector(".about-image-wrapper");
+
+          if (aboutSection) {
+            if (aboutWrap) {
+              gsap.to(aboutWrap, {
+                yPercent: -20,
+                ease: "none",
+                force3D: true,
+                scrollTrigger: {
+                  id: "site",
+                  trigger: aboutSection,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 0.6,
+                  invalidateOnRefresh: true,
+                  anticipatePin: 1,
+                },
+              });
             }
 
-            distance = Math.max(distance, minDistance);
+            const aboutParallaxBlock =
+              aboutSection.querySelector(".about-parallax");
+            if (aboutParallaxBlock) {
+              gsap.to(aboutParallaxBlock, {
+                yPercent: -8,
+                ease: "none",
+                force3D: true,
+                scrollTrigger: {
+                  id: "site",
+                  trigger: aboutSection,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 0.6,
+                  invalidateOnRefresh: true,
+                  anticipatePin: 1,
+                },
+              });
+            }
+          }
 
-            const radian = (angle * Math.PI) / 180;
-            const x =
-              centerX + Math.cos(radian) * distance - sticker.offsetWidth / 2;
-            const y =
-              centerY + Math.sin(radian) * distance - sticker.offsetHeight / 2;
+          // REVEALS (generic)
+          gsap.utils.toArray(".gsap-reveal").forEach((el) => {
+            gsap.from(el, {
+              y: 50,
+              opacity: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                id: "site",
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+              },
+              clearProps: "transform,opacity",
+            });
+          });
+
+          // -------------------------
+          // PROJECTS: images appear slowly (ONLY images, does not affect stickers)
+          // -------------------------
+          const projectImages = gsap.utils.toArray(
+            "#projects .project-card .project-image"
+          );
+
+          projectImages.forEach((img) => {
+            // Start state (in case CSS not added yet)
+            gsap.set(img, {
+              opacity: 0,
+              y: 18,
+              scale: 1.03,
+              filter: "blur(10px)",
+            });
+
+            gsap.to(img, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              filter: "blur(0px)",
+              duration: 1.6,
+              ease: "power2.out",
+              clearProps: "transform,filter",
+              scrollTrigger: {
+                id: "site",
+                trigger: img,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                once: true,
+                invalidateOnRefresh: true,
+              },
+            });
+          });
+
+          ScrollTrigger.refresh();
+          return true;
+        }
+
+        // -------------------------
+        // Theme toggle module
+        // -------------------------
+        function initThemeToggle() {
+          const html = document.documentElement;
+          const toggleBtn = document.getElementById("themeToggle");
+          const sunIcon = document.getElementById("icon-sun");
+          const moonIcon = document.getElementById("icon-moon");
+
+          if (!toggleBtn) return;
+
+          function setTheme(theme) {
+            html.setAttribute("data-bs-theme", theme);
+            localStorage.setItem("theme", theme);
+
+            if (sunIcon && moonIcon) {
+              if (theme === "dark") {
+                sunIcon.classList.add("d-none");
+                moonIcon.classList.remove("d-none");
+              } else {
+                moonIcon.classList.add("d-none");
+                sunIcon.classList.remove("d-none");
+              }
+            }
+
+            // Layout can change (fonts/colors) -> refresh ST
+            refreshScrollTrigger();
+          }
+
+          const storedTheme = localStorage.getItem("theme") || "light";
+          setTheme(storedTheme);
+
+          toggleBtn.addEventListener("click", () => {
+            const current = html.getAttribute("data-bs-theme") || "light";
+            setTheme(current === "dark" ? "light" : "dark");
+          });
+        }
+
+        // -------------------------
+        // Stickers module (ONE RAF loop) — unchanged + safe
+        // -------------------------
+        function initStickers() {
+          const section = document.querySelector(".personality-section");
+          const title = document.querySelector(".section-title");
+          const stickers = Array.from(document.querySelectorAll(".sticker"));
+
+          if (!section || !title || stickers.length === 0) return;
+          if (prefersReducedMotion) return;
+
+          const data = stickers.map((el, i) => ({
+            el,
+            seed: Math.random() * 1000 + i * 7.7,
+            amp: 10 + i * 0.6,
+            rotAmp: 4,
+            period: 3.2 + i * 0.12,
+            popLock: false,
+          }));
+
+          let rafId = null;
+
+          function position() {
+            const centerX = section.offsetWidth / 2;
+            const centerY = section.offsetHeight / 2;
+
+            const isMobile = window.innerWidth <= 768;
+            const isSmallMobile = window.innerWidth <= 480;
+
+            const titleRect = title.getBoundingClientRect();
+            const baseMargin = isSmallMobile ? 50 : isMobile ? 60 : 80;
+
+            const minDistance =
+              Math.sqrt(
+                Math.pow(titleRect.width / 2, 2) +
+                  Math.pow(titleRect.height / 2, 2)
+              ) + baseMargin;
+
+            stickers.forEach((sticker) => {
+              const angle = parseFloat(sticker.dataset.angle || "0");
+              let distance = parseFloat(sticker.dataset.distance || "160");
+
+              if (isSmallMobile) distance *= 0.5;
+              else if (isMobile) distance *= 0.65;
+
+              distance = Math.max(distance, minDistance);
+
+              const rad = (angle * Math.PI) / 180;
+              const x =
+                centerX + Math.cos(rad) * distance - sticker.offsetWidth / 2;
+              const y =
+                centerY + Math.sin(rad) * distance - sticker.offsetHeight / 2;
 
               sticker.style.left = `${x}px`;
               sticker.style.top = `${y}px`;
-          });
-        }
-
-        function animateSticker(sticker, index, baseDistance) {
-          const duration = 3000 + index * 200;
-          const amplitude = 12; // Reduced amplitude to prevent overlapping
-          let startTime = Date.now() + index * 300;
-
-          function float() {
-            const elapsed = Date.now() - startTime;
-            const progress = (elapsed % duration) / duration;
-            const yOffset = Math.sin(progress * Math.PI * 2) * amplitude;
-            const xOffset = Math.cos(progress * Math.PI * 2) * (amplitude / 2);
-            const rotation = Math.sin(progress * Math.PI * 2) * 5;
-
-            sticker.style.transform = `translate(${xOffset}px, ${yOffset}px) rotate(${rotation}deg)`;
-
-            requestAnimationFrame(float);
+            });
           }
 
-          float();
+          function loop() {
+            const t = performance.now() / 1000;
+
+            data.forEach((s) => {
+              if (s.popLock) return;
+
+              const phase = (t + s.seed) * ((2 * Math.PI) / s.period);
+              const y = Math.sin(phase) * s.amp;
+              const x = Math.cos(phase) * (s.amp * 0.5);
+              const r = Math.sin(phase) * s.rotAmp;
+
+              s.el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+            });
+
+            rafId = requestAnimationFrame(loop);
+          }
+
+          // Click pop (temporarily locks float)
+          data.forEach((s) => {
+            s.el.addEventListener("click", () => {
+              s.popLock = true;
+
+              s.el.style.transition =
+                "transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55)";
+              s.el.style.transform = "scale(1.2) rotate(360deg)";
+
+              setTimeout(() => {
+                s.el.style.transition = "transform 0.3s ease";
+                s.popLock = false;
+              }, 500);
+            });
+          });
+
+          // Start
+          position();
+          loop();
+
+          // Resize (debounced) - reposition only
+          window.addEventListener(
+            "resize",
+            debounce(() => {
+              position();
+              refreshScrollTrigger();
+            }, 140)
+          );
+
+          // Pause in background tab
+          document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+              if (rafId) cancelAnimationFrame(rafId);
+              rafId = null;
+            } else if (!rafId) {
+              rafId = requestAnimationFrame(loop);
+            }
+          });
         }
 
-        // Initial positioning
-        positionStickers();
+        // -------------------------
+        // Boot once DOM is ready
+        // -------------------------
+        document.addEventListener(
+          "DOMContentLoaded",
+          () => {
+            initThemeToggle();
+            initStickers();
 
-        // Reposition on window resize
-        let resizeTimeout;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(positionStickers, 100);
-        });
-
-        // Add click interaction
-        stickers.forEach((sticker) => {
-          sticker.addEventListener("click", function () {
-            this.style.transition =
-              "transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)";
-            this.style.transform = "scale(1.2) rotate(360deg)";
-
-            setTimeout(() => {
-              this.style.transition = "transform 0.3s ease";
-              this.style.transform = "";
-            }, 500);
-          });
-        });
+            // Retry GSAP init (CDN might load slowly)
+            let tries = 0;
+            const tick = () => {
+              const ok = initGSAP();
+              if (ok) return;
+              if (tries++ < 30) setTimeout(tick, 100);
+            };
+            tick();
+          },
+          { once: true }
+        );
       })();
     </script>
   </body>
