@@ -21,6 +21,19 @@
 }
 
 /* Primary button */
+.btn-outline-toggle {
+  border: 1px solid;
+  border-color: var(--bs-body-bg);
+  box-shadow: 0 12px 30px rgba(var(--bs-primary-rgb), 0.22);
+}
+
+/* Night toggle: force white border in dark mode */
+[data-bs-theme="dark"] .btn-outline-toggle {
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Toggle button */
 .btn-primary {
   border: 1px solid transparent;
   box-shadow: 0 12px 30px rgba(var(--bs-primary-rgb), 0.22);
@@ -28,26 +41,31 @@
 
 /* Light mode: solid brand */
 [data-bs-theme="light"] .btn-primary {
-  background-color: var(--bs-primary);
-  color: var();
-  border-color: rgba(var(--bs-primary-rgb), 0.35);
+  background-color: var(--bs-body-bg);
+  color: var(--bs-primary); /* text blue */
+  border-color: rgba(var(--bs-primary-rgb) 5);
+  border-width: 2px;
 }
 
 [data-bs-theme="light"] .btn-primary:hover {
   box-shadow: 0 16px 40px rgba(var(--bs-primary-rgb), 0.32);
+  background-color: var(--bs-primary);
+  color: var(--bs-body-bg);
 }
 
-/* Dark mode: invert (light button on dark bg) */
+/* Dark mode: white outline, ghost button */
 [data-bs-theme="dark"] .btn-primary {
-  background-color: #efefef; /* matches your dark primary */
-  color: var(--bs-body-bg); /* matches your dark bg */
-
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
   box-shadow: 0 14px 34px rgba(239, 239, 239, 0.12);
+  transform: 0.2s ease;
 }
 
 [data-bs-theme="dark"] .btn-primary:hover {
-  color: #000024; /* matches your dark bg */
-  box-shadow: 0 18px 44px rgba(239, 239, 239, 0.18);
+  background-color: var(--bs-primary);
+  color: var(--bs-body-bg);
+  box-shadow: 0 14px 34px rgba(239, 239, 239, 0.12);
 }
 
 /* Outline buttons */
@@ -74,7 +92,8 @@
 
 [data-bs-theme="dark"] .btn-outline-light:hover,
 [data-bs-theme="dark"] .btn-outline-secondary:hover {
-  background: rgba(239, 239, 239, 0.08);
+  background: var(--bs-primary);
+  color: var(--bs-body-bg);
 }
 
 /* --------------------------------------------------------------------------
