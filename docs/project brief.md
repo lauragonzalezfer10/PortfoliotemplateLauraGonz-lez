@@ -61,7 +61,7 @@ As for the content strategy, I thought about what I would like to add in my own 
 1. Header
 2. Hero section
 3. About (professional and personal info)
-4. Projects (clickable cards)
+4. Projects
 5. Contact
 6. Footer
 
@@ -89,8 +89,8 @@ My visual style is minimalistic yet playful with my personal and artsy touch. I 
 
 ### Typography
 
-I used three main fonts, a sans serif, a serif and a mono.
-For the sans serif I used
+I used three main fonts, a sans serif for legibility, a serif for character and contrast and a mono for smaller pieces of information.
+This mix strengthens visual hierarchy and identity of the page.
 
 ### Inspiration/References
 
@@ -100,7 +100,7 @@ For the sans serif I used
 
 ## Success Metrics
 
-My portfolio will have succeded if creatives are able to clone it and customise it to their liking.
+My portfolio will have succeded if creatives are able to clone it and customise it to their liking. It will me measured by its easy use and comprehension, fast charging and performances and accesibility compliance.
 
 ### Week 4 Goals
 

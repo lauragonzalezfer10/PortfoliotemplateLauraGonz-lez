@@ -228,7 +228,7 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
 
 .personality-header {
   position: relative;
-  z-index: 10;
+  z-index: 3;
   display: grid;
   gap: 0.8rem;
   place-items: center;
@@ -267,6 +267,14 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     left 0.6s cubic-bezier(0.22, 1, 0.36, 1),
     top 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  pointer-events: auto;
+}
+
+.stickers-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none; /* prevents overlay from blocking text selection/click */
+  z-index: 2;
 }
 
 .sticker:hover {

@@ -28,12 +28,19 @@
       href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/index.css" />
 
-    <!-- Main JS -->
+    <!-- Main JS (your existing file; keep if you need it) -->
     <script src="./assets/js/main.js" defer></script>
+
+    <!-- Site animations + stickers + theme toggle (was inline before) -->
+    <script src="./assets/js/animations.js" defer></script>
 
     <!-- Favicons -->
     <link
@@ -57,12 +64,18 @@
   </head>
 
   <body id="top">
+    <!-- ✅ A11y: skip link (does not change layout if your CSS uses .visually-hidden-focusable) -->
+    <a class="visually-hidden-focusable" href="#main-content"
+      >Skip to content</a
+    >
+
     <!-- Navigation -->
     <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-light">
       <div class="container">
         <a class="navbar-brand fw-bold" href="#top" aria-label="Go to top"
           >LG</a
         >
+
         <!-- Navbar -->
         <button
           class="navbar-toggler"
@@ -186,7 +199,6 @@
       </div>
 
       <!-- Hero Section -->
-
       <section
         id="hero"
         class="hero min-vh-100 d-flex align-items-center position-relative overflow-hidden"
@@ -232,13 +244,13 @@
                 </figcaption>
 
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.47.57.png"
+                  src="https://ik.imagekit.io/nlizb27w2/portrait.png?updatedAt=1767814918204"
                   alt="Portrait of Laura González"
                   class="about-main-img img-1 gsap-reveal"
                   loading="lazy"
                 />
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/Screenshot%202025-12-22%20at%2010.51.13.png"
+                  src="https://ik.imagekit.io/nlizb27w2/portraitdrawing.png?updatedAt=1767814933696"
                   alt="Alternate portrait of Laura González"
                   class="about-main-img img-2 gsap-reveal"
                   loading="lazy"
@@ -247,7 +259,7 @@
             </div>
 
             <!-- Content -->
-            <div class="col-lg-7 about-parallax">
+            <div class="col-lg-6 about-parallax">
               <header class="mb-2">
                 <h2 id="about-title" class="display-5 fw-bold mb-3 gsap-reveal">
                   Let´s talk about design
@@ -259,8 +271,8 @@
               </header>
 
               <!-- Skills -->
-              <h3 class="gsap-reveal">Design skills</h3>
-              <section aria-labelledby="skills-title" class="mt-4">
+              <h3 id="skills-title" class="gsap-reveal">Design skills</h3>
+              <section class="mt-4" aria-labelledby="skills-title">
                 <ul class="skills-grid list-unstyled mb-0" role="list">
                   <li class="skill-card gsap-reveal" role="listitem">
                     <article class="skill-meta w-100">
@@ -269,7 +281,6 @@
                       >
                         <p class="skill-title mb-0">Branding</p>
                       </header>
-
                       <div class="progress skill-progress">
                         <div
                           class="progress-bar"
@@ -291,7 +302,6 @@
                       >
                         <p class="skill-title mb-0">Illustration</p>
                       </header>
-
                       <div class="progress skill-progress">
                         <div
                           class="progress-bar"
@@ -312,7 +322,67 @@
                       >
                         <p class="skill-title mb-0">Editorial</p>
                       </header>
+                      <div class="progress skill-progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 78%"
+                          aria-valuenow="78"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </article>
+                  </li>
 
+                  <li class="skill-card gsap-reveal" role="listitem">
+                    <article class="skill-meta w-100">
+                      <header
+                        class="d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <p class="skill-title mb-0">Packaging</p>
+                      </header>
+                      <div class="progress skill-progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 92%"
+                          data-progress="92"
+                          aria-valuenow="92"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </article>
+                  </li>
+
+                  <li class="skill-card gsap-reveal" role="listitem">
+                    <article class="skill-meta w-100">
+                      <header
+                        class="d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <p class="skill-title mb-0">Web</p>
+                      </header>
+                      <div class="progress skill-progress">
+                        <div
+                          class="progress-bar"
+                          role="progressbar"
+                          style="width: 85%"
+                          aria-valuenow="85"
+                          aria-valuemin="0"
+                          aria-valuemax="100"
+                        ></div>
+                      </div>
+                    </article>
+                  </li>
+
+                  <li class="skill-card gsap-reveal" role="listitem">
+                    <article class="skill-meta w-100">
+                      <header
+                        class="d-flex justify-content-between align-items-center mb-2"
+                      >
+                        <p class="skill-title mb-0">3D</p>
+                      </header>
                       <div class="progress skill-progress">
                         <div
                           class="progress-bar"
@@ -332,6 +402,7 @@
         </div>
       </section>
 
+      <!-- Personality Section -->
       <section class="personality-section" aria-labelledby="personality-title">
         <header class="personality-header">
           <h2
@@ -342,59 +413,62 @@
           </h2>
           <p class="lead text-muted gsap-reveal">(apart from design)</p>
         </header>
-        <div class="sticker" data-angle="0" data-distance="250">
-          <span class="emoji">☕</span>
-          <span>Matcha Addict</span>
-        </div>
 
-        <div class="sticker" data-angle="36" data-distance="280">
-          <span class="emoji">📚</span>
-          <span>Bookworm</span>
-        </div>
+        <!-- ✅ New: stickers live in an overlay layer so they NEVER push/shift text -->
+        <div class="stickers-layer" aria-hidden="true">
+          <div class="sticker" data-angle="0" data-distance="250">
+            <span class="emoji">☕</span>
+            <span>Matcha Addict</span>
+          </div>
 
-        <div class="sticker" data-angle="72" data-distance="260">
-          <span class="emoji">🎵</span>
-          <span>Music Lover</span>
-        </div>
+          <div class="sticker" data-angle="36" data-distance="280">
+            <span class="emoji">📚</span>
+            <span>Bookworm</span>
+          </div>
 
-        <div class="sticker" data-angle="108" data-distance="290">
-          <span class="emoji">🌱</span>
-          <span>Plant Parent</span>
-        </div>
+          <div class="sticker" data-angle="72" data-distance="260">
+            <span class="emoji">🎵</span>
+            <span>Music Lover</span>
+          </div>
 
-        <div class="sticker" data-angle="144" data-distance="270">
-          <span class="emoji">🎨</span>
-          <span>Art Enthusiast</span>
-        </div>
+          <div class="sticker" data-angle="108" data-distance="290">
+            <span class="emoji">🌱</span>
+            <span>Plant Parent</span>
+          </div>
 
-        <div class="sticker" data-angle="180" data-distance="255">
-          <span class="emoji">✈️</span>
-          <span>Traveller</span>
-        </div>
+          <div class="sticker" data-angle="144" data-distance="270">
+            <span class="emoji">🎨</span>
+            <span>Art Enthusiast</span>
+          </div>
 
-        <div class="sticker" data-angle="216" data-distance="285">
-          <span class="emoji">🎬</span>
-          <span>Movie lover</span>
-        </div>
+          <div class="sticker" data-angle="180" data-distance="255">
+            <span class="emoji">✈️</span>
+            <span>Traveller</span>
+          </div>
 
-        <div class="sticker" data-angle="252" data-distance="265">
-          <span class="emoji">🍜</span>
-          <span>Foodie</span>
-        </div>
+          <div class="sticker" data-angle="216" data-distance="285">
+            <span class="emoji">🎬</span>
+            <span>Movie lover</span>
+          </div>
 
-        <div class="sticker" data-angle="288" data-distance="275">
-          <span class="emoji">🧘</span>
-          <span>Yoga Practitioner</span>
-        </div>
+          <div class="sticker" data-angle="252" data-distance="265">
+            <span class="emoji">🍜</span>
+            <span>Foodie</span>
+          </div>
 
-        <div class="sticker" data-angle="324" data-distance="295">
-          <span class="emoji">🐕</span>
-          <span>Dog Person</span>
+          <div class="sticker" data-angle="288" data-distance="275">
+            <span class="emoji">🧘</span>
+            <span>Yoga Practitioner</span>
+          </div>
+
+          <div class="sticker" data-angle="324" data-distance="295">
+            <span class="emoji">🐕</span>
+            <span>Dog Person</span>
+          </div>
         </div>
       </section>
 
       <!-- Projects Section -->
-
       <section
         id="projects"
         class="py-5 py-lg-6"
@@ -411,10 +485,15 @@
           </header>
 
           <div class="row g-5">
+            <!-- ✅ Fix: anchor tags need href -->
             <article class="col-12 col-md-6 col-lg-4">
-              <a href="project.html" class="project-card gsap-reveal">
+              <a
+                class="project-card gsap-reveal"
+                href="project.html"
+                aria-label="Open Industrial Design project"
+              >
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/pexels-didsss-3530054.jpg"
+                  src="https://ik.imagekit.io/nlizb27w2/packaging.jpg?updatedAt=1767814226556"
                   alt="Industrial design project preview"
                   class="project-image"
                   loading="lazy"
@@ -427,9 +506,13 @@
             </article>
 
             <article class="col-12 col-md-6 col-lg-4">
-              <a href="project 2.html" class="project-card gsap-reveal">
+              <a
+                class="project-card gsap-reveal"
+                href="project.html"
+                aria-label="Open Modern Objects project"
+              >
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/pexels-polina-kovaleva-8100780.jpg"
+                  src="https://ik.imagekit.io/nlizb27w2/editorial.jpg?updatedAt=1767814213367"
                   alt="Modern objects design project"
                   class="project-image"
                   loading="lazy"
@@ -442,9 +525,13 @@
             </article>
 
             <article class="col-12 col-md-6 col-lg-4">
-              <a href="project 3.html" class="project-card gsap-reveal">
+              <a
+                class="project-card gsap-reveal"
+                href="project.html"
+                aria-label="Open Book Binding & Cover project"
+              >
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/pexels-polina-zimmerman-3747395.jpg"
+                  src="https://ik.imagekit.io/nlizb27w2/art.jpg?updatedAt=1767814425241"
                   alt="Book binding and editorial design project"
                   class="project-image"
                   loading="lazy"
@@ -457,9 +544,13 @@
             </article>
 
             <article class="col-12 col-md-6 col-lg-4">
-              <a href="project 4.html" class="project-card gsap-reveal">
+              <a
+                class="project-card gsap-reveal"
+                href="project.html"
+                aria-label="Open Tech Innovation project"
+              >
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/pexels-polina-kovaleva-8100780.jpg"
+                  src="https://ik.imagekit.io/nlizb27w2/packaging.jpg?updatedAt=1767814226556"
                   alt="Technology and interface design project"
                   class="project-image"
                   loading="lazy"
@@ -472,9 +563,13 @@
             </article>
 
             <article class="col-12 col-md-6 col-lg-4">
-              <a href="project 5.html" class="project-card gsap-reveal">
+              <a
+                class="project-card gsap-reveal"
+                href="project.html"
+                aria-label="Open Beauty Packaging project"
+              >
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/pexels-polina-zimmerman-3747395.jpg"
+                  src="https://ik.imagekit.io/nlizb27w2/editorial.jpg?updatedAt=1767814213367"
                   alt="Beauty packaging and branding project"
                   class="project-image"
                   loading="lazy"
@@ -487,9 +582,13 @@
             </article>
 
             <article class="col-12 col-md-6 col-lg-4">
-              <a href="project 6.html" class="project-card gsap-reveal">
+              <a
+                class="project-card gsap-reveal"
+                href="project.html"
+                aria-label="Open Abstract Illustration project"
+              >
                 <img
-                  src="https://ik.imagekit.io/nlizb27w2/pexels-didsss-3530054.jpg"
+                  src="https://ik.imagekit.io/nlizb27w2/art.jpg?updatedAt=1767814425241"
                   alt="Abstract illustration project"
                   class="project-image"
                   loading="lazy"
@@ -542,14 +641,14 @@
                 class="social-links gsap-reveal d-flex justify-content-center gap-4"
                 aria-label="Social media links"
               >
-                <!-- Instagram -->
                 <a
                   href="https://www.instagram.com/yourusername"
                   class="text-muted fs-4"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   aria-label="Instagram profile"
                 >
+                  <!-- icon -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 256 256"
@@ -567,12 +666,11 @@
                   </svg>
                 </a>
 
-                <!-- Twitter -->
                 <a
                   href="https://twitter.com/yourusername"
                   class="text-muted fs-4"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   aria-label="Twitter profile"
                 >
                   <svg
@@ -585,36 +683,16 @@
                     focusable="false"
                   >
                     <path
-                      d="M215.4 56.6c-7.9 3.5-16.4 5.8-25.3 6.9
-                      9.1-5.4 16-14 19.3-24.2
-                      -8.5 5-17.9 8.6-27.9 10.5
-                      -8-8.5-19.4-13.8-32-13.8
-                      -24.2 0-43.8 19.6-43.8 43.8
-                      0 3.4 0.4 6.7 1.1 9.9
-                      -36.4-1.8-68.7-19.3-90.3-45.8
-                      -3.8 6.5-6 14-6 22
-                      0 15.2 7.7 28.6 19.4 36.4
-                      -7.1-0.2-13.8-2.2-19.7-5.4
-                      v0.5c0 21.3 15.1 39.1 35.2 43.1
-                      -3.7 1-7.6 1.5-11.6 1.5
-                      -2.8 0-5.6-0.3-8.3-0.8
-                      5.6 17.5 21.9 30.3 41.2 30.7
-                      -15.1 11.8-34.1 18.8-54.8 18.8
-                      -3.6 0-7.1-0.2-10.6-0.6
-                      19.6 12.6 42.9 20 67.9 20
-                      81.5 0 126.1-67.5 126.1-126.1
-                      0-1.9 0-3.8-0.1-5.6
-                      8.7-6.2 16.2-14 22.2-22.8z"
+                      d="M215.4 56.6c-7.9 3.5-16.4 5.8-25.3 6.9 9.1-5.4 16-14 19.3-24.2 -8.5 5-17.9 8.6-27.9 10.5 -8-8.5-19.4-13.8-32-13.8 -24.2 0-43.8 19.6-43.8 43.8 0 3.4 0.4 6.7 1.1 9.9 -36.4-1.8-68.7-19.3-90.3-45.8 -3.8 6.5-6 14-6 22 0 15.2 7.7 28.6 19.4 36.4 -7.1-0.2-13.8-2.2-19.7-5.4 v0.5c0 21.3 15.1 39.1 35.2 43.1 -3.7 1-7.6 1.5-11.6 1.5 -2.8 0-5.6-0.3-8.3-0.8 5.6 17.5 21.9 30.3 41.2 30.7 -15.1 11.8-34.1 18.8-54.8 18.8 -3.6 0-7.1-0.2-10.6-0.6 19.6 12.6 42.9 20 67.9 20 81.5 0 126.1-67.5 126.1-126.1 0-1.9 0-3.8-0.1-5.6 8.7-6.2 16.2-14 22.2-22.8z"
                     />
                   </svg>
                 </a>
 
-                <!-- LinkedIn -->
                 <a
                   href="https://www.linkedin.com/in/yourusername"
                   class="text-muted fs-4"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   aria-label="LinkedIn profile"
                 >
                   <svg
@@ -627,18 +705,7 @@
                     focusable="false"
                   >
                     <path
-                      d="M12 19H17V36H12z
-                      M14.485 17h-.028C12.965 17 12 15.888 12 14.499
-                      12 13.08 12.995 12 14.514 12
-                      c1.521 0 2.458 1.08 2.486 2.499
-                      C17 15.887 16.035 17 14.485 17z
-                      M36 36h-5v-9.099
-                      c0-2.198-1.225-3.698-3.192-3.698
-                      -1.501 0-2.313 1.012-2.707 1.99
-                      C24.957 25.543 25 26.511 25 27
-                      v9h-5V19h5v2.616
-                      C25.721 20.5 26.85 19 29.738 19
-                      c3.578 0 6.261 2.25 6.261 7.274L36 36z"
+                      d="M12 19H17V36H12z M14.485 17h-.028C12.965 17 12 15.888 12 14.499 12 13.08 12.995 12 14.514 12 c1.521 0 2.458 1.08 2.486 2.499 C17 15.887 16.035 17 14.485 17z M36 36h-5v-9.099 c0-2.198-1.225-3.698-3.192-3.698 -1.501 0-2.313 1.012-2.707 1.99 C24.957 25.543 25 26.511 25 27 v9h-5V19h5v2.616 C25.721 20.5 26.85 19 29.738 19 c3.578 0 6.261 2.25 6.261 7.274L36 36z"
                     />
                   </svg>
                 </a>
@@ -681,6 +748,7 @@
       ↑
     </a>
 
+    <!-- Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       defer
@@ -693,398 +761,5 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
       defer
     ></script>
-
-    <!-- External Js -->
-    <script src="assets/js/main.js" defer></script>
-
-    <script>
-      (() => {
-        "use strict";
-
-        // Prevent double init if script is injected twice
-        if (window.__SITE_ANIMS_INIT__) return;
-        window.__SITE_ANIMS_INIT__ = true;
-
-        const prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        const debounce = (fn, wait = 140) => {
-          let t;
-          return (...args) => {
-            clearTimeout(t);
-            t = setTimeout(() => fn(...args), wait);
-          };
-        };
-
-        // -------------------------
-        // Helpers
-        // -------------------------
-        function refreshScrollTrigger() {
-          if (window.ScrollTrigger && !prefersReducedMotion) {
-            requestAnimationFrame(() => ScrollTrigger.refresh());
-          }
-        }
-
-        // -------------------------
-        // GSAP
-        // -------------------------
-        function initGSAP() {
-          if (!window.gsap) return false;
-
-          // Register ScrollTrigger once
-          if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
-            gsap.registerPlugin(ScrollTrigger);
-          }
-
-          if (prefersReducedMotion) return true;
-
-          // Safety: remove ONLY our triggers (do NOT kill other modules)
-          if (window.ScrollTrigger) {
-            ScrollTrigger.getAll()
-              .filter((t) => t.vars && t.vars.id === "site")
-              .forEach((t) => t.kill());
-          }
-
-          // HERO reveal
-          const splitEls = document.querySelectorAll(".split-text");
-          if (splitEls.length) {
-            gsap.from(splitEls, {
-              y: "100%",
-              opacity: 0,
-              duration: 1.2,
-              ease: "power3.out",
-              stagger: 0.15,
-              clearProps: "transform,opacity",
-            });
-          }
-
-          if (!window.ScrollTrigger) return true;
-
-          // HERO bg parallax
-          const heroBg = document.querySelector(".hero-bg");
-          if (heroBg) {
-            gsap.to(heroBg, {
-              yPercent: 50,
-              ease: "none",
-              scrollTrigger: {
-                id: "site",
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-                invalidateOnRefresh: true,
-              },
-            });
-          }
-
-          // HERO content parallax
-          const heroContainer = document.querySelector(".hero .container");
-          if (heroContainer) {
-            gsap.to(heroContainer, {
-              yPercent: 30,
-              ease: "none",
-              scrollTrigger: {
-                id: "site",
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-                invalidateOnRefresh: true,
-              },
-            });
-          }
-
-          // DOODLES parallax
-          gsap.utils.toArray(".doodle").forEach((doodle, i) => {
-            const speed = 1 + i * 0.3;
-            gsap.to(doodle, {
-              yPercent: speed * 50,
-              ease: "none",
-              scrollTrigger: {
-                id: "site",
-                trigger: "body",
-                start: "top top",
-                end: "bottom top",
-                scrub: true,
-                invalidateOnRefresh: true,
-              },
-            });
-          });
-
-          // ABOUT parallax (image wrapper + text block)
-          const aboutSection = document.querySelector(".about-section");
-          const aboutWrap = document.querySelector(".about-image-wrapper");
-
-          if (aboutSection) {
-            if (aboutWrap) {
-              gsap.to(aboutWrap, {
-                yPercent: -20,
-                ease: "none",
-                force3D: true,
-                scrollTrigger: {
-                  id: "site",
-                  trigger: aboutSection,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 0.6,
-                  invalidateOnRefresh: true,
-                  anticipatePin: 1,
-                },
-              });
-            }
-
-            const aboutParallaxBlock =
-              aboutSection.querySelector(".about-parallax");
-            if (aboutParallaxBlock) {
-              gsap.to(aboutParallaxBlock, {
-                yPercent: -8,
-                ease: "none",
-                force3D: true,
-                scrollTrigger: {
-                  id: "site",
-                  trigger: aboutSection,
-                  start: "top bottom",
-                  end: "bottom top",
-                  scrub: 0.6,
-                  invalidateOnRefresh: true,
-                  anticipatePin: 1,
-                },
-              });
-            }
-          }
-
-          // REVEALS (generic)
-          gsap.utils.toArray(".gsap-reveal").forEach((el) => {
-            gsap.from(el, {
-              y: 50,
-              opacity: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: {
-                id: "site",
-                trigger: el,
-                start: "top 85%",
-                toggleActions: "play none none none",
-                once: true,
-              },
-              clearProps: "transform,opacity",
-            });
-          });
-
-          // -------------------------
-          // PROJECTS: images appear slowly (ONLY images, does not affect stickers)
-          // -------------------------
-          const projectImages = gsap.utils.toArray(
-            "#projects .project-card .project-image"
-          );
-
-          projectImages.forEach((img) => {
-            // Start state (in case CSS not added yet)
-            gsap.set(img, {
-              opacity: 0,
-              y: 18,
-              scale: 1.03,
-              filter: "blur(10px)",
-            });
-
-            gsap.to(img, {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              filter: "blur(0px)",
-              duration: 1.6,
-              ease: "power2.out",
-              clearProps: "transform,filter",
-              scrollTrigger: {
-                id: "site",
-                trigger: img,
-                start: "top 85%",
-                toggleActions: "play none none none",
-                once: true,
-                invalidateOnRefresh: true,
-              },
-            });
-          });
-
-          ScrollTrigger.refresh();
-          return true;
-        }
-
-        // -------------------------
-        // Theme toggle module
-        // -------------------------
-        function initThemeToggle() {
-          const html = document.documentElement;
-          const toggleBtn = document.getElementById("themeToggle");
-          const sunIcon = document.getElementById("icon-sun");
-          const moonIcon = document.getElementById("icon-moon");
-
-          if (!toggleBtn) return;
-
-          function setTheme(theme) {
-            html.setAttribute("data-bs-theme", theme);
-            localStorage.setItem("theme", theme);
-
-            if (sunIcon && moonIcon) {
-              if (theme === "dark") {
-                sunIcon.classList.add("d-none");
-                moonIcon.classList.remove("d-none");
-              } else {
-                moonIcon.classList.add("d-none");
-                sunIcon.classList.remove("d-none");
-              }
-            }
-
-            // Layout can change (fonts/colors) -> refresh ST
-            refreshScrollTrigger();
-          }
-
-          const storedTheme = localStorage.getItem("theme") || "light";
-          setTheme(storedTheme);
-
-          toggleBtn.addEventListener("click", () => {
-            const current = html.getAttribute("data-bs-theme") || "light";
-            setTheme(current === "dark" ? "light" : "dark");
-          });
-        }
-
-        // -------------------------
-        // Stickers module (ONE RAF loop) — unchanged + safe
-        // -------------------------
-        function initStickers() {
-          const section = document.querySelector(".personality-section");
-          const title = document.querySelector(".section-title");
-          const stickers = Array.from(document.querySelectorAll(".sticker"));
-
-          if (!section || !title || stickers.length === 0) return;
-          if (prefersReducedMotion) return;
-
-          const data = stickers.map((el, i) => ({
-            el,
-            seed: Math.random() * 1000 + i * 7.7,
-            amp: 10 + i * 0.6,
-            rotAmp: 4,
-            period: 3.2 + i * 0.12,
-            popLock: false,
-          }));
-
-          let rafId = null;
-
-          function position() {
-            const centerX = section.offsetWidth / 2;
-            const centerY = section.offsetHeight / 2;
-
-            const isMobile = window.innerWidth <= 768;
-            const isSmallMobile = window.innerWidth <= 480;
-
-            const titleRect = title.getBoundingClientRect();
-            const baseMargin = isSmallMobile ? 50 : isMobile ? 60 : 80;
-
-            const minDistance =
-              Math.sqrt(
-                Math.pow(titleRect.width / 2, 2) +
-                  Math.pow(titleRect.height / 2, 2)
-              ) + baseMargin;
-
-            stickers.forEach((sticker) => {
-              const angle = parseFloat(sticker.dataset.angle || "0");
-              let distance = parseFloat(sticker.dataset.distance || "160");
-
-              if (isSmallMobile) distance *= 0.5;
-              else if (isMobile) distance *= 0.65;
-
-              distance = Math.max(distance, minDistance);
-
-              const rad = (angle * Math.PI) / 180;
-              const x =
-                centerX + Math.cos(rad) * distance - sticker.offsetWidth / 2;
-              const y =
-                centerY + Math.sin(rad) * distance - sticker.offsetHeight / 2;
-
-              sticker.style.left = `${x}px`;
-              sticker.style.top = `${y}px`;
-            });
-          }
-
-          function loop() {
-            const t = performance.now() / 1000;
-
-            data.forEach((s) => {
-              if (s.popLock) return;
-
-              const phase = (t + s.seed) * ((2 * Math.PI) / s.period);
-              const y = Math.sin(phase) * s.amp;
-              const x = Math.cos(phase) * (s.amp * 0.5);
-              const r = Math.sin(phase) * s.rotAmp;
-
-              s.el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
-            });
-
-            rafId = requestAnimationFrame(loop);
-          }
-
-          // Click pop (temporarily locks float)
-          data.forEach((s) => {
-            s.el.addEventListener("click", () => {
-              s.popLock = true;
-
-              s.el.style.transition =
-                "transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55)";
-              s.el.style.transform = "scale(1.2) rotate(360deg)";
-
-              setTimeout(() => {
-                s.el.style.transition = "transform 0.3s ease";
-                s.popLock = false;
-              }, 500);
-            });
-          });
-
-          // Start
-          position();
-          loop();
-
-          // Resize (debounced) - reposition only
-          window.addEventListener(
-            "resize",
-            debounce(() => {
-              position();
-              refreshScrollTrigger();
-            }, 140)
-          );
-
-          // Pause in background tab
-          document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-              if (rafId) cancelAnimationFrame(rafId);
-              rafId = null;
-            } else if (!rafId) {
-              rafId = requestAnimationFrame(loop);
-            }
-          });
-        }
-
-        // -------------------------
-        // Boot once DOM is ready
-        // -------------------------
-        document.addEventListener(
-          "DOMContentLoaded",
-          () => {
-            initThemeToggle();
-            initStickers();
-
-            // Retry GSAP init (CDN might load slowly)
-            let tries = 0;
-            const tick = () => {
-              const ok = initGSAP();
-              if (ok) return;
-              if (tries++ < 30) setTimeout(tick, 100);
-            };
-            tick();
-          },
-          { once: true }
-        );
-      })();
-    </script>
   </body>
 </html>
