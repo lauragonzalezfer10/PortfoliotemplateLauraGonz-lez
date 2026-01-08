@@ -59,18 +59,6 @@
   color: var(--color-muted);
 }
 
-/* Navbar toggler button */
-.navbar-toggler {
-  border-color: var(--color-muted);
-  color: var(--color-muted);
-}
-
-/* Toggler icon */
-.navbar-toggler-icon {
-  background-image: var(--bs-navbar-toggler-icon-bg);
-  color: var(--color-muted);
-}
-
 .navbar-light .navbar-toggler-icon {
   background-image: var(--bs-navbar-toggler-icon-bg);
 }

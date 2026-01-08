@@ -238,7 +238,6 @@
   font-family: var(--font-mono);
   font-size: 0.9rem;
   white-space: nowrap;
-
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   z-index: 3;
 }
