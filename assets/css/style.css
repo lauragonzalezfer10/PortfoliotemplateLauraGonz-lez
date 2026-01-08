@@ -72,44 +72,6 @@
   font-family: var(--font-mono);
 }
 
-/* Scroll indicator */
-.scroll-indicator {
-  z-index: 10;
-}
-
-.mouse {
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 13px;
-  position: relative;
-}
-
-.mouse::after {
-  content: "";
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 2px;
-  animation: scrollMouse 1.5s ease-in-out infinite;
-}
-
-@keyframes scrollMouse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    opacity: 0.3;
-    transform: translateX(-50%) translateY(12px);
-  }
-}
-
 /* --------------------------------------------------------------------------
    5. About Section
    -------------------------------------------------------------------------- */
@@ -127,7 +89,6 @@
 
 .about-image-wrapper,
 .about-parallax {
-  will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
   width: 420px;
@@ -222,7 +183,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   margin: 0 auto;
   display: grid;
   place-items: center;
-
   text-align: center;
   overflow: hidden;
 }
@@ -422,10 +382,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
    Footer
    -------------------------------------------------------------------------- */
 
-.footer-text {
-  color: var(--color-muted);
-}
-
 .footer {
   background: var(--bs-secondary-color);
   color: var(--color-muted);
@@ -437,7 +393,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   text-decoration: none;
   line-height: 1.2;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  font-family: var(--font-mono);
 }
 
 .footer-contact:hover {
