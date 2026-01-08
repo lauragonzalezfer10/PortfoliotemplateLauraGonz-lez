@@ -210,7 +210,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
 }
 
 .section-title {
-  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   font-family: var(--font-serif);
   color: var(--bs-primary);
@@ -410,8 +409,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   text-decoration: none; /* No underline */
   line-height: 1.2;
   font-family: var(--font-mono);
-
-  /* Smooth transitions for hover */
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 

@@ -17,14 +17,8 @@ h3,
   font-family: var(--font-serif);
 }
 
-/* Make all "muted" text consistent with your theme */
 .lead,
 .text-muted,
 p.text-muted {
   color: var(--text-muted) !important;
-}
-
-/* Optional: make normal paragraph text slightly softer than headings */
-p {
-  color: color-mix(in srgb, var(--bs-body-color) 88%, transparent);
 }

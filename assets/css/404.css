@@ -127,7 +127,6 @@ h2 {
   );
 }
 
-/* SVG fills the screen and captures drawing input */
 #draw-svg {
   width: 100%;
   height: 100%;
