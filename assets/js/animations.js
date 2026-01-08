@@ -1,44 +1,3 @@
-// ==========================================================================
-// Doodles
-// ==========================================================================
-
-// Floating doodles loop
-gsap.utils.toArray(".beyond-doodles .floaty").forEach((el, i) => {
-  gsap.to(el, {
-    y: -10,
-    duration: 1.6 + i * 0.2,
-    ease: "sine.inOut",
-    yoyo: true,
-    repeat: -1,
-  });
-});
-
-gsap.utils.toArray(".beyond-tilt").forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
-    const rect = card.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width - 0.5;
-    const py = (e.clientY - rect.top) / rect.height - 0.5;
-
-    gsap.to(card, {
-      rotateY: px * 6,
-      rotateX: -py * 6,
-      transformPerspective: 800,
-      transformOrigin: "center",
-      duration: 0.25,
-      ease: "power2.out",
-    });
-  });
-
-  card.addEventListener("mouseleave", () => {
-    gsap.to(card, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.35,
-      ease: "power2.out",
-    });
-  });
-});
-
 (() => {
   "use strict";
 
@@ -60,190 +19,12 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
   // -------------------------
   // Helpers
   // -------------------------
-  function refreshScrollTrigger() {
-    if (window.ScrollTrigger && !prefersReducedMotion) {
-      requestAnimationFrame(() => ScrollTrigger.refresh());
-    }
-  }
-
-  // -------------------------
-  // GSAP
-  // -------------------------
-  function initGSAP() {
-    if (!window.gsap) return false;
-
-    if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
-      gsap.registerPlugin(ScrollTrigger);
-    }
-
-    if (prefersReducedMotion) return true;
-
-    // Safety: remove ONLY our triggers (do NOT kill other modules)
-    if (window.ScrollTrigger) {
-      ScrollTrigger.getAll()
-        .filter((t) => t.vars && t.vars.id === "site")
-        .forEach((t) => t.kill());
-    }
-
-    // HERO reveal
-    const splitEls = document.querySelectorAll(".split-text");
-    if (splitEls.length) {
-      gsap.from(splitEls, {
-        y: "100%",
-        opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
-        stagger: 0.15,
-        clearProps: "transform,opacity",
-      });
-    }
-
-    if (!window.ScrollTrigger) return true;
-
-    // HERO bg parallax
-    const heroBg = document.querySelector(".hero-bg");
-    if (heroBg) {
-      gsap.to(heroBg, {
-        yPercent: 50,
-        ease: "none",
-        scrollTrigger: {
-          id: "site",
-          trigger: ".hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    }
-
-    // HERO content parallax
-    const heroContainer = document.querySelector(".hero .container");
-    if (heroContainer) {
-      gsap.to(heroContainer, {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          id: "site",
-          trigger: ".hero",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    }
-
-    // DOODLES parallax
-    gsap.utils.toArray(".doodle").forEach((doodle, i) => {
-      const speed = 1 + i * 0.3;
-      gsap.to(doodle, {
-        yPercent: speed * 50,
-        ease: "none",
-        scrollTrigger: {
-          id: "site",
-          trigger: "body",
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-          invalidateOnRefresh: true,
-        },
-      });
+  function safeRefresh() {
+    if (!window.ScrollTrigger || prefersReducedMotion) return;
+    // Double rAF helps prevent “jump” on refresh after layout changes
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => ScrollTrigger.refresh(true));
     });
-
-    // ABOUT parallax (image wrapper + text block)
-    const aboutSection = document.querySelector(".about-section");
-    const aboutWrap = document.querySelector(".about-image-wrapper");
-
-    if (aboutSection) {
-      if (aboutWrap) {
-        gsap.to(aboutWrap, {
-          yPercent: -20,
-          ease: "none",
-          force3D: true,
-          scrollTrigger: {
-            id: "site",
-            trigger: aboutSection,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-          },
-        });
-      }
-
-      const aboutParallaxBlock = aboutSection.querySelector(".about-parallax");
-      if (aboutParallaxBlock) {
-        gsap.to(aboutParallaxBlock, {
-          yPercent: -8,
-          ease: "none",
-          force3D: true,
-          scrollTrigger: {
-            id: "site",
-            trigger: aboutSection,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-          },
-        });
-      }
-    }
-
-    // REVEALS (generic)
-    gsap.utils.toArray(".gsap-reveal").forEach((el) => {
-      gsap.from(el, {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-          id: "site",
-          trigger: el,
-          start: "top 85%",
-          toggleActions: "play none none none",
-          once: true,
-        },
-        clearProps: "transform,opacity",
-      });
-    });
-
-    // PROJECTS: images appear slowly (ONLY images)
-    const projectImages = gsap.utils.toArray(
-      "#projects .project-card .project-image"
-    );
-
-    projectImages.forEach((img) => {
-      gsap.set(img, {
-        opacity: 0,
-        y: 18,
-        scale: 1.03,
-        filter: "blur(10px)",
-      });
-
-      gsap.to(img, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: "blur(0px)",
-        duration: 1.6,
-        ease: "power2.out",
-        clearProps: "transform,filter",
-        scrollTrigger: {
-          id: "site",
-          trigger: img,
-          start: "top 85%",
-          toggleActions: "play none none none",
-          once: true,
-          invalidateOnRefresh: true,
-        },
-      });
-    });
-
-    ScrollTrigger.refresh();
-    return true;
   }
 
   // -------------------------
@@ -254,7 +35,6 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
     const toggleBtn = document.getElementById("themeToggle");
     const sunIcon = document.getElementById("icon-sun");
     const moonIcon = document.getElementById("icon-moon");
-
     if (!toggleBtn) return;
 
     function setTheme(theme) {
@@ -270,8 +50,7 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
           sunIcon.classList.remove("d-none");
         }
       }
-
-      refreshScrollTrigger();
+      safeRefresh();
     }
 
     const storedTheme = localStorage.getItem("theme") || "light";
@@ -284,14 +63,13 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
   }
 
   // -------------------------
-  // Stickers (overlay-safe)
+  // Stickers
   // -------------------------
   function initStickers() {
     const section = document.querySelector(".personality-section");
     const title = section?.querySelector(".section-title");
     const layer = section?.querySelector(".stickers-layer");
     const stickers = Array.from(section?.querySelectorAll(".sticker") || []);
-
     if (!section || !title || !layer || stickers.length === 0) return;
     if (prefersReducedMotion) return;
 
@@ -309,13 +87,11 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
     function position() {
       const centerX = section.offsetWidth / 2;
       const centerY = section.offsetHeight / 2;
-
       const isMobile = window.innerWidth <= 768;
       const isSmallMobile = window.innerWidth <= 480;
 
       const titleW = title.offsetWidth;
       const titleH = title.offsetHeight;
-
       const baseMargin = isSmallMobile ? 50 : isMobile ? 60 : 80;
 
       const minDistance =
@@ -357,11 +133,9 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
       rafId = requestAnimationFrame(loop);
     }
 
-    // Click pop (temporarily locks float)
     data.forEach((s) => {
       s.el.addEventListener("click", () => {
         s.popLock = true;
-
         s.el.style.transition =
           "transform 0.5s cubic-bezier(0.68,-0.55,0.265,1.55)";
         s.el.style.transform = "scale(1.2) rotate(360deg)";
@@ -380,7 +154,7 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
       "resize",
       debounce(() => {
         position();
-        refreshScrollTrigger();
+        safeRefresh();
       }, 140)
     );
 
@@ -395,7 +169,215 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
   }
 
   // -------------------------
-  // Boot
+  // GSAP + ScrollTrigger
+  // -------------------------
+  let ctx = null;
+
+  function initGSAP() {
+    if (!window.gsap) return false;
+
+    if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Helps prevent “resize jitter” on mobile address bar
+      ScrollTrigger.config({ ignoreMobileResize: true });
+
+      // Important for refresh stability
+      ScrollTrigger.defaults({ invalidateOnRefresh: true });
+    }
+
+    if (prefersReducedMotion) return true;
+
+    // ✅ Full cleanup (prevents duplicate tweens/triggers after reload or re-init)
+    if (ctx) ctx.revert();
+    ctx = gsap.context(() => {
+      // Kill ONLY our triggers
+      if (window.ScrollTrigger) {
+        ScrollTrigger.getAll()
+          .filter((t) => t.vars && t.vars.id === "site")
+          .forEach((t) => t.kill(true));
+      }
+
+      // Kill tweens we might be stacking
+      gsap.killTweensOf([
+        ".hero-bg",
+        ".hero .container",
+        ".doodle",
+        ".about-image-wrapper",
+        ".about-parallax",
+        ".gsap-reveal",
+        "#projects .project-card .project-image",
+      ]);
+
+      // -------------------------
+      // HERO reveal
+      // -------------------------
+      const splitEls = document.querySelectorAll(".split-text");
+      if (splitEls.length) {
+        gsap.from(splitEls, {
+          y: "100%",
+          opacity: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          stagger: 0.15,
+          clearProps: "transform,opacity",
+        });
+      }
+
+      if (!window.ScrollTrigger) return;
+
+      // -------------------------
+      // HERO bg parallax
+      // -------------------------
+      const heroBg = document.querySelector(".hero-bg");
+      if (heroBg) {
+        gsap.to(heroBg, {
+          yPercent: 50,
+          ease: "none",
+          immediateRender: false,
+          scrollTrigger: {
+            id: "site",
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // HERO content parallax
+      const heroContainer = document.querySelector(".hero .container");
+      if (heroContainer) {
+        gsap.to(heroContainer, {
+          yPercent: 30,
+          ease: "none",
+          immediateRender: false,
+          scrollTrigger: {
+            id: "site",
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.8,
+          },
+        });
+      }
+
+      // DOODLES parallax
+      gsap.utils.toArray(".doodle").forEach((doodle, i) => {
+        const speed = 1 + i * 0.3;
+        gsap.to(doodle, {
+          yPercent: speed * 50,
+          ease: "none",
+          immediateRender: false,
+          scrollTrigger: {
+            id: "site",
+            trigger: "body",
+            start: "top top",
+            end: "bottom top",
+            scrub: 0.8,
+          },
+        });
+      });
+
+      // ABOUT parallax
+      const aboutSection = document.querySelector(".about-section");
+      const aboutWrap = document.querySelector(".about-image-wrapper");
+
+      if (aboutSection) {
+        if (aboutWrap) {
+          gsap.to(aboutWrap, {
+            yPercent: -20,
+            ease: "none",
+            force3D: true,
+            immediateRender: false,
+            scrollTrigger: {
+              id: "site",
+              trigger: aboutSection,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.9,
+              anticipatePin: 1,
+            },
+          });
+        }
+
+        const aboutParallaxBlock =
+          aboutSection.querySelector(".about-parallax");
+        if (aboutParallaxBlock) {
+          gsap.to(aboutParallaxBlock, {
+            yPercent: -8,
+            ease: "none",
+            force3D: true,
+            immediateRender: false,
+            scrollTrigger: {
+              id: "site",
+              trigger: aboutSection,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.9,
+              anticipatePin: 1,
+            },
+          });
+        }
+      }
+
+      // Reusable scroll-triggered reveal animation
+      gsap.utils.toArray(".gsap-reveal").forEach((el) => {
+        gsap.from(el, {
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: {
+            id: "site",
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+            once: true,
+          },
+          clearProps: "transform,opacity",
+        });
+      });
+
+      // PROJECTS: images appear slowly
+      const projectImages = gsap.utils.toArray(
+        "#projects .project-card .project-image"
+      );
+
+      gsap.set(projectImages, {
+        opacity: 0,
+        y: 18,
+        scale: 1.02,
+        force3D: true,
+        willChange: "transform,opacity",
+      });
+
+      ScrollTrigger.batch(projectImages, {
+        id: "site",
+        start: "top 85%",
+        once: true,
+        batchMax: 8,
+        interval: 0.12,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.2,
+            ease: "power3.out",
+            stagger: 0.12,
+            clearProps: "willChange",
+          });
+        },
+      });
+    });
+
+    safeRefresh();
+    return true;
+  }
+
+  // -------------------------
+  // Boot (refresh after assets load)
   // -------------------------
   document.addEventListener(
     "DOMContentLoaded",
@@ -403,7 +385,7 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
       initThemeToggle();
       initStickers();
 
-      // Retry GSAP init (CDN might load after our script)
+      // Retry GSAP init
       let tries = 0;
       const tick = () => {
         const ok = initGSAP();
@@ -411,6 +393,24 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
         if (tries++ < 30) setTimeout(tick, 100);
       };
       tick();
+
+      // After all images/fonts load, refresh again
+      window.addEventListener(
+        "load",
+        () => {
+          if (window.ScrollTrigger && !prefersReducedMotion) {
+            ScrollTrigger.clearScrollMemory?.();
+            safeRefresh();
+          }
+        },
+        { once: true }
+      );
+
+      // Refresh on resize
+      window.addEventListener(
+        "resize",
+        debounce(() => safeRefresh(), 140)
+      );
     },
     { once: true }
   );

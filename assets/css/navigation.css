@@ -4,10 +4,12 @@
   background: transparent;
   transition: background 0.3s;
   font-family: var(--font-mono);
-
+  color: var(--bs-navbar-toggler-icon-bg);
+}
 
 .navbar.scrolled {
   background: transparent;
+  color: var(--color-muted);
 }
 
 /* Nav items */
@@ -66,8 +68,29 @@
 /* Toggler icon */
 .navbar-toggler-icon {
   background-image: var(--bs-navbar-toggler-icon-bg);
+  color: var(--color-muted);
 }
 
 .navbar-light .navbar-toggler-icon {
   background-image: var(--bs-navbar-toggler-icon-bg);
+}
+
+#navbar {
+  color: #fff;
+}
+
+/* Brand + links white */
+#navbar .navbar-brand,
+#navbar .nav-link {
+  color: #fff !important;
+}
+
+/* Hover/focus states */
+#navbar .nav-link:hover,
+#navbar .nav-link:focus-visible {
+  opacity: 0.85;
+}
+
+#navbar .navbar-toggler-icon {
+  filter: invert(1) grayscale(1) brightness(2);
 }

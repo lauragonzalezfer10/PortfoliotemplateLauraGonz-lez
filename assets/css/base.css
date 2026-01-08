@@ -1,13 +1,30 @@
+/* --------------------------------------------------------------------------
+     2) BASE TYPO + GLOBAL COLORS
+     -------------------------------------------------------------------------- */
+
+html,
 body {
+  background: var(--bs-body-bg);
+  color: var(--bs-body-color);
   font-family: var(--font-sans);
 }
 
-.bg-dark {
-  background-color: var(--color-bg-alt) !important;
+h1,
+h2,
+h3,
+.section-title,
+.project-title {
+  font-family: var(--font-serif);
 }
 
-/* Section spacing */
-.py-lg-6 {
-  padding-top: 6rem !important;
-  padding-bottom: 6rem !important;
+/* Make all "muted" text consistent with your theme */
+.lead,
+.text-muted,
+p.text-muted {
+  color: var(--text-muted) !important;
+}
+
+/* Optional: make normal paragraph text slightly softer than headings */
+p {
+  color: color-mix(in srgb, var(--bs-body-color) 88%, transparent);
 }

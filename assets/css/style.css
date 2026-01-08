@@ -41,6 +41,7 @@
 .shape-1 {
   width: 400px;
   height: 400px;
+  background: #133aeb;
   top: 10%;
   left: 10%;
 }
@@ -48,6 +49,7 @@
 .shape-2 {
   width: 300px;
   height: 300px;
+  background: #91b6dd;
   top: 60%;
   right: 10%;
 }
@@ -55,6 +57,7 @@
 .shape-3 {
   width: 250px;
   height: 250px;
+  background: #43bcfd;
   bottom: 10%;
   left: 30%;
 }
@@ -95,6 +98,17 @@
   animation: scrollMouse 1.5s ease-in-out infinite;
 }
 
+@keyframes scrollMouse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translateX(-50%) translateY(12px);
+  }
+}
 
 /* --------------------------------------------------------------------------
    5. About Section
@@ -103,36 +117,48 @@
 .about-section {
   position: relative;
   overflow: hidden;
-  padding: clamp(6rem, 12vw, 12rem) 0;
+  padding-block: clamp(6rem, 12vw, 12rem); /* top + bottom */
+  padding-left: clamp(2rem, 8vw, 10rem); /* left only */
 }
+
 .about-title {
   font-family: var(--font-serif);
 }
 
 .about-image-wrapper,
 .about-parallax {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   width: 420px;
   height: 560px;
   max-width: 100%;
   position: relative;
+  transform: none !important;
+  will-change: auto;
 }
 
+/* Both images in the same box */
 .about-main-img {
   position: absolute;
   inset: 0;
+
   width: 100%;
   height: 100%;
   object-fit: cover;
+
   border-radius: 20px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
 
   transition: opacity 0.4s ease;
 }
 
+/* Second image hidden */
 .about-main-img.img-2 {
   opacity: 0;
 }
 
+/* Hover */
 .about-image-wrapper:hover .img-1 {
   opacity: 0;
 }
@@ -141,6 +167,7 @@
   opacity: 1;
 }
 
+/* Text column */
 .about-text {
   max-width: 600px;
 }
@@ -191,16 +218,33 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   width: 100%;
   max-width: 1200px;
   min-height: 700px;
+
   margin: 0 auto;
   display: grid;
   place-items: center;
+
   text-align: center;
   overflow: hidden;
 }
 
+.personality-header {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  gap: 0.8rem;
+  place-items: center;
+  max-width: 42rem;
+}
+
 .section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
   font-family: var(--font-serif);
   color: var(--bs-primary);
+  text-align: center;
+  z-index: 10;
+  position: relative;
+  max-width: 500px;
   line-height: 1.2;
 }
 
@@ -216,7 +260,22 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   color: #333;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.3rem, 1vw, 0.5rem);
+  white-space: nowrap;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    top 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
   pointer-events: auto;
+}
+
+.stickers-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .sticker:hover {
@@ -243,6 +302,47 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   transition: transform 0.6s ease;
 }
 
+#projects .project-card {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+/* Hover zoom (very subtle) */
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.project-overlay {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* Show overlay on hover */
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+/* Text styling */
+.project-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.project-subtitle {
+  font-family: var(--font-sans-serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Card base */
 .project-card {
   position: relative;
   overflow: hidden;
@@ -250,11 +350,13 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   cursor: pointer;
 }
 
+/* Image */
 .project-image {
   width: 100%;
   height: auto;
   display: block;
   transition: transform 0.6s ease;
+  border-radius: 2rem;
 }
 
 .project-card:hover .project-image {
@@ -325,13 +427,17 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
 }
 
 .footer {
-  background: linear-gradient(135deg, #0000ff 0%, #020227 100%);
+  background: var(--bs-secondary-color);
   color: var(--color-muted);
 }
 
 .footer-contact {
+  font-size: clamp(0.8 rem, 4vw, 1rem);
+  color: var(--color-muted);
   text-decoration: none;
+  line-height: 1.2;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  font-family: var(--font-mono);
 }
 
 .footer-contact:hover {

@@ -1,35 +1,82 @@
-/* Tokens */
+/* ==========================================================================
+   DESIGN TOKENS SYSTEM
+   ========================================================================== */
+
 /* --------------------------------------------------------------------------
-   1. CSS Custom Properties
+   1. CSS Custom Properties (Global)
    -------------------------------------------------------------------------- */
+
 :root {
+  /* --------------------------------------------------
+       Bootstrap theme overrides
+       -------------------------------------------------- */
+
+  /* Global page background color */
   --bs-body-bg: #e8e7e7;
+
+  /* Default text color */
   --bs-body-color: #0407a6;
+
+  /* Primary brand color (buttons, links, accents) */
   --bs-primary: #0407a6;
+
+  /* RGB version of primary color (used by Bootstrap utilities) */
   --bs-primary-rgb: 99, 102, 241;
+
+  /* Secondary color defined as a gradient
+       (used for hero, footer, or large sections) */
   --bs-secondary-color: linear-gradient(135deg, #0000ff, #0a0a18);
 
-  /* Custom tokens */
+  /* Color for the nav */
+
+  --bs-navbar-toggler-icon-bg: #e8e7e7;
+  /* --------------------------------------------------
+       Custom project tokens (non-Bootstrap)
+       -------------------------------------------------- */
+
+  /* Alternative background for sections or cards */
   --color-bg-alt: #efefef;
+
+  /* Muted color for secondary text or UI elements */
   --color-muted: #f6f6f6;
+
+  /* Custom easing curve for animations and transitions */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
+  /* --------------------------------------------------
+       Typography tokens
+       -------------------------------------------------- */
+
+  /* Serif font for headings and expressive text */
   --font-serif: "Instrument Serif", serif;
+
+  /* Sans-serif font for body text */
   --font-sans: "Hanken Grotesk", sans-serif;
+
+  /* Monospace font for UI labels and technical elements */
   --font-mono: "IBM Plex Mono", monospace;
 }
 
-/* Only when dark mode is active */
+/* --------------------------------------------------------------------------
+     2. Dark Mode Overrides (Bootstrap-controlled)
+     -------------------------------------------------------------------------- */
+
+/* These variables apply ONLY when data-bs-theme="dark" is active */
 [data-bs-theme="dark"] {
-  /* Dark surface */
+  /* Dark background surface */
   --bs-body-bg: #000024;
 
-  /* Main text */
+  /* Secondary color defined as a gradient
+       (used for hero, footer, or large sections) */
+  --bs-secondary-color: linear-gradient(135deg, #11115c, #0a0a18);
+
+  /* Light text for contrast on dark background */
   --bs-body-color: #efefef;
 
-  /* Primary / accent color */
+  /* Primary color becomes light in dark mode
+       to maintain contrast and readability */
   --bs-primary: #efefef;
 
-  /* Secondary / muted text  */
+  /* Muted text becomes semi-transparent white */
   --color-muted: rgba(239, 239, 239, 0.75);
 }
