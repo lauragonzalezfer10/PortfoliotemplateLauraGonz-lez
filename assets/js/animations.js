@@ -13,7 +13,6 @@ gsap.utils.toArray(".beyond-doodles .floaty").forEach((el, i) => {
   });
 });
 
-// Subtle “tilt” on hover (JS-free alternative exists, but this feels premium)
 gsap.utils.toArray(".beyond-tilt").forEach((card) => {
   card.addEventListener("mousemove", (e) => {
     const rect = card.getBoundingClientRect();
@@ -43,7 +42,6 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
 (() => {
   "use strict";
 
-  // Prevent double init (in case the script is accidentally loaded twice)
   if (window.__SITE_ANIMS_INIT__) return;
   window.__SITE_ANIMS_INIT__ = true;
 
@@ -74,7 +72,6 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
   function initGSAP() {
     if (!window.gsap) return false;
 
-    // Register ScrollTrigger once
     if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
     }
@@ -310,15 +307,12 @@ gsap.utils.toArray(".beyond-tilt").forEach((card) => {
     let rafId = null;
 
     function position() {
-      // Use the section as reference so stickers always align with the title,
-      // but do not affect the layout because they're on the overlay layer.
       const centerX = section.offsetWidth / 2;
       const centerY = section.offsetHeight / 2;
 
       const isMobile = window.innerWidth <= 768;
       const isSmallMobile = window.innerWidth <= 480;
 
-      // Use offset sizes (more stable than getBoundingClientRect for this purpose)
       const titleW = title.offsetWidth;
       const titleH = title.offsetHeight;
 

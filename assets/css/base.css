@@ -1,7 +1,5 @@
 body {
   font-family: var(--font-sans);
-  background-color: var(--bs-body-bg);
-  color: var(--bs-body-color);
 }
 
 .bg-dark {
