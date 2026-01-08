@@ -4,81 +4,55 @@
   background: transparent;
   transition: background 0.3s;
   font-family: var(--font-mono);
-  color: var(--bs-navbar-toggler-icon-bg);
-}
-
-.navbar.scrolled {
-  background: transparent;
   color: var(--color-muted);
-}
 
-/* Nav items */
-.nav-item {
-  color: var(--color-muted);
-}
+  /* 🔒 Hamburger icon always white */
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 
-/* Nav links */
-.nav-link {
-  background: transparent;
-  position: relative;
-  padding: 0.5rem 1rem !important;
-  font-family: var(--font-mono);
-  font-size: var(--bs-nav-link-font-size);
-  color: var(--color-muted);
-}
+  /* Brand */
+  .navbar-brand {
+    color: var(--color-muted);
+    font-family: var(--font-serif);
+  }
 
-.nav-link:hover {
-  color: var(--color-muted);
-}
+  /* Nav links */
+  .nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--bs-nav-link-font-size);
+    color: var(--color-muted);
 
-/* Underline animation */
-.nav-link::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-muted);
-  transition: width 0.3s ease, left 0.3s ease;
-}
+    &:hover,
+    &:focus-visible {
+      opacity: 0.85;
+    }
 
-.nav-link:hover::after,
-.nav-link.active::after {
-  width: 100%;
-  left: 0;
-}
+    /* Underline animation */
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--color-muted);
+      transition: width 0.3s ease, left 0.3s ease;
+    }
 
-/* Brand */
-.navbar-brand {
-  color: var(--color-muted);
-  font-family: var(--font-serif);
-}
+    &:hover::after,
+    &.active::after {
+      width: 100%;
+      left: 0;
+    }
+  }
 
-.navbar-brand:hover {
-  color: var(--color-muted);
-}
+  /* Navbar toggler */
+  .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.4);
 
-.navbar-light .navbar-toggler-icon {
-  background-image: var(--bs-navbar-toggler-icon-bg);
-}
-
-#navbar {
-  color: #fff;
-}
-
-/* Brand + links white */
-#navbar .navbar-brand,
-#navbar .nav-link {
-  color: #fff !important;
-}
-
-/* Hover/focus states */
-#navbar .nav-link:hover,
-#navbar .nav-link:focus-visible {
-  opacity: 0.85;
-}
-
-#navbar .navbar-toggler-icon {
-  filter: invert(1) grayscale(1) brightness(2);
+    &:focus {
+      box-shadow: none;
+    }
+  }
 }
