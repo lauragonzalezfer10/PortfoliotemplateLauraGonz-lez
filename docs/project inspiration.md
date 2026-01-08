@@ -3,13 +3,13 @@
 ## Trends
 
 - Minimalism
-- Scrollytelling
+- Parallax
 - Glassmorphism
 
 ## Visual References
 
 - ![Moodboard Minimalism](<../assets/images/inspo minimalism.png>)
-- ![Moodboard Scrollytelling](<../assets/images/inspo scrollytelling.png>)
+- ![Moodboard Parallax](<../assets/images/inspo scrollytelling.png>)
 - ![Moodboard Glassmorphism ](<..assets/images/inspo glassmorphism.png>)
 
 ## Theme Draft

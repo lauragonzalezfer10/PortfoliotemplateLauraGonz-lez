@@ -2,49 +2,51 @@
 # This file will be used to generate your entry in the course showroom
 
 # Basic information
-handle: @lauragonzalezfer10
+handle: "@lauragonzalezfer10"
 name: Laura González Fernández
 email: laura.gonzalez@alumnos.udit.es
 
 # URLs (will be auto-generated if you follow naming conventions)
-github_url: https://github.com/your-username
-project_url: https://your-username.github.io/your-project-repo
-repository_url: https://github.com/your-username/your-project-repo
+github_url: https://github.com/lauragonzalezfer10
+project_url: https://lauragonzalezfer10.github.io/PortfoliotemplateLauraGonz-lez/
+repository_url: https://github.com/lauragonzalezfer10/PortfoliotemplateLauraGonz-lez/
 
 # Project details
 title:
-  es: Título de tu Proyecto en Español
-  en: Your Project Title in English
+  es: Plantilla de Portfolio Creativo
+  en: Creative Portfolio Template
 
 abstract:
   es: |
-    Una descripción concisa de tu proyecto web en español. 
-    Explica qué construyes, para quién y por qué es importante.
+    Este proyecto consiste en desarrollar una plantilla de portfolio responsive y accesible dirigida a creativos como diseñadores o artistas. El objetivo es crear una base personalizable para que los usuarios puedan adecuarla a sus gustos y estilo para mostrar sus trabajos de una forma sencilla y estética.
   en: |
-    A concise description of your web project in English.
-    Explain what you're building, for whom, and why it matters.
+    This project consists of developing a responsive and accessible portfolio template aimed at creatives such as designers or artists. The goal is to create a customisable foundation that users can adapt to their own tastes and style in order to showcase their work in a simple and visually appealing way.
 
 # Technical tags (choose relevant ones)
 tags:
   - html5
   - css3
+  - javascript
+  - gsap
   - responsive-design
   - accessibility
-  # Add more as relevant: javascript, sass, performance, etc.
+  - animations
 
 # Learning objectives you're focusing on
 learning_focus:
   - semantic-html
   - mobile-first-design
   - web-accessibility
-  # Add more as you progress
+  - responsive-layout
+  - design-tokens
+  - animations-interactivity
 
 # Week tracking (update as you go)
 milestones:
-  week_1_setup: false
-  week_2_brief: false
-  week_4_metadata: false
-  week_5_showcase: false
+  week_1_setup: true
+  week_2_brief: true
+  week_4_metadata: true
+  week_5_showcase: true
 
 # Optional: link to your project brief
 brief_url: project-brief.md

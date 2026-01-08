@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <title>404 – Page Not Found</title>
+    <meta
+      name="description"
+      content="404 page with an interactive drawing background and a link back to the homepage."
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Bootstrap -->
@@ -11,6 +15,7 @@
       rel="stylesheet"
     />
 
+    <!-- 404 overrides -->
     <link rel="stylesheet" href="./assets/css/404.css" />
   </head>
 
@@ -26,18 +31,16 @@
       <div class="container">
         <h1 class="display-1 fw-bold mb-2">404</h1>
 
-        <!-- Title -->
-        <h2 class="mb-3 display-1 fw-bold">Lost, but not broken</h2>
+        <h2 class="display-4 fw-bold mb-3">Lost, but not broken</h2>
 
-        <!-- Body text -->
-        <p class="lead mb-3 body-text display-7">
+        <p class="lead mb-3 body-text">
           Looks like this page wandered off the map. <br />That’s okay —
           mistakes make good stories. <br />Grab a moment, draw something, or
           head back home when you’re ready.
         </p>
 
         <a
-          href="/"
+          href="./index.html"
           class="btn btn-outline-light btn-lg rounded-pill px-4 btn-outline-fill"
         >
           Back to Home
@@ -52,8 +55,10 @@
       </div>
     </main>
 
-    <!-- GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-    <script src="./assets/js/404.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"
+    ></script>
+    <script defer src="./assets/js/404.js"></script>
   </body>
 </html>

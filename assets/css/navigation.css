@@ -72,3 +72,7 @@
 .navbar-toggler-icon {
   background-image: var(--bs-navbar-toggler-icon-bg);
 }
+
+.navbar-light .navbar-toggler-icon {
+  background-image: var(--bs-navbar-toggler-icon-bg);
+}

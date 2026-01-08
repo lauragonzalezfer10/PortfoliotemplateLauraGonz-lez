@@ -73,6 +73,8 @@ For the images, I used my own for the about section to give an idea of what kind
 
 - Primary language: English
 
+Since I wanted this portfolio to be used globally I chose English as my main language.
+
 ---
 
 ## Design Direction
@@ -94,7 +96,9 @@ This mix strengthens visual hierarchy and identity of the page.
 
 ### Inspiration/References
 
-<!-- List 2-3 websites or designs that inspire your approach -->
+- https://www.louisansa.com (I liked the use of parallax effect and how he incorporates fun elements t break the minimalistic design)
+- https://www.olhalazarieva.com (I liked the use of different fonts with different sizes and weights which create contrast. I also really enjoy text animations and the menu design.)
+- https://es.pinterest.com/pin/13721973861262511/ (I liked the cream background to differentiate it from white and the use of scroll animations as well as the combination of a minimal aesthetic and more complex elements)
 
 ---
 
@@ -123,12 +127,14 @@ My portfolio will have succeded if creatives are able to clone it and customise 
 
 ### What excites you most about this project?
 
-I really enjoyed the process of developing this project.
+What really excites me is the posibility to apply my design and coding knowledge in a web that others can use as their own. I learned a lot in the process, understanding shortcuts and good practices for web development. I liked how I viewed this project as more than a class project, as something that I can potentially use in the future.
 
 ### What challenges do you anticipate?
 
+I had to take into account many aspects such as accessibility and responsiveness (although Bootstrap was quite helpful). Furthermore, I struggled with animations and had to make sure they worked correctly and did not override each other. I wanted to ensure the website was both visually appealing and technically functional.
+
 ### How does this project connect to your learning goals?
 
----
+This project acts as a practical synthesis of the knowledge acquired across the course, applying semantic HTML, CSS, JavaScript and other programs like Bootstrap or GSAP. Beyond technique, I had to think about UI and what could improve it. Finally, this project enhances the importance of working in a systematic way, using tokens, semantic language and justified decisions.
 
 _This brief will evolve as your project develops. Update it as needed and reference it in your weekly commits._

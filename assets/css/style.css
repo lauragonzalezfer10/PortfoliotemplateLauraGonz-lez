@@ -273,7 +273,7 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
 .stickers-layer {
   position: absolute;
   inset: 0;
-  pointer-events: none; /* prevents overlay from blocking text selection/click */
+  pointer-events: none;
   z-index: 2;
 }
 
@@ -402,6 +402,19 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
 /* Show on hover */
 .project-card:hover .project-overlay {
   opacity: 1;
+}
+
+.project-hitarea {
+  display: block;
+  width: 100%;
+  text-align: inherit;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
 }
 
 /* --------------------------------------------------------------------------

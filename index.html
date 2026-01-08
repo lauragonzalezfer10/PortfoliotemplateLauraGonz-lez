@@ -2,6 +2,7 @@
 <html lang="en" data-bs-theme="light">
   <head>
     <meta charset="UTF-8" />
+    <meta name="color-scheme" content="light dark" />
     <title>Laura González — Portfolio Template 2025</title>
     <meta
       name="description"
@@ -62,87 +63,96 @@
       >Skip to content</a
     >
 
-    <!-- Navigation -->
-    <nav id="navbar" class="navbar navbar-expand-lg fixed-top navbar-light">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#top" aria-label="Go to top"
-          >LG</a
-        >
+    <header>
+      <!-- Navigation -->
+      <nav
+        id="navbar"
+        class="navbar navbar-expand-lg fixed-top"
+        aria-label="Primary"
+      >
+        <div class="container">
+          <a class="navbar-brand fw-bold" href="#top" aria-label="Go to top"
+            >LG</a
+          >
 
-        <!-- Navbar -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <!-- Navbar -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-            <li class="nav-item">
-              <a class="nav-link" href="#hero">[Home]</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about">[About]</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">[Work]</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">[Contact]</a>
-            </li>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+              <li class="nav-item">
+                <a class="nav-link" href="#hero">[Home]</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">[About]</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#projects">[Work]</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contact">[Contact]</a>
+              </li>
 
-            <!-- Theme toggle -->
-            <li class="nav-item ms-lg-3">
-              <button
-                id="themeToggle"
-                class="btn btn-theme-toggle d-flex align-items-center justify-content-center"
-                aria-label="Toggle dark and light theme"
-                title="Toggle theme"
-                type="button"
-              >
-                <!-- Sun icon (light mode) -->
-                <svg
-                  id="icon-sun"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="white"
-                  class="bi bi-sun"
-                  viewBox="0 0 16 16"
-                  aria-hidden="true"
-                  focusable="false"
+              <!-- Theme toggle -->
+              <li class="nav-item ms-lg-3">
+                <button
+                  id="themeToggle"
+                  class="btn btn-theme-toggle d-flex align-items-center justify-content-center"
+                  aria-label="Toggle dark and light theme"
+                  aria-pressed="false"
+                  title="Toggle theme"
+                  type="button"
                 >
-                  <path
-                    d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
-                  />
-                </svg>
+                  <!-- Sun icon (light mode) -->
+                  <svg
+                    id="icon-sun"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="white"
+                    class="bi bi-sun"
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path
+                      d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0m9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708"
+                    />
+                  </svg>
 
-                <!-- Moon icon (dark mode) -->
-                <svg
-                  id="icon-moon"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  fill="white"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                  focusable="false"
-                  class="d-none"
-                >
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
-                </svg>
-              </button>
-            </li>
-          </ul>
+                  <!-- Moon icon (dark mode) -->
+                  <svg
+                    id="icon-moon"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="white"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    focusable="false"
+                    class="d-none"
+                  >
+                    <path
+                      d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"
+                    />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </header>
 
     <main id="main-content">
       <div class="doodles" aria-hidden="true">
@@ -208,14 +218,18 @@
           <p class="lead hero-subtitle mb-4 split-text">
             Multidisciplinary designer &amp; creative storyteller
           </p>
-          <div class="hero-cta d-flex gap-3 justify-content-center flex-wrap">
+
+          <nav
+            class="hero-cta d-flex gap-3 justify-content-center flex-wrap"
+            aria-label="Hero actions"
+          >
             <a href="#projects" class="btn btn-outline-light btn-lg"
               >View Projects</a
             >
             <a href="#contact" class="btn btn-outline-light btn-lg"
               >Get in Touch</a
             >
-          </div>
+          </nav>
         </div>
       </section>
 
@@ -240,12 +254,14 @@
                   alt="Portrait of Laura González"
                   class="about-main-img img-1 gsap-reveal"
                   loading="lazy"
+                  decoding="async"
                 />
                 <img
                   src="https://ik.imagekit.io/nlizb27w2/portraitdrawing.png?updatedAt=1767814933696"
                   alt="Alternate portrait of Laura González"
                   class="about-main-img img-2 gsap-reveal"
                   loading="lazy"
+                  decoding="async"
                 />
               </figure>
             </div>
@@ -263,10 +279,11 @@
               </header>
 
               <!-- Skills -->
+
               <h3 id="skills-title" class="gsap-reveal">Design skills</h3>
               <section class="mt-4" aria-labelledby="skills-title">
-                <ul class="skills-grid list-unstyled mb-0" role="list">
-                  <li class="skill-card gsap-reveal" role="listitem">
+                <ul class="skills-grid list-unstyled mb-0">
+                  <li class="skill-card gsap-reveal">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -287,7 +304,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card gsap-reveal" role="listitem">
+                  <li class="skill-card gsap-reveal">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -307,7 +324,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card gsap-reveal" role="listitem">
+                  <li class="skill-card gsap-reveal">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -327,7 +344,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card gsap-reveal" role="listitem">
+                  <li class="skill-card gsap-reveal">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -348,7 +365,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card gsap-reveal" role="listitem">
+                  <li class="skill-card gsap-reveal">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -368,7 +385,7 @@
                     </article>
                   </li>
 
-                  <li class="skill-card gsap-reveal" role="listitem">
+                  <li class="skill-card gsap-reveal">
                     <article class="skill-meta w-100">
                       <header
                         class="d-flex justify-content-between align-items-center mb-2"
@@ -475,124 +492,164 @@
             </p>
           </header>
 
-          <div class="row g-5">
-            <!-- ✅ Fix: anchor tags need href -->
-            <article class="col-12 col-md-6 col-lg-4">
-              <a
-                class="project-card gsap-reveal"
-                href="project.html"
-                aria-label="Open Industrial Design project"
-              >
-                <img
-                  src="https://ik.imagekit.io/nlizb27w2/packaging.jpg?updatedAt=1767814226556"
-                  alt="Industrial design project preview"
-                  class="project-image"
-                  loading="lazy"
-                />
-                <div class="project-overlay glass">
-                  <h3 class="project-title">Industrial Design</h3>
-                  <p class="project-subtitle">Product · Manufacturing</p>
-                </div>
-              </a>
-            </article>
+          <ul class="row g-5 list-unstyled m-0 p-0" aria-label="Project list">
+            <!-- 1 -->
+            <li class="col-12 col-md-6 col-lg-4">
+              <article class="project-card gsap-reveal">
+                <button
+                  type="button"
+                  class="project-hitarea"
+                  data-project="industrial-design"
+                >
+                  <figure class="m-0">
+                    <img
+                      src="https://ik.imagekit.io/nlizb27w2/packaging.jpg?updatedAt=1767814226556"
+                      alt="Industrial design project preview"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
 
-            <article class="col-12 col-md-6 col-lg-4">
-              <a
-                class="project-card gsap-reveal"
-                href="project.html"
-                aria-label="Open Modern Objects project"
-              >
-                <img
-                  src="https://ik.imagekit.io/nlizb27w2/editorial.jpg?updatedAt=1767814213367"
-                  alt="Modern objects design project"
-                  class="project-image"
-                  loading="lazy"
-                />
-                <div class="project-overlay glass">
-                  <h3 class="project-title">Modern Objects</h3>
-                  <p class="project-subtitle">Concept · Visual Design</p>
-                </div>
-              </a>
-            </article>
+                    <figcaption class="project-overlay glass">
+                      <h3 class="project-title">Industrial Design</h3>
+                      <p class="project-subtitle">Product · Manufacturing</p>
+                    </figcaption>
+                  </figure>
+                </button>
+              </article>
+            </li>
 
-            <article class="col-12 col-md-6 col-lg-4">
-              <a
-                class="project-card gsap-reveal"
-                href="project.html"
-                aria-label="Open Book Binding & Cover project"
-              >
-                <img
-                  src="https://ik.imagekit.io/nlizb27w2/art.jpg?updatedAt=1767814425241"
-                  alt="Book binding and editorial design project"
-                  class="project-image"
-                  loading="lazy"
-                />
-                <div class="project-overlay glass">
-                  <h3 class="project-title">Book Binding &amp; Cover</h3>
-                  <p class="project-subtitle">Editorial · Manual · Binding</p>
-                </div>
-              </a>
-            </article>
+            <!-- 2 -->
+            <li class="col-12 col-md-6 col-lg-4">
+              <article class="project-card gsap-reveal">
+                <button
+                  type="button"
+                  class="project-hitarea"
+                  data-project="modern-objects"
+                >
+                  <figure class="m-0">
+                    <img
+                      src="https://ik.imagekit.io/nlizb27w2/editorial.jpg?updatedAt=1767814213367"
+                      alt="Modern objects design project"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption class="project-overlay glass">
+                      <h3 class="project-title">Modern Objects</h3>
+                      <p class="project-subtitle">Concept · Visual Design</p>
+                    </figcaption>
+                  </figure>
+                </button>
+              </article>
+            </li>
 
-            <article class="col-12 col-md-6 col-lg-4">
-              <a
-                class="project-card gsap-reveal"
-                href="project.html"
-                aria-label="Open Tech Innovation project"
-              >
-                <img
-                  src="https://ik.imagekit.io/nlizb27w2/packaging.jpg?updatedAt=1767814226556"
-                  alt="Technology and interface design project"
-                  class="project-image"
-                  loading="lazy"
-                />
-                <div class="project-overlay glass">
-                  <h3 class="project-title">Tech Innovation</h3>
-                  <p class="project-subtitle">UI · Motion · Web</p>
-                </div>
-              </a>
-            </article>
+            <!-- 3 -->
+            <li class="col-12 col-md-6 col-lg-4">
+              <article class="project-card gsap-reveal">
+                <button
+                  type="button"
+                  class="project-hitarea"
+                  data-project="book-binding-cover"
+                >
+                  <figure class="m-0">
+                    <img
+                      src="https://ik.imagekit.io/nlizb27w2/art.jpg?updatedAt=1767814425241"
+                      alt="Book binding and editorial design project"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption class="project-overlay glass">
+                      <h3 class="project-title">Book Binding &amp; Cover</h3>
+                      <p class="project-subtitle">
+                        Editorial · Manual · Binding
+                      </p>
+                    </figcaption>
+                  </figure>
+                </button>
+              </article>
+            </li>
 
-            <article class="col-12 col-md-6 col-lg-4">
-              <a
-                class="project-card gsap-reveal"
-                href="project.html"
-                aria-label="Open Beauty Packaging project"
-              >
-                <img
-                  src="https://ik.imagekit.io/nlizb27w2/editorial.jpg?updatedAt=1767814213367"
-                  alt="Beauty packaging and branding project"
-                  class="project-image"
-                  loading="lazy"
-                />
-                <div class="project-overlay glass">
-                  <h3 class="project-title">Beauty Packaging</h3>
-                  <p class="project-subtitle">Packaging · Product · Branding</p>
-                </div>
-              </a>
-            </article>
+            <!-- 4 -->
+            <li class="col-12 col-md-6 col-lg-4">
+              <article class="project-card gsap-reveal">
+                <button
+                  type="button"
+                  class="project-hitarea"
+                  data-project="tech-innovation"
+                >
+                  <figure class="m-0">
+                    <img
+                      src="https://ik.imagekit.io/nlizb27w2/packaging.jpg?updatedAt=1767814226556"
+                      alt="Technology and interface design project"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption class="project-overlay glass">
+                      <h3 class="project-title">Tech Innovation</h3>
+                      <p class="project-subtitle">UI · Motion · Web</p>
+                    </figcaption>
+                  </figure>
+                </button>
+              </article>
+            </li>
 
-            <article class="col-12 col-md-6 col-lg-4">
-              <a
-                class="project-card gsap-reveal"
-                href="project.html"
-                aria-label="Open Abstract Illustration project"
-              >
-                <img
-                  src="https://ik.imagekit.io/nlizb27w2/art.jpg?updatedAt=1767814425241"
-                  alt="Abstract illustration project"
-                  class="project-image"
-                  loading="lazy"
-                />
-                <div class="project-overlay glass">
-                  <h3 class="project-title">Abstract Illustration</h3>
-                  <p class="project-subtitle">
-                    Art · Illustration · Watercolours
-                  </p>
-                </div>
-              </a>
-            </article>
-          </div>
+            <!-- 5 -->
+            <li class="col-12 col-md-6 col-lg-4">
+              <article class="project-card gsap-reveal">
+                <button
+                  type="button"
+                  class="project-hitarea"
+                  data-project="beauty-packaging"
+                >
+                  <figure class="m-0">
+                    <img
+                      src="https://ik.imagekit.io/nlizb27w2/editorial.jpg?updatedAt=1767814213367"
+                      alt="Beauty packaging and branding project"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption class="project-overlay glass">
+                      <h3 class="project-title">Beauty Packaging</h3>
+                      <p class="project-subtitle">
+                        Packaging · Product · Branding
+                      </p>
+                    </figcaption>
+                  </figure>
+                </button>
+              </article>
+            </li>
+
+            <!-- 6 -->
+            <li class="col-12 col-md-6 col-lg-4">
+              <article class="project-card gsap-reveal">
+                <button
+                  type="button"
+                  class="project-hitarea"
+                  data-project="abstract-illustration"
+                >
+                  <figure class="m-0">
+                    <img
+                      src="https://ik.imagekit.io/nlizb27w2/art.jpg?updatedAt=1767814425241"
+                      alt="Abstract illustration project"
+                      class="project-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption class="project-overlay glass">
+                      <h3 class="project-title">Abstract Illustration</h3>
+                      <p class="project-subtitle">
+                        Art · Illustration · Watercolours
+                      </p>
+                    </figcaption>
+                  </figure>
+                </button>
+              </article>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -707,6 +764,7 @@
     </main>
 
     <!-- Footer -->
+
     <footer class="footer py-5">
       <div class="container">
         <div class="row align-items-center">
@@ -728,6 +786,7 @@
     </footer>
 
     <!-- Back to top -->
+
     <a
       href="#top"
       class="btn btn-primary rounded-circle position-fixed bottom-0 end-0 m-4 shadow d-flex align-items-center justify-content-center"
@@ -739,6 +798,11 @@
     </a>
 
     <!-- Libraries -->
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
       defer
@@ -747,5 +811,9 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
       defer
     ></script>
+
+    <!-- Personal JS -->
+
+    <script src="./assets/js/animations.js" defer></script>
   </body>
 </html>
