@@ -36,12 +36,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/index.css" />
 
-    <!-- Main JS (your existing file; keep if you need it) -->
-    <script src="./assets/js/main.js" defer></script>
-
-    <!-- Site animations + stickers + theme toggle (was inline before) -->
-    <script src="./assets/js/animations.js" defer></script>
-
     <!-- Favicons -->
     <link
       rel="icon"
@@ -64,7 +58,6 @@
   </head>
 
   <body id="top">
-    <!-- ✅ A11y: skip link (does not change layout if your CSS uses .visually-hidden-focusable) -->
     <a class="visually-hidden-focusable" href="#main-content"
       >Skip to content</a
     >
@@ -152,7 +145,6 @@
     </nav>
 
     <main id="main-content">
-      <!-- Decorative doodles -->
       <div class="doodles" aria-hidden="true">
         <div class="doodle doodle-1">
           <svg viewBox="0 0 60 60" aria-hidden="true" focusable="false">
@@ -414,7 +406,6 @@
           <p class="lead text-muted gsap-reveal">(apart from design)</p>
         </header>
 
-        <!-- ✅ New: stickers live in an overlay layer so they NEVER push/shift text -->
         <div class="stickers-layer" aria-hidden="true">
           <div class="sticker" data-angle="0" data-distance="250">
             <span class="emoji">☕</span>
@@ -648,7 +639,6 @@
                   rel="noopener noreferrer"
                   aria-label="Instagram profile"
                 >
-                  <!-- icon -->
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 256 256"
@@ -749,10 +739,6 @@
     </a>
 
     <!-- Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      defer
-    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
       defer
