@@ -14,4 +14,4 @@
 
 ## Theme Draft
 
-[Your project’s core concept—what it’s about]
+My project is all about combining playful approach with animations and interactivity with bold colour but a mininmalist approach to create visual balance, hierarchy and ensures contrast.

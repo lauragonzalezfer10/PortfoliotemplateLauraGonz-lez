@@ -59,6 +59,12 @@
   border-color: var(--bs-primary);
 }
 
+/* keep accessibility but invisible unless keyboard */
+.hero-scroll-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+
 /* ---------- 2) Theme toggle button  ---------- */
 
 .btn-theme-toggle {
@@ -93,6 +99,33 @@
 .btn:focus-visible {
   outline: none;
   box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+}
+
+/* Scroll button */
+.hero-scroll-btn {
+  display: inline-block;
+  margin-top: 4rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* underline appears only on hover */
+.hero-scroll-btn:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* keyboard accessibility */
+.hero-scroll-btn:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
 }
 
 /* --------------------------------------------------------------------------

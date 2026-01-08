@@ -414,4 +414,11 @@
     },
     { once: true }
   );
+
+  // Scroll to discover
+  document.querySelector(".hero-scroll-btn")?.addEventListener("click", () => {
+    document.querySelector("#about")?.scrollIntoView({
+      behavior: "smooth",
+    });
+  });
 })();
