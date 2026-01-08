@@ -136,4 +136,3 @@ I had to take into account many aspects such as accessibility and responsiveness
 ### How does this project connect to your learning goals?
 
 This project acts as a practical synthesis of the knowledge acquired across the course, applying semantic HTML, CSS, JavaScript and other programs like Bootstrap or GSAP. Beyond technique, I had to think about UI and what could improve it. Finally, this project enhances the importance of working in a systematic way, using tokens, semantic language and justified decisions.
-

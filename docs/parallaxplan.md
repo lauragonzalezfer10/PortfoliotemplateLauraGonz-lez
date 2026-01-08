@@ -166,3 +166,5 @@ Conclusion
 The parallax scrolling implementation successfully enhances the portfolio website with modern, performant, and accessible animations. The multi-layer approach creates visual depth while maintaining smooth 60fps performance across devices. The solution respects user accessibility preferences and follows web development best practices.
 Overall Project Status: ✅ Complete and Production-Ready
 Recommendation: Monitor user engagement metrics over the next 30 days to quantify the impact on visitor interaction and session duration.
+
+In the end I had some problems with the parallax so I had to fix them and try to make everything work smoothly.

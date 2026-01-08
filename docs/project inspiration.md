@@ -4,7 +4,8 @@
 
 - Minimalism
 - Parallax
-- Glassmorphism
+- Dark mode
+- Scroll Snapping
 
 ## Visual References
 

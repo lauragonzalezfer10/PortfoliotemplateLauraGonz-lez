@@ -1,4 +1,4 @@
-I really struggle to develop the project section of my template. I played around with the template I already had but finally asked AI to refine it for me using the template as a base.
+I really struggled to develop the project section of my template. I played around with the template I already had but finally asked AI to refine it for me using the template as a base.
 
 ## Plan for the Projects section (overlay + glassmorphism)
 

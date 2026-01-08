@@ -43,6 +43,8 @@ This template is designed to be easily customisable.
 
 ## Screenshots or demo GIF
 
+https://ik.imagekit.io/nlizb27w2/Screenshothome.png?updatedAt=1767889374548
+
 ## Credits and acknowledgments
 
 Project created by Laura González Fernández as a final project for the subject Web and Stylesheets during the first semester of the fourth year of Bachelor in Multimedia and Graphic Design in UDIT.
