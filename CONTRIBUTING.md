@@ -9,10 +9,4 @@ Thank you for your interest in contributing!
 3. Make your changes
 4. Submit a pull request
 
-## Reporting issues
 
-Please include:
-
-- A clear description
-- Steps to reproduce
-- Screenshots if relevant

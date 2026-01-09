@@ -67,7 +67,6 @@
 
 /* Main title */
 .hero-title {
-  letter-spacing: -0.03em;
   font-family: var(--font-serif);
 }
 
@@ -100,7 +99,6 @@
   width: 26.25rem;
   height: 35rem;
   max-width: 100%;
-  position: relative; /* To position images absolutely inside */
   transform: none !important;
   will-change: auto;
 }
@@ -113,8 +111,6 @@
   height: 100%;
   object-fit: cover;
   border-radius: 1.25rem;
-
-  /* Pronounced shadow for depth */
   box-shadow: 0 1.5625rem 3.75rem rgba(0, 0, 0, 0.35);
   transition: opacity 0.4s ease; /* Smooth opacity transition */
 }
@@ -171,20 +167,6 @@
   background-color: color-mix(in srgb, var(--bs-primary) 85%, #000 15%);
 }
 
-/* --- Dark mode styles --- */
-
-html[data-bs-theme="dark"] .skill-progress {
-  background-color: rgba(var(--bs-primary-rgb), 0.2);
-}
-
-html[data-bs-theme="dark"] .skill-progress .progress-bar {
-  background-color: var(--bs-primary);
-}
-
-html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
-  background-color: color-mix(in srgb, var(--bs-primary) 80%, #fff 20%);
-}
-
 /* --- Personality section with stickers --- */
 
 .personality-section {
@@ -219,52 +201,6 @@ html[data-bs-theme="dark"] .skill-card:hover .progress-bar {
   line-height: 1.2;
 }
 
-/* Interactive stickers */
-.sticker {
-  position: absolute;
-  background: white;
-  padding: clamp(0.6rem, 2vw, 1rem) clamp(0.9rem, 3vw, 1.5rem);
-  border-radius: clamp(0.75rem, 3vw, 1.25rem);
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
-  font-size: clamp(0.75rem, 2vw, 1rem);
-  font-weight: 600;
-  font-family: var(--font-mono);
-  color: #333;
-  cursor: pointer;
-  user-select: none; /* Prevents accidental text selection */
-
-  /* Flexbox to align emoji and text */
-  display: flex;
-  align-items: center;
-  gap: clamp(0.3rem, 1vw, 0.5rem);
-  white-space: nowrap; /* Prevents line breaks in text */
-
-  /* cubic-bezier creates custom animation curve  */
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    left 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    top 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
-
-  pointer-events: auto; /* Allows interaction with sticker */
-}
-
-/* Stickers container layer */
-.stickers-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none; /* Layer doesn't intercept events */
-  z-index: 2;
-}
-
-/* HOVER EFFECT on stickers */
-.sticker:hover {
-  transform: scale(1.1) rotate(5deg); /* Slightly enlarges and rotates */
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.25);
-  z-index: 100; /* Ensures it's above other stickers */
-}
-
-.sticker .emoji {
-  font-size: clamp(1rem, 3vw, 1.5rem);
-}
 
 /* --------------------------------------------------------------------------
    6. PROJECTS SECTION

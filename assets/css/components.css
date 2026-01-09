@@ -31,34 +31,6 @@
   box-shadow: 0 12px 30px rgba(var(--bs-primary-rgb), 0.22);
 }
 
-/* Light */
-[data-bs-theme="light"] .btn-primary {
-  background-color: var(--bs-body-bg);
-  color: var(--bs-primary);
-  border-color: var(--bs-primary-rgb);
-}
-
-[data-bs-theme="light"] .btn-primary:hover {
-  background-color: var(--bs-primary);
-  color: var(--bs-body-bg);
-  border-color: var(--bs-body-bg);
-  box-shadow: 0 16px 40px rgba(var(--bs-primary-rgb), 0.32);
-}
-
-/* Dark */
-[data-bs-theme="dark"] .btn-primary {
-  background-color: transparent;
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 14px 34px rgba(239, 239, 239, 0.12);
-}
-
-[data-bs-theme="dark"] .btn-primary:hover {
-  background-color: var(--bs-primary);
-  color: var(--bs-body-bg);
-  border-color: var(--bs-primary);
-}
-
 /* keep accessibility but invisible unless keyboard */
 .hero-scroll-btn:focus-visible {
   outline: 2px solid currentColor;
