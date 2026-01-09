@@ -11,6 +11,8 @@
   }
 }
 
+/* --- Hero page --- */
+
 @media (max-width: 575.98px) {
   .hero-title {
     font-size: 2.5rem;
@@ -30,6 +32,8 @@
     display: none;
   }
 }
+
+/* --- About page --- */
 
 /* Mobile: stack naturally (Bootstrap already does this) */
 @media (max-width: 991px) {

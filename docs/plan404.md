@@ -1087,3 +1087,138 @@ Once stroke ends:
 - Mobile scroll conflict → fixed by `touch-action: none`
 
 ---
+
+I had some problems with the drawing space and the streaks so I modified the code one last time wiht the prompt: make it work in the whole screen.
+
+It gave me a new code but it was just one big troke and i wanted different strokes at a time so I told Chat to not make it one single stroke and this is what it gave
+
+## ✅ Replace your “Drawing state” + stroke functions with multi-pointer state
+
+### 1) Replace section **(3) CONSTANTS + STATE**
+
+```js
+// Multi-pointer drawing state (supports multi-touch)
+const strokes = new Map(); // pointerId -> { pathEl, points }
+```
+
+### 2) Update your stroke lifecycle functions
+
+```js
+function startStroke(pointerId, x, y) {
+  const points = [{ x, y }];
+
+  const pathEl = document.createElementNS(NS, "path");
+  pathEl.setAttribute("fill", "none");
+  pathEl.setAttribute("stroke-linecap", "round");
+  pathEl.setAttribute("stroke-linejoin", "round");
+  pathEl.setAttribute("stroke-width", SETTINGS.strokeWidth);
+
+  const hue = Math.floor(rand(180, 320));
+  pathEl.setAttribute("stroke", `hsl(${hue} 85% 45%)`);
+  pathEl.setAttribute("opacity", "0.95");
+
+  svg.appendChild(pathEl);
+
+  gsap.fromTo(
+    pathEl,
+    { opacity: 0, scale: 0.98, transformOrigin: "50% 50%" },
+    { opacity: 0.95, scale: 1, duration: 0.25, ease: "power2.out" }
+  );
+
+  strokes.set(pointerId, { pathEl, points });
+}
+
+function moveStroke(pointerId, x, y) {
+  const stroke = strokes.get(pointerId);
+  if (!stroke) return;
+
+  const { pathEl, points } = stroke;
+  const last = points[points.length - 1];
+  const next = { x, y };
+
+  if (dist(last, next) < SETTINGS.minDist) return;
+
+  points.push(next);
+  pathEl.setAttribute("d", buildSmoothPath(points));
+}
+
+function endStroke(pointerId) {
+  const stroke = strokes.get(pointerId);
+  if (!stroke) return;
+
+  const { pathEl, points } = stroke;
+  strokes.delete(pointerId);
+
+  // Tap = remove tiny stroke
+  if (points.length < 3) {
+    pathEl.remove();
+    return;
+  }
+
+  gsap
+    .timeline({ delay: SETTINGS.fadeAfter })
+    .to(pathEl, {
+      duration: SETTINGS.driftDuration,
+      x: rand(-60, 60),
+      y: rand(-80, -140),
+      opacity: 0,
+      ease: "power1.out",
+    })
+    .add(() => pathEl.remove());
+}
+```
+
+---
+
+## ✅ Update pointer events to pass `pointerId`
+
+(Keep your `toSvgPoint(e)` helper + `touch-action: none` CSS from before.)
+
+```js
+layer.addEventListener("pointerdown", (e) => {
+  if (e.button !== 0 && e.pointerType === "mouse") return;
+
+  layer.setPointerCapture?.(e.pointerId);
+
+  const p = toSvgPoint(e);
+  startStroke(e.pointerId, p.x, p.y);
+});
+
+layer.addEventListener("pointermove", (e) => {
+  const p = toSvgPoint(e);
+  moveStroke(e.pointerId, p.x, p.y);
+});
+
+["pointerup", "pointercancel", "pointerleave"].forEach((evt) =>
+  layer.addEventListener(evt, (e) => endStroke(e.pointerId))
+);
+```
+
+---
+
+## ✅ Also update “Press C to clear” so it ends active strokes too
+
+```js
+window.addEventListener("keydown", (e) => {
+  if (e.key.toLowerCase() === "c") {
+    strokes.clear();
+    const paths = svg.querySelectorAll("path");
+    gsap.to(paths, {
+      opacity: 0,
+      duration: 0.25,
+      stagger: 0.01,
+      onComplete: () => paths.forEach((p) => p.remove()),
+    });
+  }
+});
+```
+
+---
+
+### Result
+
+- ✅ Not a “unique streak” anymore
+- ✅ Multi-touch drawing works (two fingers / pen + finger, etc.)
+- ✅ Each pointer keeps its own independent path
+
+If by “not unique streak” you meant **“not one continuous line, but dotted / segmented”** instead, tell me and I’ll switch it to a particle/brush style.

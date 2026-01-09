@@ -49,7 +49,7 @@
 
   /* Navbar toggler */
   .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.4);
+    border-color: var(--color-muted);
 
     &:focus {
       box-shadow: none;

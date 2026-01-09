@@ -10,10 +10,12 @@
     transition-duration: 0.01ms !important;
   }
 
+  /* --- Shapes --- */
   .shape {
     display: none;
   }
 
+  /* --- Project cards --- */
   .project-card:hover {
     transform: none;
   }
