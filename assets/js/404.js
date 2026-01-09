@@ -1,10 +1,5 @@
 /* =========================================================
    404 DRAWING BACKGROUND (SVG + GSAP) — FULL SCRIPT (MULTI-TOUCH)
-   - Lets the user draw on a full-screen SVG layer (mouse + touch + pen)
-   - Supports MULTIPLE simultaneous strokes (multi-touch) via pointerId
-   - Each stroke becomes an SVG <path> with smoothing
-   - Paths drift upward and fade out automatically
-   - Press "C" to clear all drawings
    ========================================================= */
 
 (() => {
@@ -37,7 +32,6 @@
          --------------------------- */
   const NS = "http://www.w3.org/2000/svg";
 
-  // ✅ Multi-pointer drawing state (supports multi-touch)
   const strokes = new Map(); // pointerId -> { pathEl, points }
 
   /* ------------------------------------------
@@ -58,7 +52,6 @@
 
   /* ------------------------------------------
          5) PATH CONSTRUCTION (smoothing)
-         Quadratic smoothing using midpoints
          ------------------------------------------ */
   function buildSmoothPath(pts) {
     if (pts.length < 2) return "";
