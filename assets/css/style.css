@@ -23,7 +23,7 @@
 /* Container that stays above background */
 .hero .container {
   position: relative;
-  z-index: 2; /* Upper layer above background  */
+  z-index: 2;
 }
 
 /* --- Floating decorative shapes --- */
@@ -31,7 +31,7 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  z-index: 0; /* Below content but above hero-bg */
+  z-index: 0;
 }
 
 .shape {
@@ -99,11 +99,10 @@
   position: relative;
   margin-inline: auto;
   width: min(26.25rem, 100%);
-  aspect-ratio: 26.25 / 35; /* ✅ keeps your original proportions */
+  aspect-ratio: 26.25 / 35;
   height: auto;
   max-width: 100%;
-  transform: none !important;
-  will-change: auto;
+  will-change: transform;
 }
 
 /* Style for both overlapping images */
@@ -276,6 +275,8 @@
   height: auto;
   display: block;
   border-radius: 2rem;
+  transition: transform 0.5s ease;
+  transform: translateZ(0);
 }
 
 /* HOVER EFFECT: Subtle image zoom */
@@ -324,7 +325,7 @@
 .project-title {
   font-family: var(--font-serif);
   font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-  color: #fff;
+  color: var(--bs-body-bg);
   margin-bottom: 0.3rem;
 }
 
@@ -334,7 +335,7 @@
   font-size: 0.95rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--bs-body-bg);
 }
 
 /* Clickable area (hitarea) */

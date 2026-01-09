@@ -40,6 +40,8 @@
       html.setAttribute("data-bs-theme", theme);
       localStorage.setItem("theme", theme);
 
+      toggleBtn.setAttribute("aria-pressed", theme === "dark");
+
       if (sunIcon && moonIcon) {
         if (theme === "dark") {
           sunIcon.classList.add("d-none");
@@ -62,7 +64,7 @@
   }
 
   // -------------------------
-  // Stickers - ALWAYS WORK (Fixed for Safari)
+  // Stickers
   // -------------------------
   function initStickers() {
     const section = document.querySelector(".personality-section");
@@ -150,6 +152,8 @@
         setTimeout(() => {
           s.el.style.transition = "none";
           s.popLock = false;
+
+          requestAnimationFrame(() => {});
         }, 500);
       });
     });
@@ -180,6 +184,9 @@
   // GSAP + ScrollTrigger
   // -------------------------
   let ctx = null;
+
+  // ✅ Prevent multiple IntersectionObservers if GSAP re-inits
+  let projectsIO = null;
 
   function initGSAP() {
     if (!window.gsap) return false;
@@ -348,7 +355,7 @@
       });
 
       // -------------------------
-      // PROJECTS: Quick fade-in for first 2 images only (Safari compatible)
+      // PROJECTS
       // -------------------------
       const projectImages = Array.from(
         document.querySelectorAll("#projects .project-card .project-image")
@@ -374,18 +381,21 @@
         projectImages.slice(0, 6).forEach(boost);
 
         if ("IntersectionObserver" in window) {
-          const io = new IntersectionObserver(
+          if (projectsIO) projectsIO.disconnect();
+
+          projectsIO = new IntersectionObserver(
             (entries) => {
               entries.forEach((e) => {
                 if (e.isIntersecting) {
                   boost(e.target);
-                  io.unobserve(e.target);
+                  projectsIO.unobserve(e.target);
                 }
               });
             },
             { root: null, rootMargin: "600px 0px", threshold: 0.01 }
           );
-          projectImages.forEach((img) => io.observe(img));
+
+          projectImages.forEach((img) => projectsIO.observe(img));
         }
       }
     });
@@ -449,7 +459,7 @@
       const aboutSection = document.querySelector("#about");
       if (aboutSection) {
         aboutSection.scrollIntoView({
-          behavior: "smooth",
+          behavior: prefersReducedMotion ? "auto" : "smooth",
           block: "start",
         });
       }

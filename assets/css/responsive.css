@@ -59,13 +59,13 @@
 
 @media (max-width: 768px) {
   .personality-section {
-    min-height: 700px;
+    min-height: 43.75rem;
   }
 }
 
 @media (max-width: 480px) {
   .personality-section {
-    min-height: 600px;
+    min-height: 37.5rem;
   }
 
   .section-title {
