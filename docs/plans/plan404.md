@@ -1222,3 +1222,5 @@ window.addEventListener("keydown", (e) => {
 - ✅ Each pointer keeps its own independent path
 
 If by “not unique streak” you meant **“not one continuous line, but dotted / segmented”** instead, tell me and I’ll switch it to a particle/brush style.
+
+In the end I struggled with the monile version so I had to make sure the user knew how to draw just around the borders of the page specially on the phone.
