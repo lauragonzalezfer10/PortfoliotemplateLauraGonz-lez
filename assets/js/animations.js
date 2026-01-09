@@ -114,7 +114,6 @@
         const x = centerX + Math.cos(rad) * distance - sticker.offsetWidth / 2;
         const y = centerY + Math.sin(rad) * distance - sticker.offsetHeight / 2;
 
-        // Use translate3d for better Safari performance
         sticker.style.left = `${x}px`;
         sticker.style.top = `${y}px`;
       });
@@ -135,7 +134,6 @@
         const x = Math.cos(phase) * (s.amp * 0.5);
         const r = Math.sin(phase) * s.rotAmp;
 
-        // Use translate3d for hardware acceleration (Safari fix)
         s.el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${r}deg)`;
       });
 
@@ -156,7 +154,6 @@
       });
     });
 
-    // Initial position with delay for Safari
     setTimeout(() => {
       position();
       loop();
@@ -353,16 +350,13 @@
       // -------------------------
       // PROJECTS: Quick fade-in for first 2 images only (Safari compatible)
       // -------------------------
-      // PROJECTS: show immediately (no gradual reveal) + faster decode (Safari-friendly)
       const projectImages = Array.from(
         document.querySelectorAll("#projects .project-card .project-image")
       );
 
       if (projectImages.length) {
-        // Never hide them -> they won't "appear gradually"
         gsap.set(projectImages, { clearProps: "opacity,transform,filter" });
 
-        // Make them visible immediately in case any CSS/old tween touched them
         projectImages.forEach((img) => {
           img.style.opacity = "1";
           img.style.visibility = "visible";
@@ -370,21 +364,15 @@
           img.style.willChange = "auto";
         });
 
-        // Help them load/render sooner when approaching viewport
         const boost = (img) => {
           try {
-            // If you used lazy loading, this makes it eager once we care about it
             if (img.loading === "lazy") img.loading = "eager";
-
-            // Ask browser to decode ASAP (helps Safari)
             if (img.decode) img.decode().catch(() => {});
           } catch (_) {}
         };
 
-        // Boost first ones immediately (above-the-fold of projects)
         projectImages.slice(0, 6).forEach(boost);
 
-        // Boost the rest when close to viewport (fast + light)
         if ("IntersectionObserver" in window) {
           const io = new IntersectionObserver(
             (entries) => {
