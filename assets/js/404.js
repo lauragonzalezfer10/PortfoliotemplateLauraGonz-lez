@@ -1,21 +1,20 @@
 /* =========================================================
-   404 DRAWING BACKGROUND (SVG + GSAP) — FULL SCRIPT (MULTI-TOUCH)
+   404 DRAWING BACKGROUND (SVG + GSAP) — MOBILE TOUCH OPTIMIZED
    ========================================================= */
 
 (() => {
   /* ---------------------------
-         1) DOM LOOKUP + SAFE EXIT
-         --------------------------- */
+           1) DOM LOOKUP + SAFE EXIT
+           --------------------------- */
   const layer = document.getElementById("draw-layer");
   const svg = document.getElementById("draw-svg");
 
-  // If required elements or GSAP are missing, stop (prevents errors in exam/demo)
+  // If required elements or GSAP are missing, stop
   if (!layer || !svg || !window.gsap) return;
 
   /* -----------------------------------------
-         2) SVG VIEWBOX = PIXEL COORDINATE SYSTEM
-         So pointer coordinates match SVG coordinates
-         ----------------------------------------- */
+           2) SVG VIEWBOX = PIXEL COORDINATE SYSTEM
+           ----------------------------------------- */
   function syncViewBox() {
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -23,36 +22,40 @@
     svg.setAttribute("preserveAspectRatio", "none");
   }
 
-  // Set initially + keep in sync on resize
   syncViewBox();
   window.addEventListener("resize", syncViewBox);
 
   /* ---------------------------
-         3) CONSTANTS + STATE
-         --------------------------- */
+           3) CONSTANTS + STATE
+           --------------------------- */
   const NS = "http://www.w3.org/2000/svg";
-
   const strokes = new Map(); // pointerId -> { pathEl, points }
 
   /* ------------------------------------------
-         4) SETTINGS (tweak drawing “feel” here)
-         ------------------------------------------ */
+           4) SETTINGS (mobile-optimized)
+           ------------------------------------------ */
+  const isMobile =
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  const isSmallScreen = window.innerWidth < 768;
+
   const SETTINGS = {
-    minDist: 2.5, // minimum distance between points (performance vs smoothness)
-    strokeWidth: 6, // thickness of the stroke
-    fadeAfter: 0.6, // seconds to wait after finishing before fade/drift
-    driftDuration: 4.0, // drift + fade duration
+    minDist: isMobile ? 1.5 : 2.5,
+    strokeWidth: isMobile ? 5 : 6,
+    fadeAfter: 0.6,
+    driftDuration: 4.0,
   };
 
-  // Optional: tune feel for small screens
+  // Extra small screens
   if (window.matchMedia("(max-width: 480px)").matches) {
     SETTINGS.strokeWidth = 4;
-    SETTINGS.minDist = 2;
+    SETTINGS.minDist = 1.2;
   }
 
   /* ------------------------------------------
-         5) PATH CONSTRUCTION (smoothing)
-         ------------------------------------------ */
+           5) PATH CONSTRUCTION (smoothing)
+           ------------------------------------------ */
   function buildSmoothPath(pts) {
     if (pts.length < 2) return "";
 
@@ -74,8 +77,8 @@
   }
 
   /* ------------------------------------------
-         6) HELPERS (math + randomness + coords)
-         ------------------------------------------ */
+           6) HELPERS
+           ------------------------------------------ */
   function dist(a, b) {
     const dx = a.x - b.x;
     const dy = a.y - b.y;
@@ -86,20 +89,18 @@
     return Math.random() * (max - min) + min;
   }
 
-  // ✅ Convert pointer coords (clientX/Y) to SVG coords
-  function toSvgPoint(e) {
+  function toSvgPoint(clientX, clientY) {
     const pt = svg.createSVGPoint();
-    pt.x = e.clientX;
-    pt.y = e.clientY;
+    pt.x = clientX;
+    pt.y = clientY;
 
     const m = svg.getScreenCTM();
-    return m ? pt.matrixTransform(m.inverse()) : { x: e.clientX, y: e.clientY };
+    return m ? pt.matrixTransform(m.inverse()) : { x: clientX, y: clientY };
   }
 
   /* ------------------------------------------
-         7) STROKE LIFECYCLE: start / move / end
-         (MULTI-POINTER via pointerId)
-         ------------------------------------------ */
+           7) STROKE LIFECYCLE
+           ------------------------------------------ */
   function startStroke(pointerId, x, y) {
     const points = [{ x, y }];
 
@@ -145,13 +146,11 @@
     const { pathEl, points } = stroke;
     strokes.delete(pointerId);
 
-    // If user just tapped (too few points), remove the tiny stroke
     if (points.length < 3) {
       pathEl.remove();
       return;
     }
 
-    // Drift upwards + fade out, then cleanup
     gsap
       .timeline({ delay: SETTINGS.fadeAfter })
       .to(pathEl, {
@@ -165,31 +164,79 @@
   }
 
   /* ------------------------------------------
-         8) POINTER EVENTS (mouse + touch + pen)
-         ------------------------------------------ */
+           8) POINTER EVENTS (Works with touch!)
+           ------------------------------------------ */
   layer.addEventListener("pointerdown", (e) => {
+    // Prevent default to stop scrolling on touch
+    e.preventDefault();
+
     // For mouse: only left click draws
     if (e.pointerType === "mouse" && e.button !== 0) return;
 
-    // Capture pointer so we still receive move/up even if pointer leaves layer
+    // Capture pointer
     layer.setPointerCapture?.(e.pointerId);
 
-    const p = toSvgPoint(e);
+    const p = toSvgPoint(e.clientX, e.clientY);
     startStroke(e.pointerId, p.x, p.y);
   });
 
   layer.addEventListener("pointermove", (e) => {
-    const p = toSvgPoint(e);
+    e.preventDefault(); // Prevent scrolling while drawing
+
+    const p = toSvgPoint(e.clientX, e.clientY);
     moveStroke(e.pointerId, p.x, p.y);
   });
 
   ["pointerup", "pointercancel", "pointerleave"].forEach((evt) => {
-    layer.addEventListener(evt, (e) => endStroke(e.pointerId));
+    layer.addEventListener(evt, (e) => {
+      endStroke(e.pointerId);
+    });
   });
 
   /* ------------------------------------------
-         9) KEYBOARD SHORTCUT: Press "C" to clear
-         ------------------------------------------ */
+           9) FALLBACK: Touch Events (for older browsers)
+           ------------------------------------------ */
+  layer.addEventListener(
+    "touchstart",
+    (e) => {
+      e.preventDefault();
+
+      Array.from(e.changedTouches).forEach((touch) => {
+        const p = toSvgPoint(touch.clientX, touch.clientY);
+        startStroke(touch.identifier, p.x, p.y);
+      });
+    },
+    { passive: false }
+  );
+
+  layer.addEventListener(
+    "touchmove",
+    (e) => {
+      e.preventDefault();
+
+      Array.from(e.changedTouches).forEach((touch) => {
+        const p = toSvgPoint(touch.clientX, touch.clientY);
+        moveStroke(touch.identifier, p.x, p.y);
+      });
+    },
+    { passive: false }
+  );
+
+  layer.addEventListener("touchend", (e) => {
+    Array.from(e.changedTouches).forEach((touch) => {
+      endStroke(touch.identifier);
+    });
+  });
+
+  layer.addEventListener("touchcancel", (e) => {
+    Array.from(e.changedTouches).forEach((touch) => {
+      endStroke(touch.identifier);
+    });
+  });
+
+  /* ------------------------------------------
+           10) KEYBOARD SHORTCUT: Press "C" to clear
+           ------------------------------------------ */
   window.addEventListener("keydown", (e) => {
     if (e.key.toLowerCase() === "c") {
       strokes.clear();
@@ -205,7 +252,7 @@
   });
 
   /* ------------------------------------------
-         10) Fade-in layer on load
-         ------------------------------------------ */
+           11) Fade-in layer on load
+           ------------------------------------------ */
   gsap.fromTo(layer, { opacity: 0 }, { opacity: 1, duration: 0.6 });
 })();
