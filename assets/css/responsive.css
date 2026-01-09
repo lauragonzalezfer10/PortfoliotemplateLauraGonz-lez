@@ -60,18 +60,6 @@
   }
 }
 
-@keyframes scrollMouse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    opacity: 0.3;
-    transform: translateX(-50%) translateY(12px);
-  }
-}
-
 /* Pop Animation */
 @keyframes doodlePop {
   0% {
@@ -93,18 +81,5 @@
   100% {
     opacity: 0;
     transform: scale(0.8) rotate(0deg);
-  }
-}
-
-/* Scroll animation definition */
-@keyframes scrollMouse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0); /* Initial position */
-  }
-  50% {
-    opacity: 0.3; /* Fades out */
-    transform: translateX(-50%) translateY(0.75rem); /* Moves down */
   }
 }

@@ -186,10 +186,6 @@
     moveStroke(e.clientX, e.clientY);
   });
 
-  // End stroke on common stop events
-  const stopEvents = ["pointerup", "pointercancel", "pointerleave"];
-  stopEvents.forEach((evt) => layer.addEventListener(evt, endStroke));
-
   /* ------------------------------------------
        9) KEYBOARD SHORTCUT: Press "C" to clear
        ------------------------------------------ */
