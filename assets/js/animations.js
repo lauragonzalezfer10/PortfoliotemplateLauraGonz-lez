@@ -21,14 +21,13 @@
   // -------------------------
   function safeRefresh() {
     if (!window.ScrollTrigger || prefersReducedMotion) return;
-    // Double rAF helps prevent “jump” on refresh after layout changes
     requestAnimationFrame(() => {
       requestAnimationFrame(() => ScrollTrigger.refresh(true));
     });
   }
 
   // -------------------------
-  // Theme toggle (unchanged, but calls safeRefresh)
+  // Theme toggle
   // -------------------------
   function initThemeToggle() {
     const html = document.documentElement;
@@ -63,14 +62,14 @@
   }
 
   // -------------------------
-  // Stickers (your code can stay; keep safeRefresh on resize)
+  // Stickers - ALWAYS WORK (Fixed for Safari)
   // -------------------------
   function initStickers() {
     const section = document.querySelector(".personality-section");
     const title = section?.querySelector(".section-title");
-    const layer = section?.querySelector(".stickers-layer");
     const stickers = Array.from(section?.querySelectorAll(".sticker") || []);
-    if (!section || !title || !layer || stickers.length === 0) return;
+
+    if (!section || !title || stickers.length === 0) return;
     if (prefersReducedMotion) return;
 
     const data = stickers.map((el, i) => ({
@@ -83,8 +82,12 @@
     }));
 
     let rafId = null;
+    let isPositioned = false;
 
     function position() {
+      // Force layout recalculation for Safari
+      void section.offsetHeight;
+
       const centerX = section.offsetWidth / 2;
       const centerY = section.offsetHeight / 2;
       const isMobile = window.innerWidth <= 768;
@@ -111,12 +114,17 @@
         const x = centerX + Math.cos(rad) * distance - sticker.offsetWidth / 2;
         const y = centerY + Math.sin(rad) * distance - sticker.offsetHeight / 2;
 
+        // Use translate3d for better Safari performance
         sticker.style.left = `${x}px`;
         sticker.style.top = `${y}px`;
       });
+
+      isPositioned = true;
     }
 
     function loop() {
+      if (!isPositioned) return;
+
       const t = performance.now() / 1000;
 
       data.forEach((s) => {
@@ -127,7 +135,8 @@
         const x = Math.cos(phase) * (s.amp * 0.5);
         const r = Math.sin(phase) * s.rotAmp;
 
-        s.el.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+        // Use translate3d for hardware acceleration (Safari fix)
+        s.el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${r}deg)`;
       });
 
       rafId = requestAnimationFrame(loop);
@@ -141,35 +150,37 @@
         s.el.style.transform = "scale(1.2) rotate(360deg)";
 
         setTimeout(() => {
-          s.el.style.transition = "transform 0.3s ease";
+          s.el.style.transition = "none";
           s.popLock = false;
         }, 500);
       });
     });
 
-    position();
-    loop();
+    // Initial position with delay for Safari
+    setTimeout(() => {
+      position();
+      loop();
+    }, 100);
 
-    window.addEventListener(
-      "resize",
-      debounce(() => {
-        position();
-        safeRefresh();
-      }, 140)
-    );
+    const handleResize = debounce(() => {
+      position();
+      safeRefresh();
+    }, 140);
+
+    window.addEventListener("resize", handleResize);
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
         if (rafId) cancelAnimationFrame(rafId);
         rafId = null;
-      } else if (!rafId) {
+      } else if (!rafId && isPositioned) {
         rafId = requestAnimationFrame(loop);
       }
     });
   }
 
   // -------------------------
-  // GSAP + ScrollTrigger (SMOOTH on refresh)
+  // GSAP + ScrollTrigger
   // -------------------------
   let ctx = null;
 
@@ -178,27 +189,23 @@
 
     if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
-
-      // Helps prevent “resize jitter” on mobile address bar
       ScrollTrigger.config({ ignoreMobileResize: true });
-
-      // Important for refresh stability
       ScrollTrigger.defaults({ invalidateOnRefresh: true });
     }
 
     if (prefersReducedMotion) return true;
 
-    // ✅ Full cleanup (prevents duplicate tweens/triggers after reload or re-init)
     if (ctx) ctx.revert();
+
     ctx = gsap.context(() => {
-      // Kill ONLY our triggers
+      // Kill existing triggers
       if (window.ScrollTrigger) {
         ScrollTrigger.getAll()
           .filter((t) => t.vars && t.vars.id === "site")
           .forEach((t) => t.kill(true));
       }
 
-      // Kill tweens we might be stacking
+      // Kill tweens
       gsap.killTweensOf([
         ".hero-bg",
         ".hero .container",
@@ -227,7 +234,7 @@
       if (!window.ScrollTrigger) return;
 
       // -------------------------
-      // HERO bg parallax (scrub smoothing)
+      // HERO bg parallax
       // -------------------------
       const heroBg = document.querySelector(".hero-bg");
       if (heroBg) {
@@ -279,7 +286,9 @@
         });
       });
 
+      // -------------------------
       // ABOUT parallax
+      // -------------------------
       const aboutSection = document.querySelector(".about-section");
       const aboutWrap = document.querySelector(".about-image-wrapper");
 
@@ -321,7 +330,9 @@
         }
       }
 
-      // REVEALS (generic)
+      // -------------------------
+      // Reusable reveal (text, cards, etc.)
+      // -------------------------
       gsap.utils.toArray(".gsap-reveal").forEach((el) => {
         gsap.from(el, {
           y: 50,
@@ -339,54 +350,74 @@
         });
       });
 
-      // PROJECTS: images appear slowly (ONLY images) — smoother (no blur)
-      const projectImages = gsap.utils.toArray(
-        "#projects .project-card .project-image"
+      // -------------------------
+      // PROJECTS: Quick fade-in for first 2 images only (Safari compatible)
+      // -------------------------
+      // PROJECTS: show immediately (no gradual reveal) + faster decode (Safari-friendly)
+      const projectImages = Array.from(
+        document.querySelectorAll("#projects .project-card .project-image")
       );
 
-      gsap.set(projectImages, {
-        opacity: 0,
-        y: 18,
-        scale: 1.02,
-        force3D: true,
-        willChange: "transform,opacity",
-      });
+      if (projectImages.length) {
+        // Never hide them -> they won't "appear gradually"
+        gsap.set(projectImages, { clearProps: "opacity,transform,filter" });
 
-      ScrollTrigger.batch(projectImages, {
-        id: "site",
-        start: "top 85%",
-        once: true,
-        batchMax: 8,
-        interval: 0.12,
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1.2,
-            ease: "power3.out",
-            stagger: 0.12,
-            clearProps: "willChange",
-          });
-        },
-      });
+        // Make them visible immediately in case any CSS/old tween touched them
+        projectImages.forEach((img) => {
+          img.style.opacity = "1";
+          img.style.visibility = "visible";
+          img.style.transform = "none";
+          img.style.willChange = "auto";
+        });
+
+        // Help them load/render sooner when approaching viewport
+        const boost = (img) => {
+          try {
+            // If you used lazy loading, this makes it eager once we care about it
+            if (img.loading === "lazy") img.loading = "eager";
+
+            // Ask browser to decode ASAP (helps Safari)
+            if (img.decode) img.decode().catch(() => {});
+          } catch (_) {}
+        };
+
+        // Boost first ones immediately (above-the-fold of projects)
+        projectImages.slice(0, 6).forEach(boost);
+
+        // Boost the rest when close to viewport (fast + light)
+        if ("IntersectionObserver" in window) {
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((e) => {
+                if (e.isIntersecting) {
+                  boost(e.target);
+                  io.unobserve(e.target);
+                }
+              });
+            },
+            { root: null, rootMargin: "600px 0px", threshold: 0.01 }
+          );
+          projectImages.forEach((img) => io.observe(img));
+        }
+      }
     });
 
-    // ✅ Smooth refresh after layout changes
     safeRefresh();
     return true;
   }
 
   // -------------------------
-  // Boot (important: refresh after assets load)
+  // Boot
   // -------------------------
   document.addEventListener(
     "DOMContentLoaded",
     () => {
       initThemeToggle();
-      initStickers();
 
-      // Retry GSAP init (CDN might load after our script)
+      // Init stickers with delay for Safari
+      setTimeout(initStickers, 50);
+
+      // Retry GSAP init
       let tries = 0;
       const tick = () => {
         const ok = initGSAP();
@@ -395,7 +426,7 @@
       };
       tick();
 
-      // ✅ After all images/fonts load, refresh again (prevents “jump on reload”)
+      // After all images/fonts load
       window.addEventListener(
         "load",
         () => {
@@ -403,11 +434,18 @@
             ScrollTrigger.clearScrollMemory?.();
             safeRefresh();
           }
+          // Re-position stickers after everything loads
+          setTimeout(() => {
+            const section = document.querySelector(".personality-section");
+            if (section) {
+              window.dispatchEvent(new Event("resize"));
+            }
+          }, 100);
         },
         { once: true }
       );
 
-      // ✅ Refresh on resize (debounced)
+      // Refresh on resize
       window.addEventListener(
         "resize",
         debounce(() => safeRefresh(), 140)
@@ -415,4 +453,18 @@
     },
     { once: true }
   );
+
+  // Scroll to discover
+  const scrollBtn = document.querySelector(".hero-scroll-btn");
+  if (scrollBtn) {
+    scrollBtn.addEventListener("click", () => {
+      const aboutSection = document.querySelector("#about");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  }
 })();
