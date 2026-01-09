@@ -280,7 +280,6 @@
   height: auto;
   display: block;
   border-radius: 2rem;
-  transition: transform 0.6s ease;
 }
 
 /* HOVER EFFECT: Subtle image zoom */

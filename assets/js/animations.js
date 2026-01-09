@@ -21,13 +21,14 @@
   // -------------------------
   function safeRefresh() {
     if (!window.ScrollTrigger || prefersReducedMotion) return;
+    // Double rAF helps prevent “jump” on refresh after layout changes
     requestAnimationFrame(() => {
       requestAnimationFrame(() => ScrollTrigger.refresh(true));
     });
   }
 
   // -------------------------
-  // Theme toggle
+  // Theme toggle (unchanged, but calls safeRefresh)
   // -------------------------
   function initThemeToggle() {
     const html = document.documentElement;
@@ -62,7 +63,7 @@
   }
 
   // -------------------------
-  // Stickers
+  // Stickers (your code can stay; keep safeRefresh on resize)
   // -------------------------
   function initStickers() {
     const section = document.querySelector(".personality-section");
@@ -168,7 +169,7 @@
   }
 
   // -------------------------
-  // GSAP + ScrollTrigger
+  // GSAP + ScrollTrigger (SMOOTH on refresh)
   // -------------------------
   let ctx = null;
 
@@ -178,12 +179,16 @@
     if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
 
+      // Helps prevent “resize jitter” on mobile address bar
       ScrollTrigger.config({ ignoreMobileResize: true });
+
+      // Important for refresh stability
       ScrollTrigger.defaults({ invalidateOnRefresh: true });
     }
 
     if (prefersReducedMotion) return true;
 
+    // ✅ Full cleanup (prevents duplicate tweens/triggers after reload or re-init)
     if (ctx) ctx.revert();
     ctx = gsap.context(() => {
       // Kill ONLY our triggers
@@ -222,7 +227,7 @@
       if (!window.ScrollTrigger) return;
 
       // -------------------------
-      // HERO bg parallax
+      // HERO bg parallax (scrub smoothing)
       // -------------------------
       const heroBg = document.querySelector(".hero-bg");
       if (heroBg) {
@@ -316,7 +321,7 @@
         }
       }
 
-      // Reusable scroll-triggered reveal animation
+      // REVEALS (generic)
       gsap.utils.toArray(".gsap-reveal").forEach((el) => {
         gsap.from(el, {
           y: 50,
@@ -334,7 +339,7 @@
         });
       });
 
-      // PROJECTS: images appear slowly
+      // PROJECTS: images appear slowly (ONLY images) — smoother (no blur)
       const projectImages = gsap.utils.toArray(
         "#projects .project-card .project-image"
       );
@@ -367,12 +372,13 @@
       });
     });
 
+    // ✅ Smooth refresh after layout changes
     safeRefresh();
     return true;
   }
 
   // -------------------------
-  // Boot (refresh after assets load)
+  // Boot (important: refresh after assets load)
   // -------------------------
   document.addEventListener(
     "DOMContentLoaded",
@@ -380,7 +386,7 @@
       initThemeToggle();
       initStickers();
 
-      // Retry GSAP init
+      // Retry GSAP init (CDN might load after our script)
       let tries = 0;
       const tick = () => {
         const ok = initGSAP();
@@ -389,7 +395,7 @@
       };
       tick();
 
-      // After all images/fonts load, refresh again
+      // ✅ After all images/fonts load, refresh again (prevents “jump on reload”)
       window.addEventListener(
         "load",
         () => {
@@ -401,7 +407,7 @@
         { once: true }
       );
 
-      // Refresh on resize
+      // ✅ Refresh on resize (debounced)
       window.addEventListener(
         "resize",
         debounce(() => safeRefresh(), 140)
@@ -409,11 +415,4 @@
     },
     { once: true }
   );
-
-  // Scroll to discover
-  document.querySelector(".hero-scroll-btn")?.addEventListener("click", () => {
-    document.querySelector("#about")?.scrollIntoView({
-      behavior: "smooth",
-    });
-  });
 })();
