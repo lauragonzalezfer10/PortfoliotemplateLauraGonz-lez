@@ -166,29 +166,48 @@
   /* ------------------------------------------
            8) POINTER EVENTS (Works with touch!)
            ------------------------------------------ */
-  layer.addEventListener("pointerdown", (e) => {
-    // Prevent default to stop scrolling on touch
-    e.preventDefault();
+  layer.addEventListener(
+    "pointerdown",
+    (e) => {
+      // Prevent default to stop scrolling on touch
+      e.preventDefault();
+      e.stopPropagation();
 
-    // For mouse: only left click draws
-    if (e.pointerType === "mouse" && e.button !== 0) return;
+      // For mouse: only left click draws
+      if (e.pointerType === "mouse" && e.button !== 0) return;
 
-    // Capture pointer
-    layer.setPointerCapture?.(e.pointerId);
+      // Capture pointer
+      if (layer.setPointerCapture) {
+        layer.setPointerCapture(e.pointerId);
+      }
 
-    const p = toSvgPoint(e.clientX, e.clientY);
-    startStroke(e.pointerId, p.x, p.y);
-  });
+      const p = toSvgPoint(e.clientX, e.clientY);
+      startStroke(e.pointerId, p.x, p.y);
+    },
+    { passive: false }
+  );
 
-  layer.addEventListener("pointermove", (e) => {
-    e.preventDefault(); // Prevent scrolling while drawing
+  layer.addEventListener(
+    "pointermove",
+    (e) => {
+      e.preventDefault(); // Prevent scrolling while drawing
+      e.stopPropagation();
 
-    const p = toSvgPoint(e.clientX, e.clientY);
-    moveStroke(e.pointerId, p.x, p.y);
-  });
+      const p = toSvgPoint(e.clientX, e.clientY);
+      moveStroke(e.pointerId, p.x, p.y);
+    },
+    { passive: false }
+  );
 
   ["pointerup", "pointercancel", "pointerleave"].forEach((evt) => {
     layer.addEventListener(evt, (e) => {
+      if (layer.releasePointerCapture) {
+        try {
+          layer.releasePointerCapture(e.pointerId);
+        } catch (err) {
+          // Ignore if already released
+        }
+      }
       endStroke(e.pointerId);
     });
   });
