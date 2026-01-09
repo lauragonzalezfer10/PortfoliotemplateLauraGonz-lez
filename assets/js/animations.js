@@ -21,7 +21,6 @@
   // -------------------------
   function safeRefresh() {
     if (!window.ScrollTrigger || prefersReducedMotion) return;
-    // Double rAF helps prevent “jump” on refresh after layout changes
     requestAnimationFrame(() => {
       requestAnimationFrame(() => ScrollTrigger.refresh(true));
     });
@@ -179,16 +178,12 @@
     if (window.ScrollTrigger && !gsap.core.globals().ScrollTrigger) {
       gsap.registerPlugin(ScrollTrigger);
 
-      // Helps prevent “resize jitter” on mobile address bar
       ScrollTrigger.config({ ignoreMobileResize: true });
-
-      // Important for refresh stability
       ScrollTrigger.defaults({ invalidateOnRefresh: true });
     }
 
     if (prefersReducedMotion) return true;
 
-    // ✅ Full cleanup (prevents duplicate tweens/triggers after reload or re-init)
     if (ctx) ctx.revert();
     ctx = gsap.context(() => {
       // Kill ONLY our triggers
