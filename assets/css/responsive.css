@@ -35,10 +35,19 @@
 
 /* --- About page --- */
 
+/* ✅ Mobile: centered layout */
+@media (max-width: 768px) {
+  .about-section {
+    padding-inline: 1.25rem;
+    text-align: center;
+  }
+}
+
 /* Mobile: stack naturally (Bootstrap already does this) */
 @media (max-width: 991px) {
-  .about-image-wrapper {
+  .about-image-wrapper .about-parallax {
     text-align: center;
+    margin-inline: auto;
   }
 }
 /* Mobile:hide speech bubble on small screens  */
@@ -61,6 +70,28 @@
 
   .section-title {
     padding: 0 1rem;
+  }
+}
+
+/* stickers */
+@media (max-width: 576px) {
+  .sticker {
+    max-width: calc(100vw - 2rem);
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    white-space: normal;
+    line-height: 1.15;
+    transform-origin: center;
+  }
+
+  @media (max-width: 576px) {
+    .stickers-layer {
+      overflow: hidden;
+    }
+  }
+
+  .sticker:hover {
+    transform: none;
   }
 }
 

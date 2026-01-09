@@ -43,6 +43,11 @@
   /* Custom easing curve for animations and transitions */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
+  --box-shadow: 0 1.5625rem 3.75rem rgba(0, 0, 0, 0.35);
+  --box-shadow2: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+
+  --sticker: #333;
+
   /* --------------------------------------------------
        Typography tokens
        -------------------------------------------------- */
@@ -58,7 +63,7 @@
 }
 
 /* --------------------------------------------------------------------------
-     2. Dark Mode Overrides (Bootstrap-controlled)
+     2. Dark Mode Overrides 
      -------------------------------------------------------------------------- */
 
 /* These variables apply ONLY when data-bs-theme="dark" is active */

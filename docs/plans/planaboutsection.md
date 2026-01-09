@@ -380,3 +380,5 @@ if (aboutSection && floatingImagesContainer) {
 ```
 
 ---
+
+I realised there where some problems with the layout for small devices so I fixed it so everything looked centered and balanced. I had to fix some responsive assets in order to achivee the desired look.
